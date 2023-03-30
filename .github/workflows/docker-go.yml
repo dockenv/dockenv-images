@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: go
-  IMAGE_TAGS: "latest 1.15 1.16 1.17"
+  IMAGE_TAGS: "latest 1.18 1.19 1.20"
 
 jobs:
   build:
@@ -22,15 +22,15 @@ jobs:
     - name: Build the Docker image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
     - name: Login Github Package Registry
       run: |
-        docker login -u ${{secrets.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ env.REGISTRY }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 
     - name: Push Docker Image To Github Package
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done

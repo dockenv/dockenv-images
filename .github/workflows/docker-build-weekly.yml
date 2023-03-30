@@ -20,34 +20,34 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        docker build . -f images/geckodriver/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/geckodriver:latest
-        docker build . -f images/chromedriver/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/chromedriver:latest
-        docker build . -f images/rsync/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/rsync:latest
-        docker build . -f images/acme/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/acme:latest
-        docker build . -f images/beanstalkd/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/beanstalkd:latest
-        docker build . -f images/beanstalkd/1.12/Dockerfile -t ${{ env.REGISTRY }}/dockenv/beanstalkd:1.12
-        docker build . -f images/haproxy/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/haproxy:latest
-        docker build . -f images/pgadmin4/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/pgadmin4:latest
-        docker build . -f images/portainer/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/portainer:latest
-        docker build . -f images/postgres/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/postgres:latest
-        docker build . -f images/voidlinux/latest/Dockerfile -t ${{ env.REGISTRY }}/dockenv/voidlinux:latest
-        docker build . -f images/voidlinux/musl/Dockerfile -t ${{ env.REGISTRY }}/dockenv/voidlinux:musl
+        docker build . -f images/geckodriver/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/geckodriver:latest
+        docker build . -f images/chromedriver/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/chromedriver:latest
+        docker build . -f images/rsync/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rsync:latest
+        docker build . -f images/acme/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/acme:latest
+        docker build . -f images/beanstalkd/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:latest
+        docker build . -f images/beanstalkd/1.12/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:1.12
+        docker build . -f images/haproxy/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/haproxy:latest
+        docker build . -f images/pgadmin4/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/pgadmin4:latest
+        docker build . -f images/portainer/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
+        docker build . -f images/postgres/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
+        docker build . -f images/voidlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
+        docker build . -f images/voidlinux/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
 
     - name: Login Github Package Registry
       run: |
-        docker login -u ${{secrets.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ env.REGISTRY }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 
     - name: Push Docker Image To Github Package
       run: |
-        docker push ${{ env.REGISTRY }}/dockenv/geckodriver:latest
-        docker push ${{ env.REGISTRY }}/dockenv/chromedriver:latest
-        docker push ${{ env.REGISTRY }}/dockenv/rsync:latest
-        docker push ${{ env.REGISTRY }}/dockenv/acme:latest
-        docker push ${{ env.REGISTRY }}/dockenv/beanstalkd:latest
-        docker push ${{ env.REGISTRY }}/dockenv/beanstalkd:1.12
-        docker push ${{ env.REGISTRY }}/dockenv/haproxy:latest
-        docker push ${{ env.REGISTRY }}/dockenv/pgadmin4:latest
-        docker push ${{ env.REGISTRY }}/dockenv/portainer:latest
-        docker push ${{ env.REGISTRY }}/dockenv/postgres:latest
-        docker push ${{ env.REGISTRY }}/dockenv/voidlinux:latest
-        docker push ${{ env.REGISTRY }}/dockenv/voidlinux:musl
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/geckodriver:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/chromedriver:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rsync:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/acme:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:1.12
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/haproxy:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/pgadmin4:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
