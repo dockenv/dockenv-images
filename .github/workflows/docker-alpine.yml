@@ -21,15 +21,15 @@ jobs:
     - name: Build the Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ env.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
     - name: Login to Github Package Registry
       run: |
-        docker login -u ${{env.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ env.DOCKER_REGISTRY_GITHUB }}
+        docker login -u ${{env.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 
     - name: Push Docker Image To Github Package
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ env.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
