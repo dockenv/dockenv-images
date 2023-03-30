@@ -20,16 +20,16 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        docker build . -f images/${{ env.IMAGE_NAME }}/3/Dockerfile -t ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:3
-        docker tag ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:3 ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
-        docker build . -f images/${{ env.IMAGE_NAME }}/2/Dockerfile -t ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:2
+        docker build . -f images/${{ env.IMAGE_NAME }}/3/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:3
+        docker tag ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:3 ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
+        docker build . -f images/${{ env.IMAGE_NAME }}/2/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:2
 
     - name: Login Github Package Registry
       run: |
-        docker login -u ${{secrets.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ env.REGISTRY }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 
     - name: Push Docker Image To Github Package
       run: |
-        docker push ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
-        docker push ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:3
-        docker push ${{ env.REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:2
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:3
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:2
