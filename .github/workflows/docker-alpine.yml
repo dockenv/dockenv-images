@@ -26,7 +26,7 @@ jobs:
 
     - name: Login to Github Package Registry
       run: |
-        docker login -u ${{env.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 
     - name: Push Docker Image To Github Package
       run: |
