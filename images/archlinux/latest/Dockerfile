@@ -8,7 +8,7 @@ LABEL MAINTAINER="Cloudflying" \
 ENV PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin" \
     TZ='Asia/Shanghai'
 
-ADD pacman.conf /etc/pacman.conf
+ADD ./pacman.conf /etc/pacman.conf
 
 RUN ln -sf /proc/self/mounts /etc/mtab \
     && echo "Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist \

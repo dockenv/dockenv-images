@@ -19,7 +19,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Linux Docker image
       run: |
-        docker build . -f images/archlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/archlinux:latest
         docker build . -f images/gentoo/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gentoo:latest
         docker build . -f images/manjaro/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/manjaro:latest
         docker build . -f images/almalinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/almalinux:latest
@@ -42,7 +41,6 @@ jobs:
 
     - name: Push Docker Image To Github Package
       run: |
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/archlinux:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gentoo:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/manjaro:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/almalinux:latest
