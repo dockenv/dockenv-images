@@ -1,7 +1,7 @@
 <!--
  * @Author: Cloudflying
  * @Date: 2022-06-30 00:20:41
- * @LastEditTime: 2022-06-30 00:44:30
+ * @LastEditTime: 2023-04-24 23:27:12
  * @LastEditors: Cloudflying
  * @Description:
  * @FilePath: /dockenv/images/mssql/readme.MD
@@ -13,7 +13,7 @@
 ```
 docker run -d \
     -e "ACCEPT_EULA=Y" \
-    -e "SA_PASSWORD=yourStrong(!)Password" \
+    -e "MSSQL_SA_PASSWORD=yourStrong(!)Password" \
     -p 1433:1433 \
     mcr.microsoft.com/mssql/server:latest
 ```

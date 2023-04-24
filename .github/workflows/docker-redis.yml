@@ -1,15 +1,16 @@
-name: Docker Build Redis
+name: Build Redis Docker Image
 
 on:
   workflow_dispatch:
     branches:
     - master
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * 1'
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: redis
+  IMAGE_TAGS: "latest 6.2 7.0 7.2"
 
 jobs:
   build:
@@ -20,10 +21,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        docker build . -f images/${{ env.IMAGE_NAME }}/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
-        docker build . -f images/${{ env.IMAGE_NAME }}/6.2/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:6.2
-        docker build . -f images/${{ env.IMAGE_NAME }}/6.0/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:6.0
-        docker build . -f images/${{ env.IMAGE_NAME }}/5.0/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:5.0
+        for tag in ${IMAGE_TAGS}; do
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+        done
 
     - name: Login Github Package Registry
       run: |
@@ -31,7 +31,6 @@ jobs:
 
     - name: Push Docker Image To Github Package
       run: |
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:6.2
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:6.0
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:5.0
+        for tag in ${IMAGE_TAGS}; do
+          docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+        done

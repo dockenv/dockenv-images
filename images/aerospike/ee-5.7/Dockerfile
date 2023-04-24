@@ -1,4 +1,4 @@
-FROM aerospike:ee-5.7.0.8
+FROM aerospike:ee-5.7.0.17
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 

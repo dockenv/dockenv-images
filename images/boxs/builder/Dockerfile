@@ -1,6 +1,9 @@
 FROM ghcr.io/dockenv/archlinux:latest
+
 LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk"
+    MAIL="oss@live.hk" \
+    org.opencontainers.image.source=https://github.com/dockenv/dockenv \
+    org.opencontainers.image.description='Archlinux Builder'
 
 ENV RUN_USER="boxs" \
 	PASSWD="boxs" \
@@ -16,6 +19,10 @@ COPY conf/makepkg.conf /etc/makepkg.conf
 # gtk2 xdg-utils
 # nodejs npm \
 RUN pacman -Syy \
+    && pacman -S --noconfirm --overwrite \* archlinux-keyring \
+    && pacman-key --init \
+    && pacman-key --populate archlinux \
+    && pacman -Su --noconfirm --overwrite \* \
     && pacman -S --noconfirm --overwrite \* glibc \
     && pacman -S --noconfirm --overwrite \* \
         openssh git zsh neovim net-tools wget axel curl axel namcap \
@@ -23,13 +30,13 @@ RUN pacman -Syy \
         file tree which \
         unarchiver unzip unrar p7zip \
         meson nss alsa-lib libsecret \
-        go python python2 python-pip \
+        go python python-pip \
         squashfs-tools \
     && useradd -d /home/${RUN_USER} -c "Packages Builder" -m -s /bin/zsh ${RUN_USER} \
 	&& echo "${RUN_USER}:${PASSWD}" | chpasswd \
 	&& echo "root:${PASSWD}" | chpasswd \
     && echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
-    && git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh \
+    && git clone --depth 1 https://git.xie.ke/mirrors/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh \
     && cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc \
     && sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc \
     && chown -R ${RUN_USER}:${RUN_USER} ${HOME_DIR} \
