@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+###
+ # @Author: Cloudflying
+ # @Date: 2023-03-29 23:29:24
+ # @LastEditTime: 2023-04-11 22:15:56
+ # @LastEditors: Cloudflying
+ # @Description:
+###
 DATE=$(date +%Y.%m.%d)
 ROOTFS="/tmp/archlinux-rootfs/"
 ROOTFSDIR=$(pwd)

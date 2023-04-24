@@ -22,24 +22,24 @@ if [[ -z "$(command -v docker)" ]]; then
     }
 fi
 
-for denv in $* ;do
-    [[ "$(echo $denv | grep '\-\-registry\-prefix=')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
-    [[ "$(echo $denv | grep '\-\-registry\-prefix=')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
-    [[ "$(echo $denv | grep '\-\-with=github')" ]] && ENABLE_GITHUB_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=coding')" ]] && ENABLE_CODING_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=baidu')" ]] && ENABLE_BAIDU_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=huawei')" ]] && ENABLE_HUAWEI_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=aliyun')" ]] && ENABLE_ALIYUN_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=tencent')" ]] && ENABLE_TENCENT_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=gitlab')" ]] && ENABLE_GITLAB_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=quay')" ]] && ENABLE_QUAY_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=gcr')" ]] && ENABLE_GCR_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=gar')" ]] && ENABLE_GAR_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=azure')" ]] && ENABLE_AZURE_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=ucloud')" ]] && ENABLE_UCLOUD_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=amazon')" ]] && ENABLE_AMAZON_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-with=ecr')" ]] && ENABLE_ECR_REGISTRY=true
-    [[ "$(echo $denv | grep '\-\-prefix')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
+for denv in $@ ;do
+    [[ "$(echo $denv | grep '\--registry-prefix=')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
+    [[ "$(echo $denv | grep '\--registry-prefix=')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
+    [[ "$(echo $denv | grep '\--with=github')" ]] && ENABLE_GITHUB_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=coding')" ]] && ENABLE_CODING_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=baidu')" ]] && ENABLE_BAIDU_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=huawei')" ]] && ENABLE_HUAWEI_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=aliyun')" ]] && ENABLE_ALIYUN_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=tencent')" ]] && ENABLE_TENCENT_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=gitlab')" ]] && ENABLE_GITLAB_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=quay')" ]] && ENABLE_QUAY_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=gcr')" ]] && ENABLE_GCR_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=gar')" ]] && ENABLE_GAR_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=azure')" ]] && ENABLE_AZURE_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=ucloud')" ]] && ENABLE_UCLOUD_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=amazon')" ]] && ENABLE_AMAZON_REGISTRY=true
+    [[ "$(echo $denv | grep '\--with=ecr')" ]] && ENABLE_ECR_REGISTRY=true
+    [[ "$(echo $denv | grep '\--prefix')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')
 done
 
 _red() {
@@ -88,9 +88,12 @@ do_build()
 
         # --no-cache
         if [[ -n "${DOCKER_REGISTRY_PREFIX}" ]]; then
-            docker build --progress plain --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
+            # docker build --progress plain --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
+            # docker build --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
+            docker build -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
         else
-            docker build --progress plain --no-cache -t ${NAME}:$VERSION .
+            # docker build --progress plain --no-cache -t ${NAME}:$VERSION .
+            docker build --progress plain -t ${NAME}:$VERSION .
         fi
 
         [[ -n "${ENABLE_GITHUB_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_GITHUB}/${NAME}:$VERSION
@@ -230,7 +233,7 @@ do_login()
     'aliyun-hz')
         docker login -u ${DOCKER_REGISTRY_ALIYUN_USERNAME} -p ${DOCKER_REGISTRY_ALIYUN_PASSWORD} registry.cn-hangzhou.aliyuncs.com
         ;;
-    # 阿里云杭州
+    # 阿里云新加坡
     'aliyun-sg')
         docker login -u ${DOCKER_REGISTRY_ALIYUN_USERNAME} -p ${DOCKER_REGISTRY_ALIYUN_PASSWORD} registry.ap-southeast-1.aliyuncs.com
         ;;
@@ -242,7 +245,7 @@ do_login()
     'aliyun-db')
         docker login -u ${DOCKER_REGISTRY_ALIYUN_USERNAME} -p ${DOCKER_REGISTRY_ALIYUN_PASSWORD} registry.me-east-1.aliyuncs.com
         ;;
-    # 阿里云杭州
+    # 阿里云韩国
     'aliyun-kr')
         docker login -u ${DOCKER_REGISTRY_ALIYUN_USERNAME} -p ${DOCKER_REGISTRY_ALIYUN_PASSWORD} registry.ap-northeast-2.aliyuncs.com
         ;;

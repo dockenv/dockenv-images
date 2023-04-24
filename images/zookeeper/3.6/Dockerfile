@@ -1,8 +1,9 @@
-FROM zookeeper:3.6.3
+FROM zookeeper:3.6
 
 LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk" \
-        org.opencontainers.image.source=https://github.com/dockenv/dockenv
+    MAIL="<oss@live.hk>" \
+    org.opencontainers.image.source=https://github.com/dockenv/dockenv-images \
+    org.opencontainers.image.description="Zookeeper Docker Images"
 
 # ZOO_CONF_DIR=/conf
 VOLUME ["/data", "/datalog", "/logs"]

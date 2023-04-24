@@ -1,4 +1,4 @@
-FROM aerospike:latest
+FROM aerospike:ce-6.3.0.1_1
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk" \
         org.opencontainers.image.source=https://github.com/dockenv/dockenv

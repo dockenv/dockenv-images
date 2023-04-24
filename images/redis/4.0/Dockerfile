@@ -1,7 +1,9 @@
-FROM redis:4-alpine
+FROM redis:4.0-alpine
+
 LABEL MAINTAINER="Cloudflying" \
     MAIL="<oss@live.hk>" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv
+    org.opencontainers.image.source=https://github.com/dockenv/dockenv \
+    org.opencontainers.image.description="Redis Docker Images"
 
 USER redis
 

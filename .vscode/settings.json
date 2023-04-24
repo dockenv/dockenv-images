@@ -11,6 +11,8 @@
     "editor.fontSize": 16,
     "gitlens.advanced.fileHistoryFollowsRenames": true,
     "gitlens.advanced.fileHistoryShowAllBranches": true,
-    "gitlens.blame.heatmap.location": "left"
+	"gitlens.blame.heatmap.location": "left",
+	"editor.suggest.snippetsPreventQuickSuggestions": false,
+	"aiXcoder.showTrayIcon": false
 }
 

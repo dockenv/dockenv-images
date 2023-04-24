@@ -1,12 +1,12 @@
-name: Docker Build Images Weekly
+name: Build Software Docker Images Weekly
 
 on:
   workflow_dispatch:
     branches:
     - master
   schedule:
-    # Runs at 02:00 UTC on Mon.
-    - cron: '0 2 * * *'
+    # 每周一晚 2 点.
+    - cron: '0 2 * * 1'
 
 env:
   REGISTRY: ghcr.io
@@ -30,8 +30,11 @@ jobs:
         docker build . -f images/pgadmin4/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/pgadmin4:latest
         docker build . -f images/portainer/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
         docker build . -f images/postgres/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
-        docker build . -f images/voidlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
-        docker build . -f images/voidlinux/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
+        docker build . -f images/rabbitmq/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rabbitmq:latest
+        docker build . -f images/phpmyadmin/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/phpmyadmin:latest
+        docker build . -f images/memcached/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
+        docker build . -f images/caddy/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
+        docker build . -f images/varnish/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
 
     - name: Login Github Package Registry
       run: |
@@ -49,5 +52,8 @@ jobs:
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/pgadmin4:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rabbitmq:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/phpmyadmin:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
