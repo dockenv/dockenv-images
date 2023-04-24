@@ -21,7 +21,7 @@ jobs:
     - name: Build the Docker image
       run: |
         cd images/${{ env.IMAGE_NAME }}/latest
-        docker build . -f ./Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:3
+        docker build . -f ./Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
 
     - name: Login Github Package Registry
       run: |
