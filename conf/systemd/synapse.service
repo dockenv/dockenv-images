@@ -1,8 +1,0 @@
-[Unit]
-Description=synapse service
-
-[Service]
-ExecStart=/usr/bin/synapse --startup --display=:0
-
-[Install]
-WantedBy=graphical-session.target
