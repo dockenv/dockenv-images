@@ -19,8 +19,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
+        ROOT_PATH=$(pwd)
         for tag in ${IMAGE_TAGS}; do
-          cd images/${{ env.IMAGE_NAME }}/${tag}
+          cd ${ROOT_PATH}/images/${{ env.IMAGE_NAME }}/${tag}
           docker build . -f Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
         docker tag ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:8.4 ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
