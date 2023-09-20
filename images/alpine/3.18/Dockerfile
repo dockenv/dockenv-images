@@ -1,6 +1,7 @@
-FROM alpine:3.7
+FROM alpine:3.18
 LABEL MAINTAINER="Cloudflying" \
-  MAIL="<oss@live.hk>"
+  MAIL="<oss@live.hk>" \
+  org.opencontainers.image.source=https://github.com/dockenv/dockenv
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
