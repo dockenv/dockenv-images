@@ -13,6 +13,8 @@
     "gitlens.advanced.fileHistoryShowAllBranches": true,
 	"gitlens.blame.heatmap.location": "left",
 	"editor.suggest.snippetsPreventQuickSuggestions": false,
-	"aiXcoder.showTrayIcon": false
+	"aiXcoder.showTrayIcon": false,
+	"editor.inlineSuggest.enabled": true,
+	"diffEditor.codeLens": true
 }
 

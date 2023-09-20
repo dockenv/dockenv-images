@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:edge
+FROM ghcr.io/dockenv/alpine:latest
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
@@ -9,8 +9,14 @@ ENV RUN_USER="boxs" \
 
 ENV HOME_DIR=/home/$RUN_USER
 
-RUN apk add --no-cache sudo git zsh neovim net-tools wget curl axel aria2 shadow openssh util-linux-misc \
-        binutils file openrc procps htop neofetch gawk sed jq tar \
+RUN apk add --no-cache shadow musl-dev util-linux-misc linux-headers \
+        wget curl axel aria2 \
+        sudo git zsh neovim \
+        net-tools openssh openrc \
+        file gawk sed jq tar \
+        binutils procps htop \
+        python3 py3-pip \
+        && pip install supervisor \
     && useradd -d /home/${RUN_USER} -c "Packages Builder" -m -s /bin/zsh ${RUN_USER} \
 	&& echo "${RUN_USER}:${PASSWD}" | chpasswd \
 	&& echo "root:${PASSWD}" | chpasswd \
@@ -32,4 +38,5 @@ WORKDIR ${HOME_DIR}
 
 EXPOSE 22 80
 
-CMD ["zsh"]
+# CMD ["zsh"]
+CMD /usr/sbin/sshd -D
