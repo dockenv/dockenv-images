@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:latest
+FROM ghcr.io/dockenv/alpine:3.16
 
 LABEL org.opencontainers.image.title="Node"
 LABEL org.opencontainers.image.vendor="Cloudflying <oss@live.hk>"
