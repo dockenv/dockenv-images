@@ -1,4 +1,4 @@
-name: Docker Build Images altlinux
+name: Docker Build altlinux Images
 
 on:
   workflow_dispatch:
