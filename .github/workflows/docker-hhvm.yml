@@ -1,4 +1,4 @@
-name: Docker Build Images HHVM
+name: Docker Build HHVM Images
 
 on:
   workflow_dispatch:
