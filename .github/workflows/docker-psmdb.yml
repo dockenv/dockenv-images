@@ -1,4 +1,4 @@
-name: Docker Build Mariadb
+name: Docker Build PSMDB
 
 on:
   workflow_dispatch:
