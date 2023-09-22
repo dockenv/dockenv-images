@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: go
-  IMAGE_TAGS: "latest 1.18 1.19 1.20"
+  IMAGE_TAGS: "latest 1.18 1.19 1.20 1.21"
 
 jobs:
   build:
