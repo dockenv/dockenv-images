@@ -1,10 +1,10 @@
-FROM golang:alpine
+FROM golang:1.21-alpine
 
 LABEL org.opencontainers.image.title="Golang" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Golang latest'
+      org.opencontainers.image.description='Golang 1.21'
 
 ENV GOPATH /go
 ENV GOBIN ${GOPATH}/bin

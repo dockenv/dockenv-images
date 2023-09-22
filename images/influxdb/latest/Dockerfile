@@ -1,11 +1,11 @@
-FROM memcached:alpine
+FROM influxdb:alpine
 
-LABEL org.opencontainers.image.title="Memcached" \
+LABEL org.opencontainers.image.title="HAProxy" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Memcached latest'
+      org.opencontainers.image.description='HAProxy latest version'
 
-USER memcache
-EXPOSE 11211
-CMD ["memcached"]
+VOLUME /var/lib/influxdb2 /etc/influxdb2
+EXPOSE 8086
+CMD ["influxd"]
