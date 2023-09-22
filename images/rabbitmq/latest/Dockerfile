@@ -2,7 +2,7 @@ FROM rabbitmq:alpine
 
 LABEL org.opencontainers.image.title="Rabbitmq" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/imxieke/dockenv-images" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.description='Rabbitmq latest'
 
 RUN rabbitmq-plugins enable --offline rabbitmq_management
