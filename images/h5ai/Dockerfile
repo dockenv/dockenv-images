@@ -1,4 +1,4 @@
-FROM imxieke/php:latest
+FROM ghcr.io/dockenv/php:5.6
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
