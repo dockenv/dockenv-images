@@ -32,7 +32,6 @@ jobs:
         docker build . -f images/portainer/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
         docker build . -f images/postgres/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
         docker build . -f images/rabbitmq/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rabbitmq:latest
-        docker build . -f images/phpmyadmin/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/phpmyadmin:latest
         docker build . -f images/memcached/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
         docker build . -f images/caddy/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
         docker build . -f images/varnish/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
