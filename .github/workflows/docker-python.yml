@@ -1,4 +1,4 @@
-name: Docker Build MongoDB
+name: Docker Build Go
 
 on:
   workflow_dispatch:
@@ -9,8 +9,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: mongo
-  IMAGE_TAGS: "latest 4.4 5.0 6.0"
+  IMAGE_NAME: python
+  IMAGE_TAGS: "latest 2.7 3.10 3.11 3.12"
 
 jobs:
   build:
