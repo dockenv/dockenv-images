@@ -1,11 +1,12 @@
 FROM mariadb:latest
 
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="<oss@live.hk>" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv \
-    org.opencontainers.image.description='Mariadb 10.7'
+LABEL org.opencontainers.image.title="Mariadb" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/imxieke/dockenv-images" \
+      org.opencontainers.image.description='Mariadb latest'
 
 VOLUME /var/lib/mysql
-ENTRYPOINT ["docker-entrypoint.sh"]
+
 EXPOSE 3306
+
 CMD ["mariadbd"]
