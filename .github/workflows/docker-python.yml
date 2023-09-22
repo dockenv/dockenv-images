@@ -1,4 +1,4 @@
-name: Docker Build Go
+name: Docker Build Pyhon
 
 on:
   workflow_dispatch:
