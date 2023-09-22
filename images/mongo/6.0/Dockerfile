@@ -1,11 +1,11 @@
-FROM memcached:alpine
+FROM mongo:6.0-jammy
 
-LABEL org.opencontainers.image.title="Memcached" \
+LABEL org.opencontainers.image.title="MongoDB" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Memcached latest'
+      org.opencontainers.image.description='MongoDB 6.0'
 
-USER memcache
-EXPOSE 11211
-CMD ["memcached"]
+VOLUME /data/db /data/configdb
+EXPOSE 27017
+CMD ["mongod"]
