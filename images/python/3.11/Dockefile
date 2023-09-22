@@ -1,11 +1,9 @@
-FROM memcached:alpine
+FROM python:3.11-alpine
 
-LABEL org.opencontainers.image.title="Memcached" \
+LABEL org.opencontainers.image.title="Python" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Memcached latest'
+      org.opencontainers.image.description='Python Language 3.11'
 
-USER memcache
-EXPOSE 11211
-CMD ["memcached"]
+CMD ["python3"]
