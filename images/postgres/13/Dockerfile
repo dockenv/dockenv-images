@@ -2,7 +2,7 @@ FROM postgres:13-alpine
 
 LABEL org.opencontainers.image.title="PostgreSQL" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/imxieke/dockenv-images" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.description='PostgreSQL 13'
 
 VOLUME /var/lib/postgresql/data
