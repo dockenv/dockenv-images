@@ -2,7 +2,7 @@ FROM alpine:3.16
 
 LABEL org.opencontainers.image.title="Alpine Linux" \
         org.opencontainers.image.vendor="Cloudflying <oss@live.hk>" \
-        org.opencontainers.image.source="https://github.com/imxieke/dockenv-images" \
+        org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
         org.opencontainers.image.description='Alpine Linux 3.16'
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories

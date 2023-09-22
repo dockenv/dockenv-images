@@ -1,8 +1,10 @@
 FROM logstash:6.8.23
 
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv
+LABEL org.opencontainers.image.title="Logstash" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Logstash 6.8'
 
 EXPOSE 9600 5044
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
