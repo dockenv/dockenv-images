@@ -1,6 +1,9 @@
 FROM postgres:10-alpine
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="<oss@live.hk>"
+
+LABEL org.opencontainers.image.title="PostgreSQL" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/imxieke/dockenv-images" \
+      org.opencontainers.image.description='PostgreSQL 10'
 
 VOLUME /var/lib/postgresql/data
 
