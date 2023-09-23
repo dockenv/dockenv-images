@@ -59,7 +59,6 @@ jobs:
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/portainer:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/postgres:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rabbitmq:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/phpmyadmin:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rsync:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rust:latest

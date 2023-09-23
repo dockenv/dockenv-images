@@ -1,4 +1,4 @@
-FROM almalinux:9.2-minmal
+FROM almalinux:9.2-minimal
 LABEL org.opencontainers.image.title="Almalinux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
