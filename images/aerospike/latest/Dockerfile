@@ -1,12 +1,12 @@
-FROM aerospike:ce-6.3.0.1_1
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk" \
-        org.opencontainers.image.source=https://github.com/dockenv/dockenv
-
-# COPY aerospike.conf /etc/aerospike/aerospike.conf
+FROM aerospike:ce-6.4.0.2
+LABEL org.opencontainers.image.title="Aerospike" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Aerospike – the reliable, high performance, distributed database optimized for flash and RAM.'
 
 EXPOSE 3000 3001 3002
 
-ENTRYPOINT ["/usr/bin/dumb-init", "--", "/entrypoint.sh"]
-
 CMD ["asd"]
+
+# COPY aerospike.conf /etc/aerospike/aerospike.conf
