@@ -1,4 +1,4 @@
-name: Docker Build OpenSuse
+name: Docker Build openSUSE
 
 on:
   workflow_dispatch:
