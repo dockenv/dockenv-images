@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: aerospike
-  IMAGE_TAGS: "ce-5.3 ce-5.4 ce-5.5 ce-5.6 ce-5.7 ee-5.3 ee-5.4 ee-5.5 ee-5.6 ee-5.7 latest"
+  IMAGE_TAGS: "ce-5.7 ce-6.0 ce-6.1 ce-6.2 ce-6.3 ce-6.4 ee-5.7 ee-6.0 ee-6.1 ee-6.2 ee-6.3 ee-6.4 latest"
 
 jobs:
   build:

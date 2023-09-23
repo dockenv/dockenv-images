@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: debian
-  IMAGE_TAGS: "latest bullseye buster stretch jessie testing sid"
+  IMAGE_TAGS: "latest wheezy jessie stretch buster bullseye bookworm testing sid"
 
 jobs:
   build:

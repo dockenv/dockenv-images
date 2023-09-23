@@ -35,6 +35,10 @@ jobs:
         docker build . -f images/memcached/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
         docker build . -f images/caddy/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
         docker build . -f images/varnish/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
+        docker build . -f images/rust/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rust:latest
+        docker build . -f images/gitea/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gitea:latest
+        docker build . -f images/elixir/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/elixir:latest
+        docker build . -f images/unit/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/unit:latest
 
     - name: Login Github Package Registry
       run: |
@@ -42,12 +46,13 @@ jobs:
 
     - name: Push Docker Image To Github Package
       run: |
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/geckodriver:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/chromedriver:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rsync:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/acme:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:1.12
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/beanstalkd:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/chromedriver:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/geckodriver:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gitea:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/haproxy:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/influxdb:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/pgadmin4:latest
@@ -56,5 +61,8 @@ jobs:
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rabbitmq:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/phpmyadmin:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/memcached:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/caddy:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rsync:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/rust:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/elixir:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/unit:latest

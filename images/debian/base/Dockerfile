@@ -1,8 +1,10 @@
 # Debian Bullseye (11)
 FROM ghcr.io/dockenv/debian:latest
-LABEL MAINTAINER="Cloudflying" \
-  MAIL="oss@live.hk" \
-  org.opencontainers.image.source=https://github.com/dockenv/dockenv
+LABEL org.opencontainers.image.title="Debian GNU Linux" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Debian GNU Linux Base Image'
 
 ENV DEBIAN_FRONTEND=noninteractive \
   PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
@@ -28,3 +30,5 @@ RUN apt update -y --fix-missing \
     && apt-get clean -y \
     && apt-get autoclean -y \
     && rm -fr /var/lib/apt/lists/* \
+
+CMD ["/bin/bash"]
