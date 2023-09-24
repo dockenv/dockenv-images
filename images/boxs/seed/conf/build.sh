@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-
 USER='www'
 VERSION=$(bin/aria2c -v | grep 'aria2 version' | awk -F ' ' '{print $3}')
-CONF=`pwd`/aria2c.conf
+CONF=$(pwd)/aria2c.conf
 
 # 检查环境 不足则补充
 env()
