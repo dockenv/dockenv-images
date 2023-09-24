@@ -1,0 +1,8 @@
+{
+    "AutoStart": true,
+    "DisableEncryption": false,
+    "DownloadDirectory": "/data/downloads",
+    "EnableUpload": true,
+    "EnableSeeding": true,
+    "IncomingPort": 50007
+}

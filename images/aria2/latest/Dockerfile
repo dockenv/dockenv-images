@@ -1,24 +1,21 @@
-FROM ghcr.io/dockenv/alpine:3.16
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk"
+FROM ghcr.io/dockenv/alpine:latest
+LABEL org.opencontainers.image.title="Aria2" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='a lightweight multi-protocol & multi-source, cross platform download utility operated in command-line. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink.'
 
 COPY conf/ /etc/aria2c/
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/repo.huaweicloud.com/g' /etc/apk/repositories \
-    && apk add --no-cache darkhttpd aria2 \
+RUN apk add --no-cache aria2 \
     && mkdir -p /etc/aria2c \
-    && chmod -R 777 /etc/aria2c \
-    && mkdir -p /opt/ariang \
-    && chmod -R 777 /opt/ariang \
-    && cd /opt/ariang \
-    && wget https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4-AllInOne.zip \
-    && unzip AriaNg-1.2.4-AllInOne.zip && rm -fr LICENSE && rm -fr AriaNg-1.2.4-AllInOne.zip \
+    && mkdir -p /data/downloads \
+    && chmod -R 777 /etc/aria2c /data/downloads \
     && mv /etc/aria2c/entrypoint.sh /usr/bin/entrypoint.sh \
     && chmod +x /usr/bin/entrypoint.sh
 
 # 6080 Aria2
-# 6081 Aria2 WebUI
 # 6802-6999 DOT Port
-EXPOSE 6080 6081 6802-6999
+EXPOSE 6080 6881-6999
 
 CMD ["/usr/bin/entrypoint.sh"]
