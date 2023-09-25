@@ -85,6 +85,7 @@ RUN apk add --no-cache \
         php7-xsl \
         php7-zip \
         php7-zmq \
+        wget \
     && rm -fr /usr/bin/php \
     && rm -fr /usr/bin/phpize \
     && rm -fr /usr/bin/phpdbg \
@@ -110,7 +111,8 @@ RUN apk add --no-cache \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer-2.2.phar -O /usr/bin/composer \
-    && chmod +x /usr/bin/composer
+    && chmod +x /usr/bin/composer \
+    && apk del wget
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]

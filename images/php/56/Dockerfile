@@ -66,6 +66,7 @@ RUN apk add --no-cache \
         php5-xmlrpc \
         php5-xsl \
         php5-zip \
+        wget \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/bin/php-fpm${PHP_VER} /usr/bin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
@@ -84,7 +85,8 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_5.6.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
-    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini
+    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
+    && apk del wget
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]
