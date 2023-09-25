@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: go
+  IMAGE_NAME: php
   IMAGE_TAGS: "56 70 71 72 73 74 81 82 83"
 
 jobs:
