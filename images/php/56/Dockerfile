@@ -56,7 +56,6 @@ RUN apk add --no-cache \
         php5-soap \
         php5-sockets \
         php5-sqlite3 \
-        php5-suhosin \
         php5-sysvmsg \
         php5-sysvsem \
         php5-sysvshm \
