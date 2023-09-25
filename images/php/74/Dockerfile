@@ -125,6 +125,9 @@ RUN apk add --no-cache \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.7.4.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
+    && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
+    && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer
 

@@ -121,6 +121,9 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.0.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
+    && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
+    && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer
 
