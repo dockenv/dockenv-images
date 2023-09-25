@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.14
+FROM ghcr.io/dockenv/alpine:3.12
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
@@ -7,6 +7,7 @@ LABEL org.opencontainers.image.title="Alpine Linux" \
 
 ENV PHP_VER=7
 
+# mongodb ffi
 RUN apk add --no-cache \
         php7-bcmath \
         php7-brotli \
@@ -22,7 +23,6 @@ RUN apk add --no-cache \
         php7-embed \
         php7-enchant \
         php7-exif \
-        php7-ffi \
         php7-fileinfo \
         php7-fpm \
         php7-ftp \
@@ -34,6 +34,7 @@ RUN apk add --no-cache \
         php7-intl \
         php7-json \
         php7-ldap \
+        php7-maxminddb \
         php7-mbstring \
         php7-mysqli \
         php7-mysqlnd \
@@ -56,11 +57,9 @@ RUN apk add --no-cache \
         php7-pecl-imagick \
         php7-pecl-imagick-dev \
         php7-pecl-lzf \
-        php7-pecl-maxminddb \
         php7-pecl-mcrypt \
         php7-pecl-memcache \
         php7-pecl-memcached \
-        php7-pecl-mongodb \
         php7-pecl-msgpack \
         php7-pecl-oauth \
         php7-pecl-protobuf \
@@ -92,7 +91,6 @@ RUN apk add --no-cache \
         php7-sysvmsg \
         php7-sysvsem \
         php7-sysvshm \
-        php7-tideways_xhprof \
         php7-tidy \
         php7-tokenizer \
         php7-xml \
@@ -123,7 +121,7 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.3.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer

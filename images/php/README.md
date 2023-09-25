@@ -1,19 +1,22 @@
 # Docker PHP Images
 
 ## Version Infomation
-- php
-  - 5.6.40 3.8
-  - 7.0.33 3.5
-  - 7.1.33 3.5
-  - 7.2.33 3.5
-  - 7.3.33 3.5
-  - 7.4.30 edge testing
-  - 8.0.20 3.16
-  - 8.1.7  3.16
-  - 8.2.0 edge testing
+
+|版本|数据源|
+|-|-|
+|5.6.40|3.8|
+|7.0.33|3.5|
+|7.1.33|3.7|
+|7.2.33|3.9|
+|7.3.33|3.12|
+|7.4.30|3.14|
+|8.0.30|3.16|
+|8.1.23|3.18|
+|8.2.10|3.18|
+|8.3.0RC2|offcial image|
 
 ## Filter php and components
-`apk list | grep '^php81' | sort | grep -Ev 'installed|dbg|apache|cgi|doc|pear|litespeed|dev'| awk -F '-[0-9]' '{print $1}' | tr '\n' ' '`
+`apk list | grep '^php7' | sort | grep -Ev 'apache|doc|cgi|litespeed|gmagick' | awk -F '-[0-9]' '{print $1}' | tr '\n' '@' | sed "s#@# \\\ \\n#g"`
 
 ## php and extension version
 
@@ -32,12 +35,25 @@
 >PS: `x` is  Unsupported
 
 ## extensions
-- php 5.6
-  - installed: apc apcu bcmath bz2 calendar Core ctype curl date dba dom enchant ereg exif fileinfo filter ftp gd gettext gmp hash iconv imap intl json ldap libxml mbstring mcrypt mssql mysql mysqli mysqlnd odbc openssl pcntl pcre PDO pdo_dblib pdo_mysql PDO_ODBC pdo_pgsql pdo_sqlite pgsql Phar posix pspell readline Reflection session shmop SimpleXML snmp soap sockets SPL sqlite3 standard suhosin sysvmsg sysvsem sysvshm tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl Zend OPcache zip zlib
-  - todo: redis mongo memcached swoole ionCube phalcon ImageMagick GMagick Source Guardian, Xdebug Zend Optimizer, MSSql
-- 8.2
-  - todo: ImageMagick, ionCube ,OPcache JIT ,Phalcon,Source Guardian,Xdebug,Swoole,Memcache,Memcached
+
+|扩展|版本|已安装|
+|-|-|-|
+|ImageMagick||
+|ionCube||
+|OPcache||
+|Phalcon||
+|Source Guardian||
+|Xdebug||
+|JIT||
+|Swoole||
+|Memcached||
+|Xdebug||
+|Redis||
+|Mongo||
+|||
+|||
 
 
-## DEPRECATED
+## Issue
 - wddx removed in 7.4.0
+- ionCube not avaiable in php 8.0

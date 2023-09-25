@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.14
+FROM ghcr.io/dockenv/alpine:3.7
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
@@ -8,21 +8,20 @@ LABEL org.opencontainers.image.title="Alpine Linux" \
 ENV PHP_VER=7
 
 RUN apk add --no-cache \
+        php7-amqp \
+        php7-apcu \
         php7-bcmath \
-        php7-brotli \
         php7-bz2 \
         php7-calendar \
         php7-common \
         php7-ctype \
         php7-curl \
         php7-dba \
-        php7-dbg \
         php7-dev \
         php7-dom \
         php7-embed \
         php7-enchant \
         php7-exif \
-        php7-ffi \
         php7-fileinfo \
         php7-fpm \
         php7-ftp \
@@ -30,13 +29,18 @@ RUN apk add --no-cache \
         php7-gettext \
         php7-gmp \
         php7-iconv \
+        php7-imagick \
+        php7-imagick-dev \
         php7-imap \
         php7-intl \
         php7-json \
         php7-ldap \
         php7-mbstring \
+        php7-mcrypt \
+        php7-memcached \
         php7-mysqli \
         php7-mysqlnd \
+        php7-oauth \
         php7-odbc \
         php7-opcache \
         php7-openssl \
@@ -47,60 +51,40 @@ RUN apk add --no-cache \
         php7-pdo_odbc \
         php7-pdo_pgsql \
         php7-pdo_sqlite \
-        php7-pecl-amqp \
-        php7-pecl-apcu \
-        php7-pecl-ast \
-        php7-pecl-couchbase \
-        php7-pecl-event \
-        php7-pecl-igbinary \
-        php7-pecl-imagick \
-        php7-pecl-imagick-dev \
-        php7-pecl-lzf \
-        php7-pecl-maxminddb \
-        php7-pecl-mcrypt \
-        php7-pecl-memcache \
-        php7-pecl-memcached \
-        php7-pecl-mongodb \
-        php7-pecl-msgpack \
-        php7-pecl-oauth \
-        php7-pecl-protobuf \
-        php7-pecl-psr \
-        php7-pecl-redis \
-        php7-pecl-ssh2 \
-        php7-pecl-uuid \
-        php7-pecl-vips \
-        php7-pecl-xdebug \
-        php7-pecl-xhprof \
-        php7-pecl-xhprof-assets \
-        php7-pecl-yaml \
-        php7-pecl-zmq \
+        php7-pear-mdb2_driver_mysql \
+        php7-pear-mdb2_driver_pgsql \
+        php7-pear-net_idna2 \
+        php7-pear-net_smtp \
+        php7-pear-net_socket \
         php7-pgsql \
-        php7-phalcon \
         php7-phar \
         php7-phpdbg \
         php7-posix \
         php7-pspell \
+        php7-recode \
+        php7-redis \
         php7-session \
         php7-shmop \
         php7-simplexml \
         php7-snmp \
         php7-soap \
         php7-sockets \
-        php7-sodium \
         php7-sqlite3 \
-        php7-static \
+        php7-ssh2 \
         php7-sysvmsg \
         php7-sysvsem \
         php7-sysvshm \
-        php7-tideways_xhprof \
         php7-tidy \
         php7-tokenizer \
+        php7-wddx \
+        php7-xdebug \
         php7-xml \
         php7-xmlreader \
         php7-xmlrpc \
         php7-xmlwriter \
         php7-xsl \
         php7-zip \
+        php7-zmq \
     && rm -fr /usr/bin/php \
     && rm -fr /usr/bin/phpize \
     && rm -fr /usr/bin/phpdbg \
@@ -123,9 +107,9 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer-2.2.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer
 
 EXPOSE 9000

@@ -78,22 +78,22 @@ do_build()
 {
     NAME=$2
     VERSION=$3
-    cd ${IMAGE_PATH}
+    cd "${IMAGE_PATH}" || exit
     if [[ -d "$NAME" ]]; then
         if [[ -z "${VERSION}" ]]; then
             VERSION='latest'
         fi
-        cd ${NAME}/${VERSION}
+        cd "${NAME}/${VERSION}" || exit
         DOCKER_BUILDKIT=0
 
         # --no-cache
         if [[ -n "${DOCKER_REGISTRY_PREFIX}" ]]; then
             # docker build --progress plain --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
             # docker build --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
-            docker build -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
+            docker build -t "${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION" .
         else
             # docker build --progress plain --no-cache -t ${NAME}:$VERSION .
-            docker build --progress plain -t ${NAME}:$VERSION .
+            docker build --progress plain -t "${NAME}:$VERSION" .
         fi
 
         [[ -n "${ENABLE_GITHUB_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_GITHUB}/${NAME}:$VERSION
