@@ -122,6 +122,9 @@ RUN apk add --no-cache \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.7.2.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
+    && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
+    && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && apk del wget
 
 EXPOSE 9000
