@@ -5,6 +5,6 @@ LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.url="https://dockenv.github.io" \
       org.opencontainers.image.description='Small. Simple. Secure. Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox.'
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 CMD [ "/bin/sh" ]
