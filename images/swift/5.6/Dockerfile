@@ -1,5 +1,5 @@
 # hadolint ignore=DL3007
-FROM swift:5.6-jammy
+FROM swift:5.6-focal
 LABEL org.opencontainers.image.title="Swift" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
