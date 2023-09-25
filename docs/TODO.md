@@ -18,6 +18,7 @@ PAS_SECRET 自定义 secret 无效
 - Filebeat
 
 ## Images
+- Seedbox
 - https://github.com/RobiNN1/phpCacheAdmin
 
  ## Net Tools
