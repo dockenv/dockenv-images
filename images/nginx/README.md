@@ -1,3 +1,6 @@
+## Nginx Bot Block
+- https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
+
   - Nginx Waf
     - https://github.com/gsdu8g9/waf-nginx-module
     - https://github.com/oneinstack/ngx_lua_waf

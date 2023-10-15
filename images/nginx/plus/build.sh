@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2021-11-19 13:20:23
- # @LastEditTime: 2021-11-19 22:56:48
+ # @LastEditTime: 2023-10-13 00:35:03
  # @LastEditors: Cloudflying
  # @Description:
  # @FilePath: /dockenv/images/nginx/1.20.2/build.sh
@@ -219,3 +219,8 @@ mod_ops=$(ls ../ngx_mod/ | tr ' ' '\n' | grep -v 'ngx_devel_kit' | grep -v 'ngx_
     # --add-module=../ngx_mod/ngx_healthcheck_module \
     # ${mod_ops%?}
     make -j8
+
+# 未知功能
+        # --with-cc-opt="-static" \
+        # --with-ld-opt="-static" \
+        # --with-cpu-opt="generic" \
