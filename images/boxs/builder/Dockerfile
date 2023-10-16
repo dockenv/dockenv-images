@@ -18,8 +18,7 @@ COPY conf/makepkg.conf /etc/makepkg.conf
 # asar electron electron17 electron18 electron19
 # gtk2 xdg-utils
 # nodejs npm \
-RUN echo "Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist \
-    && pacman -Syy \
+RUN pacman -Syy \
     && pacman -S --noconfirm --overwrite \* archlinux-keyring \
     && pacman-key --init \
     && pacman-key --populate archlinux \
