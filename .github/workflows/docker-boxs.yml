@@ -24,7 +24,6 @@ jobs:
           cd ${ROOT_PATH}/images/${{ env.IMAGE_NAME }}/${tag}
           docker build . -f Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
-        docker tag ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:8.4 ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
 
     - name: Login Github Package Registry
       run: |
