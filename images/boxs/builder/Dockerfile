@@ -5,8 +5,8 @@ LABEL MAINTAINER="Cloudflying" \
     org.opencontainers.image.source=https://github.com/dockenv/dockenv \
     org.opencontainers.image.description='Archlinux Builder'
 
-ENV RUN_USER="boxs" \
-	PASSWD="boxs" \
+ENV RUN_USER="dockenv" \
+	PASSWD="dockenv" \
 	AUTHORIZED_KEYS='**None**' \
 	DEBIAN_FRONTEND=noninteractive
 
@@ -18,7 +18,8 @@ COPY conf/makepkg.conf /etc/makepkg.conf
 # asar electron electron17 electron18 electron19
 # gtk2 xdg-utils
 # nodejs npm \
-RUN pacman -Syy \
+RUN echo "Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist \
+    && pacman -Syy \
     && pacman -S --noconfirm --overwrite \* archlinux-keyring \
     && pacman-key --init \
     && pacman-key --populate archlinux \
@@ -36,7 +37,7 @@ RUN pacman -Syy \
 	&& echo "${RUN_USER}:${PASSWD}" | chpasswd \
 	&& echo "root:${PASSWD}" | chpasswd \
     && echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
-    && git clone --depth 1 https://git.xie.ke/mirrors/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh \
+    && git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh \
     && cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc \
     && sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc \
     && chown -R ${RUN_USER}:${RUN_USER} ${HOME_DIR} \
