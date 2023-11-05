@@ -11,7 +11,7 @@ HOST_IP=$(hostname -i)
 # echo '==> start vncserver and noVNC webclient && dbus'
 # sudo /etc/init.d/dbus start > /dev/null
 
-if [[ "$VNC_PASSWD" != 'boxs' ]]; then
+if [[ "$VNC_PASSWD" != 'dockenv' ]]; then
     chmod 755 $VNC_PASSWD_PATH/passwd
     echo "$VNC_PASSWD" | vncpasswd -f > $VNC_PASSWD_PATH/passwd
     chmod 600 $VNC_PASSWD_PATH/passwd

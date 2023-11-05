@@ -60,3 +60,14 @@ init_php(){
 	#        try_files $uri $uri/ /ZendServer/index.php?$args;
 	#}
 }
+
+init_pip()
+{
+	mkdir -p ${HOME_DIR}/.pip && touch ${HOME_DIR}/.pip/pip.conf
+
+	echo "[global]
+	index-url = https://mirrors.aliyun.com/pypi/simple/
+
+	[install]
+	trusted-host=mirrors.aliyun.com" > ${HOME_DIR}/.pip/pip.conf
+}
