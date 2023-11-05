@@ -18,7 +18,7 @@ source ${CUR_PATH}/.env
 
 if [[ -z "$(command -v docker)" ]]; then
     function docker() {
-        /Users/imxieke/.boxs/bin/all/docker $@
+        ${HOME}/.boxs/bin/docker $@
     }
 fi
 
@@ -90,17 +90,16 @@ do_build()
         if [[ -n "${DOCKER_REGISTRY_PREFIX}" ]]; then
             # docker build --progress plain --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
             # docker build --no-cache -t ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION .
-            docker build -t "${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION" .
+            docker build --no-cache --progress plain -t "${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION" .
         else
             # docker build --progress plain --no-cache -t ${NAME}:$VERSION .
-            docker build --progress plain -t "${NAME}:$VERSION" .
+            docker build --no-cache --progress plain -t "${NAME}:$VERSION" .
         fi
 
         [[ -n "${ENABLE_GITHUB_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_GITHUB}/${NAME}:$VERSION
         [[ -n "${ENABLE_CODING_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_CODING}/${NAME}:$VERSION
         [[ -n "${ENABLE_BAIDU_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_BAIDU}/${NAME}:$VERSION
         [[ -n "${ENABLE_HUAWEI_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_HK_HUAWEI}/${NAME}:$VERSION
-
         [[ -n "${ENABLE_ALIYUN_SH_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_ALIYUN_SH}/${NAME}:$VERSION
         [[ -n "${ENABLE_ALIYUN_HK_REGISTRY}" ]] && docker tag ${DOCKER_REGISTRY_PREFIX}/${NAME}:$VERSION ${DOCKER_REGISTRY_ALIYUN_HK}/${NAME}:$VERSION
 

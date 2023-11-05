@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: boxs
-  IMAGE_TAGS: "builder alpine"
+  IMAGE_TAGS: "builder alpine xfce-arch-base xfce-arch"
 
 jobs:
   build:
