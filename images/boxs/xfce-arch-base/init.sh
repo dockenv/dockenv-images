@@ -4,17 +4,17 @@ USER='dockenv'
 PASSWD='dockenv'
 
 COUNTRY="US"
-COUNTRY="CN"
+# COUNTRY="CN"
 
 # if [[ ! -n "$(command -v curl)" ]];then
 	# COUNTRY=$(curl -sL ifconfig.co/country-iso)
 # fi
 
-if [[ "${COUNTRY}" == 'CN' ]];then
-	echo "Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-	echo "Server = https://mirrors.huaweicloud.com/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
-	echo "Server = https://mirrors.cloud.tencent.com/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
-fi
+# if [[ "${COUNTRY}" == 'CN' ]];then
+# 	echo "Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+# 	echo "Server = https://mirrors.huaweicloud.com/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+# 	echo "Server = https://mirrors.cloud.tencent.com/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+# fi
 
 pacman -Syyu --noconfirm
 pacman-key --init
