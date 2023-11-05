@@ -9,7 +9,7 @@
 ###
 
 mkdir -p ~/.vnc
-echo 'boxsvnc' | vncpasswd -f > ~/.vnc/passwd
+echo 'dockenv' | vncpasswd -f > ~/.vnc/passwd
 chmod 600 ~/.vnc/passwd
 
 /usr/bin/vncserver :1 > /tmp/vnc.log 2>&1 &
