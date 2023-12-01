@@ -2,13 +2,12 @@ name: Docker Build HHVM Images
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     # Runs at 02:00 UTC on Mon.
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: hhvm
   IMAGE_TAGS: "latest 3 4"

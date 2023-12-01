@@ -2,12 +2,11 @@ name: Docker Build Node
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: node
   IMAGE_TAGS: "latest 20 18 16 14 12"
