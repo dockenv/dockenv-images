@@ -2,12 +2,11 @@ name: Docker Build Elastic
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: elastic
   IMAGE_TAGS: "latest 6 7 8"
