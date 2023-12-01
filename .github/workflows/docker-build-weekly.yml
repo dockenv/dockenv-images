@@ -2,13 +2,12 @@ name: Docker Build Software Images Weekly
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     # 每周一晚 2 点.
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
 
 jobs:

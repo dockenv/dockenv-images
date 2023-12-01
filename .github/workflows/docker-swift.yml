@@ -2,12 +2,11 @@ name: Docker Build Swift
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: swift
   IMAGE_TAGS: "latest 5.9 5.8 5.7 5.6"

@@ -2,12 +2,11 @@ name: Docker Build MongoDB
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: mongo
   IMAGE_TAGS: "latest 4.4 5.0 6.0"

@@ -2,12 +2,11 @@ name: Docker Build Redis Image
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: redis
   IMAGE_TAGS: "latest 6.2 7.0 7.2"
