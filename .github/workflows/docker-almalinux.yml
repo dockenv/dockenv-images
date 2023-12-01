@@ -2,12 +2,11 @@ name: Docker Build Almalinux
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: almalinux
   IMAGE_TAGS: "latest 8.4 8.8 8.8-minimal 9.2 9.2-minimal"
@@ -24,6 +23,7 @@ jobs:
         for tag in ${IMAGE_TAGS}; do
           docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
+        date "+%Y-%m-%d %k:%M:%S"
 
     - name: Login Github Package Registry
       run: |
