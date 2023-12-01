@@ -23,7 +23,6 @@ jobs:
         for tag in ${IMAGE_TAGS}; do
           docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
-        date "+%Y-%m-%d %k:%M:%S"
 
     - name: Login Github Package Registry
       run: |

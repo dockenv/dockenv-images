@@ -2,12 +2,11 @@ name: Docker Build rhel Image
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: rhel
   IMAGE_TAGS: "minimal 9-minimal 9 8"

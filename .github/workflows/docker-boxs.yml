@@ -2,12 +2,11 @@ name: Docker Build Boxs
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: boxs
   IMAGE_TAGS: "builder alpine xfce-arch-base xfce-arch"

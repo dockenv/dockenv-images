@@ -2,12 +2,11 @@ name: Docker Build Ubuntu
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: ubuntu
   IMAGE_TAGS: "latest 14.04 16.04 18.04 20.04 22.04 23.04 23.10"

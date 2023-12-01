@@ -6,6 +6,7 @@ on:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: mysql
   IMAGE_TAGS: "5.7 8.0 8.1 8.2"

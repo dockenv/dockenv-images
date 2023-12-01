@@ -2,12 +2,11 @@ name: Docker Build altlinux Images
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: altlinux
   IMAGE_TAGS: "latest p10 p9 p8 sisyphus"

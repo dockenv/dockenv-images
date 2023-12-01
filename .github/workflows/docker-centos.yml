@@ -2,12 +2,11 @@ name: Docker Build CentOS
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: centos
   IMAGE_TAGS: "7.9 8.3 8.4 stream stream8 stream9 stream9-dev"

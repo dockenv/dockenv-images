@@ -2,12 +2,11 @@ name: Docker Build PSMDB
 
 on:
   workflow_dispatch:
-    branches:
-    - master
   schedule:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: psmdb
   IMAGE_TAGS: "latest 4.2 4.4 5.0 6.0"
