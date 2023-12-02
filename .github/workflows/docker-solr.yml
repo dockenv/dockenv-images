@@ -1,4 +1,4 @@
-name: Docker Build Redis Image
+name: Docker Build Apache Solr Image
 
 on:
   workflow_dispatch:
@@ -6,10 +6,8 @@ on:
     - cron: '0 2 * * 1'
 
 env:
-  TZ: Asia/Shanghai
-  REGISTRY: ghcr.io
-  IMAGE_NAME: redis
-  IMAGE_TAGS: "latest stack stack-server 6.2 7.0 7.2"
+  IMAGE_NAME: solr
+  IMAGE_TAGS: "latest 8 9.0 9.1 9.2 9.3 9.4"
 
 jobs:
   build:
@@ -18,13 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build the Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
           docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
-    - name: Login Github Package Registry
+    - name: Login to Github Package Registry
       run: |
         docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
 

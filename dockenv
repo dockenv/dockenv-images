@@ -16,11 +16,15 @@ IMAGE_PATH=${CUR_PATH}/images
 
 source ${CUR_PATH}/.env
 
-if [[ -z "$(command -v docker)" ]]; then
-    function docker() {
-        ${HOME}/.boxs/bin/docker $@
-    }
-fi
+# if [[ -z "$(command -v docker)" ]]; then
+#     function docker() {
+#         if [[ -n "command -v nerdctl" ]]; then
+#             nerdctl $@
+#         else
+#             ${HOME}/.boxs/bin/docker $@
+#         fi
+#     }
+# fi
 
 for denv in $@ ;do
     [[ "$(echo $denv | grep '\--registry-prefix=')" ]] && DOCKER_REGISTRY_PREFIX=$(echo $denv | awk -F '=' '{print $2}')

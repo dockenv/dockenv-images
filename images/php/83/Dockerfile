@@ -1,4 +1,4 @@
-FROM php:8.3-rc-fpm-alpine
+FROM php:8.3-fpm-alpine
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
