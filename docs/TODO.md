@@ -17,10 +17,6 @@ PAS_SECRET 自定义 secret 无效
 - Kibana
 - Filebeat
 
-## Images
-- Seedbox
-- https://github.com/RobiNN1/phpCacheAdmin
-
  ## Net Tools
  - mtr
  - traceroute
@@ -108,3 +104,65 @@ ukui-themes
 - kafka
 - minio
 - rockylinux 9
+
+## Images
+- https://elest.io/fully-managed-services/hosting-and-infrastructure
+- Seedbox
+- tidb
+- ClickHouse
+- Snowflake
+- https://github.com/mage-ai/mage-ai
+- https://github.com/openblocks-dev/openblocks
+- https://github.com/RobiNN1/phpCacheAdmin
+- https://github.com/harness/gitness
+- https://github.com/zincsearch/zincsearch
+- https://github.com/dbgate/dbgate
+- https://github.com/apache/spark
+- https://github.com/quickwit-oss/tantivy
+- https://github.com/vesoft-inc/nebula
+- https://github.com/apache/nutch
+- https://github.com/huichen/wukong
+- https://github.com/sea-team/gofound
+- https://github.com/Maxime2/dataparksearch
+- https://github.com/milvus-io/milvus
+- https://github.com/manticoresoftware/manticoresearch
+- https://github.com/tinysearch/tinysearch
+- https://github.com/krakend/krakend-ce
+- https://github.com/bytebase/bytebase
+- https://github.com/supabase/supabase
+- https://github.com/theonedev/onedev
+
+### 全文搜索
+- [spinxsearch](https://sphinxsearch.com/downloads/current/)
+
+### 高可用
+- https://github.com/acassen/keepalived
+
+### 数据分析
+- https://github.com/apache/spark
+- https://github.com/apache/kafka 主要处理流式数据 管道等 如日志
+
+### 分布式文件存储
+- https://github.com/apache/hadoop 主要是数据储存 如文件存储
+- flume
+- logstash
+
+## Redis Module
+- https://github.com/FalkorDB/FalkorDB
+- https://github.com/RedisGraph/RedisGraph
+- https://github.com/RedisJSON/RedisJSON
+- https://github.com/RedisBloom/RedisBloom
+- https://github.com/brandur/redis-cell
+- https://github.com/RedisTimeSeries/RedisTimeSeries
+- https://github.com/RedisAI/RedisAI
+- https://github.com/aviggiano/redis-roaring
+- https://github.com/RedisGears/RedisGears
+- https://github.com/tair-opensource/TairHash
+- https://github.com/tair-opensource/TairZset
+- https://github.com/f0rmiga/sessiongate
+- https://github.com/wujunwei/redlock
+- https://github.com/chayim/redicrypt
+- https://github.com/sulewicz/redis-s2geo
+- https://github.com/RedisLabsModules/redis-state-machine
+- https://github.com/dahomey-technologies/RedisCBOR
+
