@@ -1,4 +1,4 @@
-FROM elasticsearch:7.17.13
+FROM elasticsearch:7.17.15
 
 LABEL org.opencontainers.image.title="Elasticsearch" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
