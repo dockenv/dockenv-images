@@ -45,6 +45,9 @@
 21.10 impish Impish Indri
 22.04 jammy  Jammy Jellyfish lts
 22.10 kinetic Kinetic Kudu
+23.04 Lunar Lobster
+23.10 Mantic Minotaur
+24.04 boble NobleNumbat
 
 ### PS: if want to run Chrome , need add param `--privileged`
 ### Ubuntu Unity Desktop not work please wait a while or run ` docker restart container-id ` or `docker exec container-id unity > /tmp/unity.log & `

@@ -1,4 +1,4 @@
-name: Docker Build Alpine Linux Image
+name: Docker Build Alpine Linux
 
 on:
   workflow_dispatch:
