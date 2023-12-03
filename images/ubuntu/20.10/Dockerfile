@@ -1,14 +1,11 @@
 # Ubuntu 20.10
 FROM ubuntu:groovy
+LABEL org.opencontainers.image.title="Ubuntu Linux" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Ubuntu: Enterprise Linux distribution based on Debian.'
 
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk" \
-        org.opencontainers.image.source=https://github.com/dockenv/dockenv
-
-ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" \
-	DEBIAN_FRONTEND=noninteractive
-
-RUN sed -i 's/archive.ubuntu.com/repo.huaweicloud.com/g' /etc/apt/sources.list \
-	&& sed -i 's/deb\ http:\/\/security/#deb\ http:\/\/security/g' /etc/apt/sources.list
+ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 CMD ["/usr/bin/bash"]

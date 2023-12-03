@@ -1,4 +1,4 @@
-name: Docker Build Redis Image
+name: Docker Build Redis
 
 on:
   workflow_dispatch:

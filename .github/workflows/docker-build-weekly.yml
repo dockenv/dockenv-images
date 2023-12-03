@@ -1,4 +1,4 @@
-name: Docker Build Software Images Weekly
+name: Weekly Docker Build Software
 
 on:
   workflow_dispatch:

@@ -8,21 +8,6 @@ This environment provides the following tools to develop in PHP or in NodeJS via
 
 - [PHP](http://php.net)
 
-Available version :
-
-    - `7.0-fpm`
-    - `7.1-fpm`
-    - `7.2-fpm`
-    - `7.3-fpm`
-    - `7.4-fpm`
-    - `7.0-fpm-alpine`
-    - `7.1-fpm-alpine`
-    - `7.2-fpm-alpine`
-    - `7.3-fpm-alpine`
-    - `7.4-fpm-alpine`
-
-Default: `7.4-fpm`.
-
 - [Node](https://nodejs.org/)
 
 Available version :

@@ -1,14 +1,11 @@
 # Ubuntu 19.10
 FROM ubuntu:eoan
-
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk"
+LABEL org.opencontainers.image.title="Ubuntu Linux" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Ubuntu: Enterprise Linux distribution based on Debian.'
 
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN sed -i 's#archive.ubuntu.com#repo.huaweicloud.com/oldubuntu-releases#g' /etc/apt/sources.list \
-    && sed -i 's/deb\ http:\/\/security/#deb\ http:\/\/security/g' /etc/apt/sources.list \
-    && sed -i 's/deb-src\ http:\/\/security/#deb-src\ http:\/\/security/g' /etc/apt/sources.list
 
 CMD ["/usr/bin/bash"]
