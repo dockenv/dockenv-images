@@ -7,8 +7,8 @@ LABEL org.opencontainers.image.title="CodeSpace" \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update -y
-	&& apt upgrade -y
+RUN apt update -y \
+	&& apt upgrade -y \
 	&& apt install -y ca-certificates \
 	# Editor
 	&& apt install -y neovim vim \
