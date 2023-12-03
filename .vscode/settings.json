@@ -16,6 +16,7 @@
 	"aiXcoder.showTrayIcon": false,
 	"editor.inlineSuggest.enabled": true,
 	"diffEditor.codeLens": true,
-	"editor.inlineSuggest.showToolbar": "onHover"
+	"editor.inlineSuggest.showToolbar": "onHover",
+	"explorer.excludeGitIgnore": false
 }
 
