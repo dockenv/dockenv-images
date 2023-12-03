@@ -1,4 +1,4 @@
-name: Docker Build rhel Image
+name: Docker Build rhel
 
 on:
   workflow_dispatch:

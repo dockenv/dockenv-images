@@ -8,14 +8,5 @@ LABEL org.opencontainers.image.title="Debian GNU Linux" \
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
-ENV VERSION_CODENAME=testing
-
-RUN . /etc/os-release \
-    && echo "deb http://repo.huaweicloud.com/${ID} ${VERSION_CODENAME} main" > /etc/apt/sources.list \
-    && echo "deb http://repo.huaweicloud.com/${ID} ${VERSION_CODENAME} contrib" >> /etc/apt/sources.list \
-    && echo "deb http://repo.huaweicloud.com/${ID} ${VERSION_CODENAME} non-free" >> /etc/apt/sources.list \
-    && echo "deb http://repo.huaweicloud.com/${ID}-security ${VERSION_CODENAME}-security main" >> /etc/apt/sources.list \
-    && echo "deb http://repo.huaweicloud.com/${ID}-security ${VERSION_CODENAME}-security contrib" >> /etc/apt/sources.list \
-    && echo "deb http://repo.huaweicloud.com/${ID}-security ${VERSION_CODENAME}-security non-free" >> /etc/apt/sources.list
 
 CMD ["/bin/bash"]
