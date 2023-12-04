@@ -3,15 +3,13 @@
 /*
  * @Author: Cloudflying
  * @Date: 2022-07-13 21:10:15
- * @LastEditTime: 2022-07-23 19:53:45
+ * @LastEditTime: 2023-12-04 21:36:57
  * @LastEditors: Cloudflying
  * @Description:
  * @FilePath: /dockenv/scripts/env.php
  */
 
 print_r(get_loaded_extensions());
-
-
 
 $host = '172.16.3.4';
 $memcache_port = 11211;
@@ -42,3 +40,4 @@ if(extension_loaded('Redis')){
         echo "Redis $redis_version connetcted " . PHP_EOL;
     }
 }
+
