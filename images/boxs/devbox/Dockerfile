@@ -20,12 +20,13 @@ RUN echo 'Asia/Shanghai' > /etc/timezone \
 	&& pacman -S --noconfirm base-devel \
 	&& pacman -S --noconfirm zsh jq tree less cowsay cowfortune htop btop \
 	# Git
-	&& pacman -S --noconfirm git github-cli git-delta onefetch gitg gitui \
+	&& pacman -S --noconfirm git github-cli git-delta onefetch gitui \
 	# File Operation
 	&& pacman -S --noconfirm xsv \
 	# Program Language
 	# nodejs replace with nvm
-	&& pacman -S --noconfirm go python php rust jdk-openjdk dotnet-runtime dotnet-sdk \
+	# go rust jdk-openjdk dotnet-runtime dotnet-sdk
+	&& pacman -S --noconfirm python php \
 	# Program Language Addtion
 	# Node
 	# && pacman -S --noconfirm npm yarn pnpm bower gulp \
