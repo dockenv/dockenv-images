@@ -2,9 +2,9 @@
 ###
  # @Author: Cloudflying
  # @Date: 2023-12-03 18:18:36
- # @LastEditTime: 2023-12-03 20:12:26
+ # @LastEditTime: 2023-12-04 23:33:21
  # @LastEditors: Cloudflying
- # @Description: 
+ # @Description: Dev Box Init
 ### 
 
 apt update -y
@@ -15,4 +15,4 @@ apt install -y neovim \
 	&& apt install -y lsb-release apt-transport-https apt-utils software-properties-common \
     && apt install -y locales supervisor sudo openssh-server \
     && apt install -y iso-codes openssl gnupg lsof \
-        universal-ctags strace psmisc file psutils dnsutils expect \
+        universal-ctags strace psmisc file psutils dnsutils expect
