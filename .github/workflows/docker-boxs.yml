@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: boxs
-  IMAGE_TAGS: "builder alpine ubuntu"
+  IMAGE_TAGS: "builder alpine devbox"
 
 jobs:
   build:
