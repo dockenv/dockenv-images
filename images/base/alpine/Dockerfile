@@ -1,6 +1,6 @@
-FROM ghcr.io/dockenv/alpine:3.16
+FROM ghcr.io/dockenv/alpine:latest
 LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk"
+  MAIL="oss@live.hk"
 
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-muslc-amd64 /usr/bin/tini
 
