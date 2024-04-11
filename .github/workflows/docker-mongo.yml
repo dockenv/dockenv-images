@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: mongo
-  IMAGE_TAGS: "latest 4.4 5.0 6.0"
+  IMAGE_TAGS: "latest 4.4 5.0 6.0 7.0"
 
 jobs:
   build:
