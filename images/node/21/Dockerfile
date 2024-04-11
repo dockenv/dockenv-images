@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.18
+FROM ghcr.io/dockenv/alpine:3.19
 
 LABEL org.opencontainers.image.title="Node" \
   org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

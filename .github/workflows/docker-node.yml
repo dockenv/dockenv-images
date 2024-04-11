@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: node
-  IMAGE_TAGS: "latest 20 18 16 14 12"
+  IMAGE_TAGS: "latest 21 20 18 16 14"
 
 jobs:
   build:
