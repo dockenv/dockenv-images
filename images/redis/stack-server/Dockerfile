@@ -1,8 +1,8 @@
-FROM redis/redis-stack-server:edge
+FROM redis/redis-stack-server:latest
 LABEL org.opencontainers.image.title="Redis Stack" \
-      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
-      org.opencontainers.image.description='redis-stack-server installs a Redis server with additional database capabilities.'
+  org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+  org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+  org.opencontainers.image.description='redis-stack-server installs a Redis server with additional database capabilities.'
 
 USER redis
 
