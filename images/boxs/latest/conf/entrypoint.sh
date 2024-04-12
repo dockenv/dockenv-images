@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2022-06-25 00:21:46
- # @LastEditTime: 2022-07-02 01:42:24
+ # @LastEditTime: 2024-04-13 00:19:06
  # @LastEditors: Cloudflying
  # @Description:
  # @FilePath: /dockenv/images/boxs/latest/conf/entrypoint.sh
@@ -33,13 +33,13 @@ if [[ -n "${SSH_PORT}" ]]; then
 fi
 
 # Reset Code Server Password
-if [[ -n "${IDE_PASSWD}" ]]; then
-    sed -i "s#password:.*#password: ${IDE_PASSWD}#g" ${HOME_DIR}/.config/code-server/config.yaml
-fi
+# if [[ -n "${IDE_PASSWD}" ]]; then
+#     sed -i "s#password:.*#password: ${IDE_PASSWD}#g" ${HOME_DIR}/.config/code-server/config.yaml
+# fi
 
-if [[ -z "${IDE_PORT}" ]]; then
-    sed -i "s#bind-addr:.*#bind-addr: 0.0.0.0:${IDE_PORT}#g" ${HOME_DIR}/.config/code-server/config.yaml
-fi
+# if [[ -z "${IDE_PORT}" ]]; then
+#     sed -i "s#bind-addr:.*#bind-addr: 0.0.0.0:${IDE_PORT}#g" ${HOME_DIR}/.config/code-server/config.yaml
+# fi
 
 HOST_IP=$(hostname -i)
 

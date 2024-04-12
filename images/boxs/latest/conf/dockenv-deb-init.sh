@@ -1,25 +1,11 @@
 #!/usr/bin/env bash
 ###
  # @Author: Cloudflying
- # @Date: 2022-07-01 12:36:33
- # @LastEditTime: 2024-04-13 00:21:20
+ # @Date: 2024-04-12 23:37:30
+ # @LastEditTime: 2024-04-13 00:06:40
  # @LastEditors: Cloudflying
- # @Description: Init Docker Images
- # @FilePath: /dockenv/images/boxs/latest/conf/init.sh
+ # @Description: Debian Init for docker， Optimize Storage Space
 ###
-[ -f '/tmp/conf/entrypoint.sh' ] && cp /tmp/conf/entrypoint.sh /usr/bin/entrypoint && chmod +x /usr/bin/entrypoint
-[ -f '/tmp/conf/dockenv-deb-init.sh' ] && cp /tmp/conf/dockenv-deb-init.sh /usr/bin/dockenv-init && chmod +x /usr/bin/dockenv-init
-
-# 添加非自由软件
-sed -i 's#Components:.*#Components: main non-free contrib non-free-firmware#g' /etc/apt/sources.list.d/debian.sources
-# 修改软件源
-sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list.d/debian.sources
-
-# short package install command
-pkg_add()
-{
-    apt-get install -y --no-install-recommends --no-install-suggests $@
-}
 
 # 下载二进制文件 并赋予执行权限
 # @param $1 Save Name Or Platform
@@ -44,24 +30,37 @@ add_bin()
     chmod +x ${SAVE_PATH}
 }
 
-apt update -y
-apt upgrade -y
+# short package install command
+pkg_add()
+{
+    apt-get install -y --no-install-recommends --no-install-suggests $@
+}
 
-# Install Packages
-pkg_add ca-certificates locales openssh-server sudo
-pkg_add jq procps htop less file wget curl iputils-ping net-tools
-pkg_add zsh git
-pkg_add supervisor python3-pip
+# 添加 VSCode 扩展到 Code Server
+# 如 微软开发的 Remote 系列则只允许在 VSC 运行
+# usage: vsc_ext_add id
+vsc_ext_add()
+{
+    EXT_DIR=${HOME}/.code-server/exts
+    mkdir -p /tmp/vsc-ext
+    EXT_ID=$(echo "$1" | tr '[A-Z]' '[a-z]')
+    EXT_URL="https://marketplace.visualstudio.com/items?itemName=${EXT_ID}"
+    EXT_FILE_URL=$(curl -sL ${EXT_URL} | grep -Eo 'https://\S+gallerycdn.vsassets.io/extensions\S+Default' | head -n 1 | sed 's#Icons.Default#VSIXPackage#g')
+    EXT_AUTHOR=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $1}')
+    EXT_NAME=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $2}')
+    EXT_VER=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $3}')
+    FULL_NAME="${EXT_AUTHOR}.${EXT_NAME}-${EXT_VER}"
+    wget -c ${EXT_FILE_URL} -O /tmp/vsc-ext/${FULL_NAME}.vsix
+    unzip -qo /tmp/vsc-ext/${FULL_NAME}.vsix -d /tmp/vsc-ext/
+    mv /tmp/vsc-ext/extension ${EXT_DIR}/${FULL_NAME}
+}
 
-# Editor
-pkg_add neovim
-
-# Compress
-pkg_add 7zip brotli bzip2 gzip lunzip lzip unar unrar unzip p7zip p7zip-full p7zip-rar rar unrar-free zip zstd
-
-# for neovim
-pip install -U setuptools
-pip install pynvim websockets pip_search "python-lsp-server[all]"
+# 初始化 Node 环境
+node_env()
+{
+        npm i -g webpack yarn eslint @unibeautify/cli typescript
+        npm i -g typescript-language-server vim-language-server
+}
 
 php_env()
 {
@@ -134,7 +133,7 @@ composer_app()
 # Config code-server
 vscode_init()
 {
-    # HOME_DIR=${HOME}
+    HOME_DIR=${HOME}
     if [[ -z "$(command -v code-server)" ]]; then
         CODE_SERVER_LATEST_VER=$(curl -sI https://github.com/coder/code-server/releases/latest | grep '/releases/tag' | grep -Eo '/v\S+.[0-9]' | sed 's#/v##g')
         # sudo systemctl enable --now code-server@$USER
@@ -218,69 +217,18 @@ vscode_init()
     fi
 }
 
-node_env()
+# install extension for code-server
+ext_add()
 {
-    pkg_add nodejs npm
+    code-server --extensions-dir /home/boxs/.code-server/exts --install-extension $@
 }
 
-lang_env()
-{
-    pkg_add golang
-}
-
-php_env
-composer_app
-node_env
-vscode_init
-
-# Config Language And timezone
-sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen
-sed -i "s/# zh_CN.UTF-8/zh_CN.UTF-8/" /etc/locale.gen
-# locale-gen
-echo 'Asia/Shanghai' > /etc/timezone
-rm -fr /etc/localtime
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-# Config User
-useradd -d /home/${RUN_USER} -m -s /bin/zsh ${RUN_USER}
-echo "${RUN_USER}:${USER_PASSWD}" | chpasswd
-echo "root:${USER_PASSWD}" | chpasswd
-# Config sudo SuperPower
-echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-# Config ohmyzsh
-git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh
-cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc
-sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc
-
-# Config SSH
-ssh-keygen -A
-sed -i 's/^#ClientAliveInterval.*/ClientAliveInterval 60/g' /etc/ssh/sshd_config
-sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
-sed -i 's/^#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/g' /etc/ssh/sshd_config
-
-# Link vim symbol
-ln -sf /usr/bin/nvim /bin/e
-ln -sf /usr/bin/nvim /bin/vi
-ln -sf /usr/bin/nvim /bin/vim
-
-[ ! -d '/run/sshd' ] && mkdir -p /run/sshd
-[ ! -d '/etc/supervisor/conf.d' ] && mkdir -p /etc/supervisor/conf.d
-[ -f '/tmp/conf/services.conf' ] && cp /tmp/conf/services.conf /etc/supervisor/conf.d/services.conf
-
-echo "==> Final Initialize environment"
-
-echo "==> Fix User Permission"
-chown -R ${RUN_USER}:${RUN_USER} ${HOME_DIR}
-chmod -R 755 ${HOME_DIR}
-
-echo "==> Clean Container"
-rm -fr /root/.npm
-rm -fr /root/.wget-hsts
-rm -fr /root/.config
-rm -fr /root/.local
-
-apt autoremove -y
-apt-get clean -y
-apt-get autoclean -y
-rm -fr /var/lib/apt/lists/*
+case "$1" in
+    node)
+        apt install -y nodejs npm
+    ;;
+    2|3) echo 2 or 3
+    ;;
+    *) echo default
+    ;;
+esac
