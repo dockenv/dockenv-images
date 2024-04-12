@@ -1,21 +1,22 @@
 FROM ghcr.io/dockenv/debian:sid
+
 LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv
+  MAIL="oss@live.hk" \
+  org.opencontainers.image.source=https://github.com/dockenv/dockenv-images \
+  org.opencontainers.image.description='Debian Boxs'
 
 # PreDefine Variable
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     LC_ALL='en_US.UTF-8' \
     LC_CTYPE='en_US.UTF-8' \
-    RUN_USER="boxs" \
-	USER_PASSWD="boxs" \
-	AUTHORIZED_KEYS='**None**' \
-	DEBIAN_FRONTEND=noninteractive \
+    RUN_USER="dockenv" \
+	  USER_PASSWD="dockenv" \
+	  AUTHORIZED_KEYS='**None**' \
+	  DEBIAN_FRONTEND=noninteractive \
     SSH_PORT=22 \
     IDE_PORT=8818 \
-    IDE_PASSWD=ideboxs
-
+    IDE_PASSWD=dockenv
 
 ENV HOME_DIR=/home/$RUN_USER
 ADD conf /tmp/conf
