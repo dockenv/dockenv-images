@@ -1,4 +1,4 @@
-# Debian Bullseye (11)
+# Debian bookworm (12)
 FROM debian:bookworm
 LABEL org.opencontainers.image.title="Debian GNU Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
