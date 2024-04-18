@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 ###
- # @Author: Cloudflying
- # @Date: 2022-06-25 00:21:46
- # @LastEditTime: 2024-04-13 00:19:06
- # @LastEditors: Cloudflying
- # @Description:
- # @FilePath: /dockenv/images/boxs/latest/conf/entrypoint.sh
+# @Author: Cloudflying
+# @Date: 2022-06-25 00:21:46
+# @LastEditTime: 2024-04-18 10:40:39
+# @LastEditors: Cloudflying
+# @Description:
 ###
 
 # Change default password when -e PASSWD is set , default is ${DEFAULT_PASSWD}
-HOME_DIR='/home/boxs'
+HOME_DIR='/home/dockenv'
 DEFAULT_PASSWD=$(cat /dev/random | head -n 1 | sha256sum | head -c 12)
 
 # Set Default Password If is empty will be set as ${DEFAULT_PASSWD}
