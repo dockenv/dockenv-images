@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-07-01 12:36:33
-# @LastEditTime: 2024-04-18 15:53:22
+# @LastEditTime: 2024-04-18 16:59:31
 # @LastEditors: Cloudflying
 # @Description: Init Docker Images
 ###
@@ -38,7 +38,8 @@ add_bin() {
     else
         SAVE_PATH="${BIN_DIR}/$2"
     fi
-    wget -c $1 -O $SAVE_PATH
+    # wget -c $1 -O $SAVE_PATH
+    wget -c $1 -O $BIN_DIR/$2
     chmod +x ${SAVE_PATH}
 }
 
@@ -49,7 +50,8 @@ apt upgrade -y
 pkg_add ca-certificates locales openssh-server sudo
 pkg_add jq procps htop less file wget curl iputils-ping net-tools
 pkg_add zsh bat eza
-pkg_add supervisor python3-pip
+pkg_add supervisor
+# pkg_add python3-pip
 pkg_add fzf silversearcher-ag ripgrep
 
 # Some Toy
@@ -68,11 +70,11 @@ chmod +x /usr/bin/exa
 pkg_add 7zip brotli bzip2 gzip lunzip lzip unar unrar unzip p7zip p7zip-full p7zip-rar rar unrar-free zip zstd
 
 # Compile and Vim is require
-apt install build-essential automake autoconf make cmake
+# apt install build-essential automake autoconf make cmake
 
 # for neovim
-pip install -U setuptools
-pip install pynvim websockets pip_search "python-lsp-server[all]"
+# pip install -U setuptools
+# pip install pynvim websockets pip_search "python-lsp-server[all]"
 
 php_env() {
     # PHP And Composer
@@ -223,8 +225,8 @@ lang_env() {
 
 php_env
 # composer_app
-node_env
-dev_depends_env
+# node_env
+# dev_depends_env
 vscode_init
 
 # Config Language And timezone
