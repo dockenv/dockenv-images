@@ -1,0 +1,19 @@
+{
+  "workbench.colorTheme": "Solarized Light",
+  "sublimeTextKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnPaste": true,
+  "workbench.iconTheme": "vscode-icons",
+  "window.menuBarVisibility": "classic",
+  "database-client.highlightSQLBlock": true,
+  "database-client.showUser": true,
+  "database-client.showTrigger": true,
+  "database-client.showQuery": true,
+  "database-client.showFilter": true,
+  "database-client.escapedAllObjectName": true,
+  "tabnine.experimentalAutoImports": true,
+  "tabnine.receiveBetaChannelUpdates": true,
+  "editor.fontSize": 16,
+  "extensions.autoUpdate": "onlyEnabledExtensions"
+}
