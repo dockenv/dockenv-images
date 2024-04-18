@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: boxs
-  IMAGE_TAGS: "latest alpine devbox"
+  IMAGE_TAGS: "latest devbox"
 
 jobs:
   build:
