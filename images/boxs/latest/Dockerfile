@@ -24,7 +24,7 @@ ADD conf /tmp/conf
 RUN bash /tmp/conf/init.sh && rm -fr /tmp/*
 
 # SSH Don't Work
-# USER ${RUN_USER}
+USER ${RUN_USER}
 WORKDIR $HOME_DIR
 
 # 5901 vnc port
