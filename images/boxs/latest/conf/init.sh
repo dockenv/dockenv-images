@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-07-01 12:36:33
- # @LastEditTime: 2024-04-18 11:43:01
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-04-18 15:53:22
+# @LastEditors: Cloudflying
 # @Description: Init Docker Images
 ###
 
@@ -13,7 +13,7 @@
 # 添加非自由软件
 sed -i 's#Components:.*#Components: main non-free contrib non-free-firmware#g' /etc/apt/sources.list.d/debian.sources
 # 修改软件源
-sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list.d/debian.sources
+# sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list.d/debian.sources
 
 # short package install command
 pkg_add() {
@@ -150,7 +150,6 @@ vscode_init() {
         wget -qc ${CODE_SERVER_URL} -O /tmp/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb
         dpkg -i /tmp/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb
 
-
         # VSCode Server
         # Not Working
         # VSC_COMMIT_ID="e170252f762678dec6ca2cc69aba1570769a5d39"
@@ -209,8 +208,7 @@ vscode_init() {
     fi
 }
 
-dev_depends_env()
-{
+dev_depends_env() {
     apt install -y redis redis-redisearch memcached
 }
 
