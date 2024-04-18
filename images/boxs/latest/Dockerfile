@@ -6,24 +6,25 @@ LABEL MAINTAINER="Cloudflying" \
   org.opencontainers.image.description='Debian Boxs'
 
 # PreDefine Variable
-ENV LANG='en_US.UTF-8' \
-    LANGUAGE='en_US.UTF-8' \
-    LC_ALL='en_US.UTF-8' \
-    LC_CTYPE='en_US.UTF-8' \
-    RUN_USER="dockenv" \
-	  USER_PASSWD="dockenv" \
-	  AUTHORIZED_KEYS='**None**' \
-	  DEBIAN_FRONTEND=noninteractive \
-    SSH_PORT=22 \
-    IDE_PORT=8818 \
-    IDE_PASSWD=dockenv
+# LANG='en_US.UTF-8' \
+# LANGUAGE='en_US.UTF-8' \
+# LC_ALL='en_US.UTF-8' \
+# LC_CTYPE='en_US.UTF-8'
+ENV RUN_USER="dockenv" \
+  USER_PASSWD="dockenv" \
+  AUTHORIZED_KEYS='**None**' \
+  DEBIAN_FRONTEND=noninteractive \
+  SSH_PORT=22 \
+  IDE_PORT=8818 \
+  IDE_PASSWD=dockenv
 
 ENV HOME_DIR=/home/$RUN_USER
 ADD conf /tmp/conf
 
 RUN bash /tmp/conf/init.sh && rm -fr /tmp/*
 
-USER ${RUN_USER}
+# SSH Don't Work
+# USER ${RUN_USER}
 WORKDIR $HOME_DIR
 
 # 5901 vnc port
