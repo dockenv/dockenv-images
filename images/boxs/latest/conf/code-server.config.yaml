@@ -1,0 +1,6 @@
+bind-addr: 0.0.0.0:8818
+auth: password
+password: dockenv
+cert: false
+user-data-dir: /home/dockenv/.code-server
+extensions-dir: /home/dockenv/.code-server/exts

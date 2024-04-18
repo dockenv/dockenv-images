@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 ###
- # @Author: Cloudflying
- # @Date: 2022-07-01 12:36:33
- # @LastEditTime: 2024-04-13 00:21:20
+# @Author: Cloudflying
+# @Date: 2022-07-01 12:36:33
+ # @LastEditTime: 2024-04-18 11:43:01
  # @LastEditors: Cloudflying
- # @Description: Init Docker Images
- # @FilePath: /dockenv/images/boxs/latest/conf/init.sh
+# @Description: Init Docker Images
 ###
+
 [ -f '/tmp/conf/entrypoint.sh' ] && cp /tmp/conf/entrypoint.sh /usr/bin/entrypoint && chmod +x /usr/bin/entrypoint
 [ -f '/tmp/conf/dockenv-deb-init.sh' ] && cp /tmp/conf/dockenv-deb-init.sh /usr/bin/dockenv-init && chmod +x /usr/bin/dockenv-init
 
@@ -16,8 +16,7 @@ sed -i 's#Components:.*#Components: main non-free contrib non-free-firmware#g' /
 sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list.d/debian.sources
 
 # short package install command
-pkg_add()
-{
+pkg_add() {
     apt-get install -y --no-install-recommends --no-install-suggests $@
 }
 
@@ -30,8 +29,7 @@ pkg_add()
 # ~/.bin/lin
 # macOS
 # ~/.bin/mac
-add_bin()
-{
+add_bin() {
     BIN_DIR=${HOME}/.bin
     if [[ "${1}" != 'lin' ]]; then
         SAVE_PATH="${BIN_DIR}/lin/$2"
@@ -50,21 +48,33 @@ apt upgrade -y
 # Install Packages
 pkg_add ca-certificates locales openssh-server sudo
 pkg_add jq procps htop less file wget curl iputils-ping net-tools
-pkg_add zsh git
+pkg_add zsh bat eza
 pkg_add supervisor python3-pip
+pkg_add fzf silversearcher-ag ripgrep
+
+# Some Toy
+apt install -y fortunes fortunes-zh cowsay
 
 # Editor
 pkg_add neovim
 
+# Git
+pkg_add git gh git-delta
+
+wget -q https://mirrors.xie.ke/pkgs/Linux/exa-linux-x86_64-v0.10.1/bin/exa -O /usr/bin/exa
+chmod +x /usr/bin/exa
+
 # Compress
 pkg_add 7zip brotli bzip2 gzip lunzip lzip unar unrar unzip p7zip p7zip-full p7zip-rar rar unrar-free zip zstd
+
+# Compile and Vim is require
+apt install build-essential automake autoconf make cmake
 
 # for neovim
 pip install -U setuptools
 pip install pynvim websockets pip_search "python-lsp-server[all]"
 
-php_env()
-{
+php_env() {
     # PHP And Composer
     pkg_add php8.2-amqp php8.2-apcu php8.2-ast php8.2-bcmath php8.2-bz2 \
         php8.2-curl php8.2-dba php8.2-dev php8.2-ds php8.2-enchant php8.2-fpm php8.2-gd \
@@ -83,22 +93,21 @@ php_env()
     chmod +x /usr/bin/composer
 
     PHP_VER=8.2
-    sed -i "s/error_reporting = .*/error_reporting = E_ALL/"                /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/display_errors = .*/display_errors = On/"                     /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/memory_limit = .*/memory_limit = 256M/"                       /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/date.timezone.*/date.timezone = 'Asia\/Shanghai'/"            /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/upload_max_filesize = .*/upload_max_filesize = 512M/"         /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/post_max_size = .*/post_max_size = 512M/"                     /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/max_file_uploads =.*/max_file_uploads = 256/g"                /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/display_startup_errors =.*/display_startup_errors = On/g"     /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/log_errors =.*/log_errors = On/g"                             /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/default_charset =.*/default_charset = "UTF-8"/g"              /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s/max_execution_time =.*/max_execution_time = 300/g"            /etc/php/${PHP_VER}/*/php.ini
-    sed -i "s#^pm.max_children.*#pm.max_children = 32#"                     /etc/php/${PHP_VER}/fpm/php-fpm.conf
+    sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/display_errors = .*/display_errors = On/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/date.timezone.*/date.timezone = 'Asia\/Shanghai'/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/upload_max_filesize = .*/upload_max_filesize = 512M/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/post_max_size = .*/post_max_size = 512M/" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/max_file_uploads =.*/max_file_uploads = 256/g" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/display_startup_errors =.*/display_startup_errors = On/g" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/log_errors =.*/log_errors = On/g" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/default_charset =.*/default_charset = "UTF-8"/g" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s/max_execution_time =.*/max_execution_time = 300/g" /etc/php/${PHP_VER}/*/php.ini
+    sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php/${PHP_VER}/fpm/php-fpm.conf
 }
 
-composer_app()
-{
+composer_app() {
     # sudo -u ${RUN_USER} mkdir -p ${HOME_DIR}/.config/composer
     # sudo -u ${RUN_USER} composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
     # sudo -u ${RUN_USER} composer global --no-plugins --no-scripts require phpstan/phpstan
@@ -132,50 +141,35 @@ composer_app()
 }
 
 # Config code-server
-vscode_init()
-{
+vscode_init() {
     # HOME_DIR=${HOME}
     if [[ -z "$(command -v code-server)" ]]; then
         CODE_SERVER_LATEST_VER=$(curl -sI https://github.com/coder/code-server/releases/latest | grep '/releases/tag' | grep -Eo '/v\S+.[0-9]' | sed 's#/v##g')
         # sudo systemctl enable --now code-server@$USER
         CODE_SERVER_URL="https://github.com/coder/code-server/releases/download/v${CODE_SERVER_LATEST_VER}/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb"
-        wget -c ${CODE_SERVER_URL} -O /tmp/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb
+        wget -qc ${CODE_SERVER_URL} -O /tmp/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb
         dpkg -i /tmp/code-server_${CODE_SERVER_LATEST_VER}_amd64.deb
+
+
+        # VSCode Server
+        # Not Working
+        # VSC_COMMIT_ID="e170252f762678dec6ca2cc69aba1570769a5d39"
+        # https://update.code.visualstudio.com/commit:e170252f762678dec6ca2cc69aba1570769a5d39/server-linux-x64/stable
+        # wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/vscode-server-linux-x64.tar.gz -O /tmp/vsc.tar.gz
+
+        # mkdir -p ${HOME_DIR}/.vscode-server/bin
+        # tar -xf /tmp/vsc.tar.gz -C ${HOME_DIR}/.vscode-server/bin/
+        # mv ${HOME_DIR}/.vscode-server/bin/vscode-server-linux-x64 ${HOME_DIR}/.vscode-server/bin/${VSC_COMMIT_ID}
 
         mkdir -p ${HOME_DIR}/.code-server/exts
         mkdir -p ${HOME_DIR}/.code-server/User
         mkdir -p ${HOME_DIR}/.config/code-server
+        cp -fr /tmp/conf/vscode-settings.json ${HOME_DIR}/.code-server/User/settings.json
+        cp -fr /tmp/conf/code-server.config.yaml ${HOME_DIR}/.config/code-server/config.yaml
 
-    cat > ${HOME_DIR}/.config/code-server/config.yaml <<<EOF
-    bind-addr: 0.0.0.0:8818
-    auth: password
-    password: dockenv
-    cert: false
-    user-data-dir: .code-server
-    extensions-dir: .code-server/exts
-    EOF
+        mkdir -p ${HOME_DIR}/.config/TabNine
+        cp -fr /tmp/conf/tabnine_config.json ${HOME_DIR}/.config/TabNine/tabnine_config.json
 
-    cat > ${HOME_DIR}/.code-server/User/settings.json <<< EOF
-    {
-        "workbench.colorTheme": "Solarized Light",
-        "sublimeTextKeymap.promptV3Features": true,
-        "editor.multiCursorModifier": "ctrlCmd",
-        "editor.snippetSuggestions": "top",
-        "editor.formatOnPaste": true,
-        "workbench.iconTheme": "vscode-icons",
-        "window.menuBarVisibility": "classic",
-        "database-client.highlightSQLBlock": true,
-        "database-client.showUser": true,
-        "database-client.showTrigger": true,
-        "database-client.showQuery": true,
-        "database-client.showFilter": true,
-        "database-client.escapedAllObjectName": true,
-        "tabnine.experimentalAutoImports": true,
-        "tabnine.receiveBetaChannelUpdates": true,
-        "editor.fontSize": 16,
-        "extensions.autoUpdate": "onlyEnabledExtensions"
-    }
-    EOF
         # Add Code Server Extensions
         # 有些插件仅支持运行在 VSCode 如 remote ssh
         # defined to run only in code-server for the Desktop
@@ -212,32 +206,34 @@ vscode_init()
 
         # SanderRonde.phpstan-vscode
         # swordev.phpstan
-
-        mkdir -p ${HOME_DIR}/.config/TabNine
-        cp -fr /tmp/conf/tabnine_config.json ${HOME_DIR}/.config/TabNine/tabnine_config.json
     fi
 }
 
-node_env()
+dev_depends_env()
 {
+    apt install -y redis redis-redisearch memcached
+}
+
+# Node.js
+node_env() {
     pkg_add nodejs npm
 }
 
-lang_env()
-{
+lang_env() {
     pkg_add golang
 }
 
 php_env
-composer_app
+# composer_app
 node_env
+dev_depends_env
 vscode_init
 
 # Config Language And timezone
 sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen
 sed -i "s/# zh_CN.UTF-8/zh_CN.UTF-8/" /etc/locale.gen
 # locale-gen
-echo 'Asia/Shanghai' > /etc/timezone
+echo 'Asia/Shanghai' >/etc/timezone
 rm -fr /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -246,12 +242,33 @@ useradd -d /home/${RUN_USER} -m -s /bin/zsh ${RUN_USER}
 echo "${RUN_USER}:${USER_PASSWD}" | chpasswd
 echo "root:${USER_PASSWD}" | chpasswd
 # Config sudo SuperPower
-echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 # Config ohmyzsh
 git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh
-cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc
-sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc
+#cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc
+# sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc
+
+# Boxes
+git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ${HOMED_IR}/.local/share/zinit
+git clone --depth 1 https://github.com/imxieke/boxes.git ${HOME_DIR}/.boxs
+ln -sf ${HOME_DIR}/.boxs/conf/.zshrc ${HOME_DIR}/.zshrc
+
+mkdir -p ${HOME_DIR}/.local/share/zinit/plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${HOME_DIR}/.local/share/zinit/plugins/zsh-users---zsh-autosuggestions
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${HOME_DIR}/.local/share/zinit/plugins/zdharma-continuum---fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-history-substring-search.git ${HOME_DIR}/.local/share/zinit/plugins/zsh-users---zsh-history-substring-search
+git clone https://github.com/marlonrichert/zsh-autocomplete.git ${HOME_DIR}/.local/share/zinit/plugins/marlonrichert---zsh-autocomplete
+git clone https://github.com/zsh-users/zsh-completions.git ${HOME_DIR}/.local/share/zinit/plugins/zsh-users---zsh-completions
+git clone https://github.com/agkozak/zsh-z.git ${HOME_DIR}/.local/share/zinit/plugins/agkozak---zsh-z
+git clone https://github.com/mafredri/zsh-async.git ${HOME_DIR}/.local/share/zinit/plugins/mafredri---zsh-async
+git clone https://github.com/wfxr/formarks.git ${HOME_DIR}/.local/share/zinit/plugins/wfxr---formarks
+git clone https://github.com/zdharma-continuum/history-search-multi-word.git ${HOME_DIR}/.local/share/zinit/plugins/zdharma-continuum---history-search-multi-word
+git clone https://github.com/trystan2k/zsh-tab-title.git ${HOME_DIR}/.local/share/zinit/plugins/trystan2k---zsh-tab-title
+git clone https://github.com/romkatv/powerlevel10k.git ${HOME_DIR}/.local/share/zinit/plugins/romkatv---powerlevel10k
+
+# Neovim
+git clone --depth 1 https://github.com/imxieke/NeoCode.git ${HOME_DIR}/.config/nvim
 
 # Config SSH
 ssh-keygen -A
