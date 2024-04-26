@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: ubuntu
-  IMAGE_TAGS: "latest 14.04 16.04 18.04 20.04 22.04 23.04 23.10"
+  IMAGE_TAGS: "latest 20.04 22.04 23.04 23.10 24.04"
 
 jobs:
   build:
