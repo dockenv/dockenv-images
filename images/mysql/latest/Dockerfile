@@ -1,4 +1,4 @@
-FROM mysql:8.0-debian
+FROM mysql:debian
 
 LABEL org.opencontainers.image.title="MYSQL" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
