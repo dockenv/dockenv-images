@@ -3,7 +3,14 @@
 
 ### start a redis instance
 
-`$ docker run -d --name redis redis`
+
+```bash
+$ docker run -d \
+    --name redis \
+    -v /myredis/conf:/usr/local/etc/redis \
+    redis-server /usr/local/etc/redis/redis.conf --save 60 1 --loglevel warning
+```
+> 60 秒保存一次快照
 
 ### start with persistent storage
 `$ docker run --name some-redis -d redis redis-server --appendonly yes`
