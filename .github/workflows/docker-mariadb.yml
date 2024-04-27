@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: mariadb
-  IMAGE_TAGS: "latest lts 10.5 10.6 10.7 10.8 10.9 10.10 10.11"
+  IMAGE_TAGS: "latest lts 10.2 10.3 10.4 10.5 10.6 10.7 10.8 10.9 10.10 10.11 11.0 11.1 11.2 11.3"
 
 jobs:
   build:
