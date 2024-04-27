@@ -71,9 +71,6 @@ cd /tmp/build/ngx_mod
 # MPEG-TS Live
 # git clone --depth 1 https://github.com/arut/nginx-ts-module
 
-# Compress
-git clone --depth 1 https://github.com/google/ngx_brotli
-git clone --depth 1 https://github.com/tokers/zstd-nginx-module
 # file unzip
 # git clone --depth 1 https://github.com/ajax16384/ngx_http_untar_module
 # git clone --depth 1 https://github.com/evanmiller/mod_zip
@@ -130,7 +127,6 @@ git clone --depth 1 https://github.com/leev/ngx_http_geoip2_module
 # git clone --depth 1 https://github.com/psychobilly/ngx_http_json_status_module
 
 # Filter
-git clone --depth 1 https://github.com/cuber/ngx_http_google_filter_module
 git clone --depth 1 https://github.com/openresty/replace-filter-nginx-module
 git clone --depth 1 https://github.com/yaoweibin/ngx_http_substitutions_filter_module
 
@@ -143,7 +139,7 @@ git clone --depth 1 https://github.com/TeslaGov/ngx-http-auth-jwt-module
 
 if [[ -d '/tmp/build/ngx_mod/ngx_waf' ]]; then
     cd /tmp/build/ngx_mod/ngx_waf && make
-    git clone --depth 1 https://github.com/libinjection/libinjection inc/libinjection
+    git clone --depth 1 https://github.com/libinjection/libinjection.git inc/libinjection
 fi
 
 if [[ ! -f "/usr/lib/x86_64-linux-gnu/libssl.a" ]]; then
