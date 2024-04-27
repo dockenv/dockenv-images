@@ -9,4 +9,17 @@
 
 ### How to use this image?
 
-`docker run --detach --name mariadb --env MARIADB_USER=user --env MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw  ghcr.io/dockenv/mariadb:latest`
+```bash
+docker run -d \
+    --name mariadb \
+    -v /path/to/conf:/etc/mysql/conf.d \
+    -v /path/to/datadir:/var/lib/mysql \
+    --env MARIADB_USER=dockenv \
+    --env MARIADB_PASSWORD=dockenv \
+    --env MARIADB_ROOT_PASSWORD=dockenv  \
+    ghcr.io/dockenv/mariadb:latest
+```
+
+## Params
+- MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
+- MARIADB_RANDOM_ROOT_PASSWORD=1
