@@ -1,6 +1,10 @@
 FROM golang:1.15-alpine
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk"
+
+LABEL org.opencontainers.image.title="Golang" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://github.com/dockenv" \
+      org.opencontainers.image.description='a general purpose, higher-level, imperative programming language.'
 
 ENV GOPATH /go
 ENV GOBIN ${GOPATH}/bin

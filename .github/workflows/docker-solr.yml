@@ -6,6 +6,7 @@ on:
     - cron: '0 2 * * 1'
 
 env:
+  TZ: Asia/Shanghai
   IMAGE_NAME: solr
   IMAGE_TAGS: "latest 8 9.0 9.1 9.2 9.3 9.4 9.5"
 
@@ -19,15 +20,15 @@ jobs:
     - name: Build the Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
-    - name: Login to Github Package Registry
+    - name: Login to Docker Registry
       run: |
-        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
 
-    - name: Push Docker Image To Github Package
+    - name: Push Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done

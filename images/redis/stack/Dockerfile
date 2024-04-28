@@ -9,5 +9,7 @@ USER redis
 VOLUME /data
 WORKDIR /data
 
-EXPOSE 6379 8001
+# Redis Stack server 10001
+# RedisInsight 13333
+EXPOSE 6379 8001 10001 13333
 CMD ['/entrypoint.sh']

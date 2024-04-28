@@ -7,7 +7,6 @@ on:
 
 env:
   TZ: Asia/Shanghai
-  REGISTRY: ghcr.io
 
 jobs:
   build:
@@ -18,30 +17,38 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Linux Docker image
       run: |
-        docker build . -f images/gentoo/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gentoo:latest
-        docker build . -f images/manjaro/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/manjaro:latest
-        docker build . -f images/busybox/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:latest
-        docker build . -f images/busybox/glibc/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:glibc
-        docker build . -f images/busybox/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:musl
-        docker build . -f images/kali/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/kali:latest
-        docker build . -f images/scientificlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/scientificlinux:latest
-        docker build . -f images/scientificlinux/7/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/scientificlinux:7
-        docker build . -f images/voidlinux/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
-        docker build . -f images/voidlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
+        docker build . -f images/archlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/archlinux:latest
+        docker build . -f images/cirros/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/cirros:latest
+        docker build . -f images/manjaro/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/manjaro:latest
+        docker build . -f images/gentoo/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/gentoo:latest
+        docker build . -f images/kali/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/kali:latest
+        docker build . -f images/busybox/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:latest
+        docker build . -f images/busybox/glibc/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:glibc
+        docker build . -f images/busybox/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:musl
+        docker build . -f images/scientificlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/scientificlinux:latest
+        docker build . -f images/scientificlinux/7/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/scientificlinux:7
+        docker build . -f images/voidlinux/musl/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/voidlinux:musl
+        docker build . -f images/voidlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/voidlinux:latest
+        docker build . -f images/clearlinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/clearlinux:latest
+        docker build . -f images/clearlinux/base/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/clearlinux:base
 
-    - name: Login Github Package Registry
+    - name: Login to Docker Registry
       run: |
-        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
 
-    - name: Push Docker Image To Github Package
+    - name: Push Docker Image
       run: |
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gentoo:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/manjaro:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:glibc
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/busybox:musl
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/kali:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/scientificlinux:latest
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/scientificlinux:7
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:musl
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/voidlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/gentoo:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/manjaro:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:glibc
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:musl
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/kali:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/scientificlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/scientificlinux:7
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/voidlinux:musl
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/voidlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/archlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/clearlinux:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/clearlinux:base
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/cirros:latest

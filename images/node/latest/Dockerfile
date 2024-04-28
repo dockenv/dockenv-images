@@ -1,10 +1,8 @@
-FROM ghcr.io/dockenv/alpine:latest
+FROM node:current-alpine
 
 LABEL org.opencontainers.image.title="Node" \
-      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
-      org.opencontainers.image.description='Node latest version'
-
-RUN apk add --no-cache nodejs-current npm yarn
+  org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+  org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+  org.opencontainers.image.description='a JavaScript-based platform for server-side and networking applications.'
 
 CMD [ "node" ]

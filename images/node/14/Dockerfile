@@ -1,10 +1,8 @@
-FROM ghcr.io/dockenv/alpine:3.14
+FROM node:14-alpine
 
 LABEL org.opencontainers.image.title="Node" \
-      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
-      org.opencontainers.image.description='Node 14'
-
-RUN apk add --no-cache nodejs npm yarn
+  org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+  org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+  org.opencontainers.image.description='a JavaScript-based platform for server-side and networking applications.'
 
 CMD [ "node" ]

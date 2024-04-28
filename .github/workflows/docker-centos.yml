@@ -7,7 +7,6 @@ on:
 
 env:
   TZ: Asia/Shanghai
-  REGISTRY: ghcr.io
   IMAGE_NAME: centos
   IMAGE_TAGS: "7.9 8.3 8.4 stream stream8 stream9 stream9-dev"
 
@@ -21,17 +20,17 @@ jobs:
     - name: Build the Docker image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
-        docker tag ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:8.4 ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
+        docker tag ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:8.4 ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
 
-    - name: Login Github Package Registry
+    - name: Login to Docker Registry
       run: |
-        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY_GITHUB }}
+        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
 
-    - name: Push Docker Image To Github Package
+    - name: Push Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
-        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/${{ env.IMAGE_NAME }}:latest
+        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
