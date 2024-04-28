@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: swift
-  IMAGE_TAGS: "latest 5.9 5.8 5.7 5.6"
+  IMAGE_TAGS: "latest 5.10 5.9 5.8 5.7 5.6"
 
 jobs:
   build:

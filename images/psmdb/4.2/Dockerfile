@@ -9,4 +9,5 @@ VOLUME ["/data/db"]
 
 USER 1001
 EXPOSE 27017
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["mongod"]
