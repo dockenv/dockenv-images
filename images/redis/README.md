@@ -1,13 +1,27 @@
 # Redis
 > Redis is an open source key-value store that functions as a data structure server.
 
-### start a redis instance
+## Redis VS RedisStack
 
+## Redis
+- 单一的数据库引擎
+
+## RedisStack
+- 由 Redis Stack Server、RedisInsight 和 Redis Stack 客户端 SDK 组成
+
+## Redis Stack Server
+- 由 Redis，RedisSearch，RedisJSON，RedisGraph，RedisTimeSeries 和 RedisBloom 组成。
+- 支持索引、全文搜索、图形建模、时间序列等功能。
+
+### start a redis instance
 
 ```bash
 $ docker run -d \
     --name redis \
+    -p 6379:6379 \
     -v /myredis/conf:/usr/local/etc/redis \
+    -v /path/to/data/:/data \
+    -e REDIS_ARGS="--requirepass dockenv" \ #TODO 似乎不生效
     redis-server /usr/local/etc/redis/redis.conf --save 60 1 --loglevel warning
 ```
 > 60 秒保存一次快照
