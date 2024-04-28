@@ -102,7 +102,6 @@ ukui-themes
 - https://developer.confluent.io/quickstart/kafka-docker/
 - zookeeper
 - kafka
-- minio
 - rockylinux 9
 
 ## Images

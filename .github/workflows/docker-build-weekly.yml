@@ -38,6 +38,7 @@ jobs:
         docker build . -f images/gitea/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/gitea:latest
         docker build . -f images/elixir/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/elixir:latest
         docker build . -f images/unit/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/unit:latest
+        docker build . -f images/minio/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/minio:latest
 
     - name: Login Github Package Registry
       run: |
@@ -64,3 +65,4 @@ jobs:
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/varnish:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/elixir:latest
         docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/unit:latest
+        docker push ${{ vars.DOCKER_REGISTRY_GITHUB }}/dockenv/minio:latest
