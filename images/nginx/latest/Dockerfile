@@ -18,6 +18,7 @@ RUN apk add --no-cache nginx \
             nginx-mod-http-headers-more \
             nginx-mod-http-image-filter \
             nginx-mod-http-js \
+            nginx-mod-http-lua \
             nginx-mod-http-naxsi \
             nginx-mod-http-nchan \
             nginx-mod-http-redis2 \
