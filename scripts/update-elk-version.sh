@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 ###
- # @Author: Cloudflying
- # @Date: 2023-12-01 17:41:39
- # @LastEditTime: 2023-12-01 17:56:00
- # @LastEditors: Cloudflying
- # @Description: Update Elastic Kibana Logstash Version
+# @Author: Cloudflying
+# @Date: 2023-12-01 17:41:39
+# @LastEditTime: 2023-12-01 17:56:00
+# @LastEditors: Cloudflying
+# @Description: Update Elastic Kibana Logstash Version
 ###
 
 ROOT_PATH=$(dirname $(dirname $(realpath $0)))
 
-VER_LATEST="8.11.1"
-VER_7="7.17.15"
+VER_LATEST="8.13.0"
+VER_7="7.17.20"
 
 sed -i "s@FROM elasticsearch:.*@FROM elasticsearch:${VER_LATEST}@g" ${ROOT_PATH}/images/elastic/latest/Dockerfile
 sed -i "s@FROM elasticsearch:.*@FROM elasticsearch:${VER_LATEST}@g" ${ROOT_PATH}/images/elastic/8/Dockerfile
