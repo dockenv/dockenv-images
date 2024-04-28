@@ -1,4 +1,4 @@
-FROM kibana:8.11.1
+FROM kibana:8.13.0
 
 LABEL org.opencontainers.image.title="Kibana" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -7,4 +7,5 @@ LABEL org.opencontainers.image.title="Kibana" \
       org.opencontainers.image.description='Kibana 8.10'
 
 EXPOSE 5601
+ENTRYPOINT ["/bin/tini", "--"]
 CMD ["/usr/local/bin/kibana-docker"]

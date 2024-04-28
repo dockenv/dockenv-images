@@ -1,4 +1,4 @@
-FROM couchdb:3.2
+FROM couchdb:3.3
 
 LABEL org.opencontainers.image.title="Couchdb" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -8,4 +8,5 @@ LABEL org.opencontainers.image.title="Couchdb" \
 
 EXPOSE 5984 4369 9100
 VOLUME /opt/couchdb/data
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 CMD ["/opt/couchdb/bin/couchdb"]

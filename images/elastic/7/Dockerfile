@@ -1,4 +1,4 @@
-FROM elasticsearch:7.17.15
+FROM elasticsearch:7.17.20
 
 LABEL org.opencontainers.image.title="Elasticsearch" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -7,4 +7,5 @@ LABEL org.opencontainers.image.title="Elasticsearch" \
       org.opencontainers.image.description='Elasticsearch 7.17'
 
 EXPOSE 9200 9300
+ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
 CMD ["eswrapper"]

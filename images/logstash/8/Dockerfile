@@ -1,4 +1,4 @@
-FROM logstash:8.11.1
+FROM logstash:8.13.0
 
 LABEL org.opencontainers.image.title="Logstash" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

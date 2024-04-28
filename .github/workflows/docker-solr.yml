@@ -7,7 +7,7 @@ on:
 
 env:
   IMAGE_NAME: solr
-  IMAGE_TAGS: "latest 8 9.0 9.1 9.2 9.3 9.4"
+  IMAGE_TAGS: "latest 8 9.0 9.1 9.2 9.3 9.4 9.5"
 
 jobs:
   build:
