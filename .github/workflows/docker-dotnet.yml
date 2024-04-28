@@ -20,9 +20,9 @@ jobs:
     - name: Build the Docker image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/dotnet/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
+          docker build . -f images/aspnet/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
         done
-        docker tag ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:6 ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
 
     - name: Login to Docker Registry
       run: |
@@ -31,6 +31,6 @@ jobs:
     - name: Push Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
+          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
         done
-        docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:latest
