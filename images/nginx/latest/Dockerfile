@@ -33,10 +33,15 @@ RUN apk add --no-cache nginx \
             tzdata \
             && ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
             && echo "Asia/Shanghai" > /etc/timezone \
-            rm -fr /etc/nginx/nginx.conf
+            && rm -fr /etc/nginx/nginx.conf \
+            && rm -fr /etc/nginx/http.d \
+            && rm -fr /etc/nginx/conf.d/* \
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/default.conf /etc/nginx/conf.d
 COPY conf/dh2048.pem /etc/nginx/dh2048.pem
+COPY conf/fastcgi_params /etc/nginx/fastcgi_params
+COPY conf/index.html /var/www/
 
 EXPOSE 80
 
