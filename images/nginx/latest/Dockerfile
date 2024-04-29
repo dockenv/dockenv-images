@@ -35,7 +35,8 @@ RUN apk add --no-cache nginx \
             && echo "Asia/Shanghai" > /etc/timezone \
             && rm -fr /etc/nginx/nginx.conf \
             && rm -fr /etc/nginx/http.d \
-            && rm -fr /etc/nginx/conf.d/*
+            && rm -fr /etc/nginx/conf.d/* \
+            mkdir -p /tmp/nginx/proxy_temp_dir /tmp/nginx/proxy_cache_dir
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/default.conf /etc/nginx/conf.d
