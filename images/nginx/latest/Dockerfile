@@ -37,7 +37,6 @@ RUN apk add --no-cache nginx \
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/dh2048.pem /etc/nginx/dh2048.pem
-COPY conf/rewrite /etc/nginx/rewrite
 
 EXPOSE 80
 
