@@ -124,8 +124,8 @@ RUN apk add --no-cache \
     && sed -i "s#^pm.start_servers =.*#pm.start_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.min_spare_servers =.*#pm.min_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.0.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \

@@ -121,8 +121,8 @@ RUN apk add --no-cache \
     && sed -i "s#^pm.start_servers =.*#pm.start_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.min_spare_servers =.*#pm.min_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_8.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.1.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
