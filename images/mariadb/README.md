@@ -11,7 +11,7 @@
 - 10.11 10.10 10.6 10.5 10.4
 - 11.*
 
-### How to use this image?
+### Usage
 
 ```bash
 docker run -d \
