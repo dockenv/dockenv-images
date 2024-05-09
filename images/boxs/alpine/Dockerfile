@@ -15,9 +15,7 @@ RUN apk add --no-cache shadow musl-dev util-linux-misc linux-headers \
   net-tools openssh openrc \
   file gawk sed jq tar \
   binutils procps htop \
-  python3 py3-pip && \
-  pip install supervisor && \
-  useradd -d /home/${RUN_USER} -c "Packages Builder" -m -s /bin/zsh ${RUN_USER} && \
+  && useradd -d /home/${RUN_USER} -c "Packages Builder" -m -s /bin/zsh ${RUN_USER} && \
   echo "${RUN_USER}:${PASSWD}" | chpasswd && \
   echo "root:${PASSWD}" | chpasswd && \
   echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers && \
