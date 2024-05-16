@@ -67,11 +67,11 @@ RUN apk add --no-cache \
         php5-xsl \
         php5-zip \
         wget \
-    && mv /usr/bin/php${PHP_VER} /usr/bin/php \
-    && mv /usr/bin/php-fpm${PHP_VER} /usr/bin/php-fpm \
-    && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
-    && mv /usr/bin/phpize${PHP_VER} /usr/bin/phpize \
-    && mv /usr/bin/phpdbg${PHP_VER} /usr/bin/phpdbg \
+    && rm -fr /usr/bin/php${PHP_VER} \
+    && rm -fr /usr/bin/php-fpm${PHP_VER} \
+    && rm -fr /usr/bin/php-config${PHP_VER} \
+    && rm -fr /usr/bin/phpize${PHP_VER} \
+    && rm -fr /usr/bin/phpdbg${PHP_VER} \
     && sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php${PHP_VER}/php.ini \
     && sed -i "s/display_errors = .*/display_errors = On/" /etc/php${PHP_VER}/php.ini \
     && sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php${PHP_VER}/php.ini \
