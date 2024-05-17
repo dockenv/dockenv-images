@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:latest
+FROM ghcr.io/dockenv/alpine:3.19
 
 LABEL org.opencontainers.image.title="Nginx" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
