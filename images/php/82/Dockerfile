@@ -95,6 +95,9 @@ RUN apk add --no-cache \
         php82-xmlwriter \
         php82-xsl \
         php82-zip \
+        libstdc++-dev \
+        unixodbc-dev \
+        eudev-libs \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/sbin/php-fpm${PHP_VER} /usr/sbin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
@@ -119,9 +122,9 @@ RUN apk add --no-cache \
     && echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_82_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
-    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/20-pdo-sqlsrv.ini \
+    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_82_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
-    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/20-sqlsrv.ini \
+    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_8.2.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.2.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
