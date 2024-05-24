@@ -99,6 +99,9 @@ RUN apk add --no-cache \
             php8-xmlwriter \
             php8-xsl \
             php8-zip \
+            libstdc++6 \
+            unixodbc-dev \
+            eudev-libs \
     && rm -fr /usr/bin/php \
     && rm -fr /usr/bin/phpize \
     && rm -fr /usr/bin/phpdbg \
@@ -122,14 +125,14 @@ RUN apk add --no-cache \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.max_children =.*#pm.max_children = 128#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.start_servers =.*#pm.start_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i "s#^pm.min_spare_servers =.*#pm.min_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && sed -i "s#^pm.min_spare_servers =.*#pm.min_spare_servers = 8#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && echo "pm.max_requests = 10240" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_80_nts_alpine_316.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
-    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/20-pdo-sqlsrv.ini \
+    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_80_nts_alpine_316.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
-    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/20-sqlsrv.ini \
+    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.0.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
