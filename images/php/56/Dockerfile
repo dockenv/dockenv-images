@@ -67,6 +67,7 @@ RUN apk add --no-cache \
         php5-xsl \
         php5-zip \
         wget \
+        eudev-libs \
     && rm -fr /usr/bin/php${PHP_VER} \
     && rm -fr /usr/bin/php-fpm${PHP_VER} \
     && rm -fr /usr/bin/php-config${PHP_VER} \
@@ -84,12 +85,14 @@ RUN apk add --no-cache \
     && sed -i 's/default_charset =.*/default_charset = "UTF-8"/g' /etc/php${PHP_VER}/php.ini \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.conf \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_5.6.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
-    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.5.6.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && apk del wget
+
+    # __strtod_internal: symbol not found
+    # && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_5.6.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    # && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]
