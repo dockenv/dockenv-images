@@ -97,6 +97,9 @@ RUN apk add --no-cache \
         php7-xsl \
         php7-zip \
         wget \
+        libstdc++6 \
+        unixodbc-dev \
+        eudev-libs \
     && rm -fr /usr/bin/php \
     && rm -fr /usr/bin/php-config \
     && rm -fr /usr/bin/phpdbg \
@@ -119,9 +122,9 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_72_nts_alpine_390_311.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
-    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/20-pdo-sqlsrv.ini \
+    && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_72_nts_alpine_390_311.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
-    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/20-sqlsrv.ini \
+    && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.2.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
