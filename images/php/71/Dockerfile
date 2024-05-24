@@ -86,7 +86,7 @@ RUN apk add --no-cache \
         php7-zip \
         php7-zmq \
         wget \
-        libstdc++6 \
+        libstdc++ \
         unixodbc-dev \
         eudev-libs \
     && rm -fr /usr/bin/php \
