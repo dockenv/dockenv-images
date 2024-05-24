@@ -69,7 +69,7 @@ RUN apk add --no-cache \
         php7-zip \
         php7-zlib \
         wget \
-        libstdc++6 \
+        libstdc++ \
         unixodbc-dev \
         eudev-libs \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
