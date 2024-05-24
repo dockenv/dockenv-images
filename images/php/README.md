@@ -39,24 +39,27 @@
 >
 > - https://github.com/shivammathur/homebrew-extensions
 
-## extensions
+## Extension 对应支持的版本
 
-| 扩展            | 版本 | 已安装 |
-| --------------- | ---- | ------ |
-| ImageMagick     |      |        |
-| ionCube         |      |        |
-| OPcache         |      |        |
-| Phalcon         |      |        |
-| Source Guardian |      |        |
-| Xdebug          |      |        |
-| JIT             |      |        |
-| Swoole          |      |        |
-| Memcached       |      |        |
-| Xdebug          |      |        |
-| Redis           |      |        |
-| Mongo           |      |        |
-|                 |      |        |
-|                 |      |        |
+| 扩展            | 5.6 | 7.0 |7.1|7.2|7.3|7.4|8.0|8.1|8.2|8.3|
+| --------------- | ---- | ------ |-|-|-|-|-|-|-|-|
+| ImageMagick     |      |        |x|x|x|x|x|x|x|a|
+| ionCube         |      |        ||x|x|x|x|x|x|x|
+| OPcache         |      |        ||x|x|x|x|x|x|x|
+| Phalcon         |      |        ||x|x|x|x|x|x|x|
+| Source Guardian |      |        ||x|x|x|x|x|x|x|
+| Xdebug          |      |        ||x|x|x|x|x|x|x|
+| JIT             |      |        ||x|x|x|x|x|x|x|
+| Swoole          |      |        ||x|x|x|x|x|x|x|
+| Memcached       |      |        ||x|x|x|x|x|x|x|
+| Xdebug          |      |        ||x|x|x|x|x|x|x|
+| Redis           |      |        ||x|x|x|x|x|x|x|
+| Mongo           |      |        ||x|x|x|x|x|x|x|
+| sqlsrv | x | 5.3.0 |5.7.1|5.8.1|5.9.0|5.10.0|5.1.11|5.12|5.12|5.12|
+|                 |      |        ||x|x|x|x|x|x|x|
+
+### PS
+- x 不支持
 
 ### 从源代码编译
 
