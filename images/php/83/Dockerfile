@@ -7,7 +7,8 @@ LABEL org.opencontainers.image.title="Alpine Linux" \
 
 ENV PHP_VER=83
 
-RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+RUN apk add --no-cache libstdc++-dev unixodbc-dev eudev-libs \
+    && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     && sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /usr/local/etc/php/php.ini \
     && sed -i "s/display_errors = .*/display_errors = On/" /usr/local/etc/php/php.ini \
     && sed -i "s/memory_limit = .*/memory_limit = 256M/" /usr/local/etc/php/php.ini \

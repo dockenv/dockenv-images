@@ -69,6 +69,9 @@ RUN apk add --no-cache \
         php7-zip \
         php7-zlib \
         wget \
+        libstdc++6 \
+        unixodbc-dev \
+        eudev-libs \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/bin/phpdbg${PHP_VER} /usr/bin/phpdbg \
     && mv /usr/bin/phpize${PHP_VER} /usr/bin/phpize \
@@ -87,14 +90,16 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && wget -q https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.0.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
-    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget -q https://github.com/dockenv/dockenv-images/releases/download/composer/composer-2.2.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && wget -q https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.7.0.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && apk del wget
+
+    # __strtod_internal: symbol not found
+    # && wget -q https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.0.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    # && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]
