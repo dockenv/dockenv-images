@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2023-09-23 16:40:52
- # @LastEditTime: 2023-09-24 22:10:17
+ # @LastEditTime: 2024-05-24 11:31:43
  # @LastEditors: Cloudflying
  # @Description: Init Seedbox
 ###
@@ -32,7 +32,7 @@ pkg_add()
 
 add_base()
 {
-    pkg_add --virtual .deps curl-dev gcc make
+    pkg_add --virtual .deps curl-dev gcc make g
     pkg_add ffmpeg ttyd
     pkg_add unzip sudo curl wget coreutils
     # Web Server
