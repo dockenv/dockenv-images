@@ -21,22 +21,22 @@
 
 ## php and extension version (outdated, never update)
 
-| PHP    | php            | Nginx     | Redis     | Memcached | Swoole | ioncube |
-| ------ | -------------- | --------- | --------- | --------- | ------ | ------- |
-| 5.6.40 | 5.6.38,7.0.33  | 1.10.3-r1 | 3.2.12-r0 | 1.4.33-r2 | todo   | √      |
-| 7.0.33 | 5.6.40,7.1.17  | 1.12.2-r2 | 3.2.12-r0 | 1.4.36-r2 | todo   | √      |
-| 7.1.33 | 5.6.40,7.1.33  | 1.12.2-r4 | 4.0.14-r0 | 1.5.6-r0  | todo   | √      |
-| 7.2.33 | 5.6.40,7.2.26  | 1.14.2-r2 | 4.0.14-r0 | 1.5.8-r0  | todo   | √      |
-| 7.3.33 | 7.2.33         | 1.14.2-r5 | 4.0.14-r0 | 1.5.12-r0 | todo   | √      |
-| 7.4.30 | 7.3.14         | 1.16.1    | 5.0.11-r0 | 1.5.16-r0 | 4.8.10 | √      |
-| 8.0.12 | 7.3.2          | 1.16.1    | 5.0.14-r0 | 1.5.20-r0 | 4.8.10 | √       |
-| 8.1.7  | 7.3.33         | 1.18.0    | 5.0.14-r0 | 1.6.6-r0  | 4.8.10 | √       |
-| 8.2.0  | 7.4.24，8.0.12 | 1.18.0    | 6.0.16-r0 | 1.6.9-r0  | x | √ |
-| 8.3.7  | 7.4.24，8.0.12 | 1.18.0    | 6.0.16-r0 | 1.6.9-r0  | x | √ |
-
-#### PS: `x` is  Unsupported
-
-> - https://github.com/shivammathur/homebrew-extensions
+| Version | Stability | Release Support       |
+| ----------- | --------- | --------------------- |
+| 5.3         | `Stable`  | `End of life`         |
+| 5.4         | `Stable`  | `End of life`         |
+| 5.5         | `Stable`  | `End of life`         |
+| 5.6         | `Stable`  | `End of life`         |
+| 7.0         | `Stable`  | `End of life`         |
+| 7.1         | `Stable`  | `End of life`         |
+| 7.2         | `Stable`  | `End of life`         |
+| 7.3         | `Stable`  | `End of life`         |
+| 7.4         | `Stable`  | `End of life`         |
+| 8.0         | `Stable`  | `End of life`         |
+| 8.1         | `Stable`  | `Security fixes only` |
+| 8.2         | `Stable`  | `Active`              |
+| 8.3         | `Stable`  | `Active`              |
+| 8.4         | `Nightly` | `In development`      |
 
 ## 对应 PHP 版本支持的扩展
 |扩展|5.6|7.0|7.1|7.2|7.3|7.4|8.0|8.1|8.2|8.3|备注|
@@ -118,9 +118,6 @@
 | Redis           | x | x ||x|x|x|x|x|x|x|
 | Mongo           | x | x ||x|x|x|x|x|x|x|
 | sqlsrv | x | 5.3.0 |5.7.1|5.8.1|5.9.0|5.10.0|5.1.11|5.12|5.12|5.12|
-
-### PS
-- x 不支持
 
 ### 从源代码编译
 
