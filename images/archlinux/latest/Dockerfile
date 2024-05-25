@@ -17,6 +17,7 @@ RUN ln -sf /proc/self/mounts /etc/mtab \
     && pacman-key --init \
     && pacman-key --populate archlinux \
     && pacman -S --noconfirm archlinux-keyring \
+    && pacman -Su --noconfirm \
     && pacman -Scc --noconfirm \
     && rm -fr /var/cache/pacman/pkg/* \
     && rm -fr /var/lib/pacman/sync/*.db
