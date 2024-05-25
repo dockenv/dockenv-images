@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.19
+FROM ghcr.io/dockenv/alpine:3.20
 
 LABEL org.opencontainers.image.title="Nginx" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -18,7 +18,10 @@ RUN apk add --no-cache nginx \
             nginx-mod-http-headers-more \
             nginx-mod-http-image-filter \
             nginx-mod-http-js \
+            nginx-mod-http-keyval \
+            nginx-mod-http-log-zmq \
             nginx-mod-http-lua \
+            nginx-mod-http-lua-upstream \
             nginx-mod-http-naxsi \
             nginx-mod-http-nchan \
             nginx-mod-http-redis2 \
@@ -30,6 +33,8 @@ RUN apk add --no-cache nginx \
             nginx-mod-stream \
             nginx-mod-stream-geoip \
             nginx-mod-stream-geoip2 \
+            nginx-mod-stream-js \
+            nginx-mod-stream-keyval \
             tzdata \
             && ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
             && echo "Asia/Shanghai" > /etc/timezone \
