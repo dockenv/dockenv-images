@@ -17,7 +17,7 @@
 
 ## Filter php and components
 
-`apk list | grep '^php7' | sort | grep -Ev 'apache|doc|cgi|litespeed|gmagick' | awk -F '-[0-9]' '{print $1}' | tr '\n' '@' | sed "s#@# \\\ \\n#g"`
+`apk list | grep '^php83' | sort | grep -Ev 'apache|doc|cgi|litespeed|gmagick' | awk -F '-[0-9]' '{print $1}' | tr '\n' '@' | sed "s#@# \\\ \\n#g"`
 
 ## php and extension version
 
@@ -33,11 +33,18 @@
 | 8.1.7  | 7.3.33         | 1.18.0    | 5.0.14-r0 | 1.6.6-r0  | 4.8.10 | x       |
 | 8.2.0  | 7.4.24，8.0.12 | 1.18.0    | 6.0.16-r0 | 1.6.9-r0  | x      | x       |
 
-> PS: `x` is  Unsupported
->
->
->
+### PS: `x` is  Unsupported
+
 > - https://github.com/shivammathur/homebrew-extensions
+
+|扩展|5.6|7.0|7.1|7.2|7.3|7.4|8.0|8.1|8.2|8.3|
+|-|-|-|-|-|-|-|-|-|-|-|
+|mbstring|√|√|√|√|√|√|√|√|√|√|
+|imagick|x|x|x|√|√|√|√|√|√|x|
+|swoole|x|x|x|x|x|x|√|√|√|x|
+|sqlsrv|x|x|√|√|√|√|√|√|√|√|
+|iOncube|x|x|√|√|√|√|x|√|√|√|
+|SourceGuarding|√|√|√|√|√|√|√|√|√|√|
 
 ## Extension 对应支持的版本
 
