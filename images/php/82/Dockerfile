@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.18
+FROM ghcr.io/dockenv/alpine:3.19
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
@@ -49,7 +49,10 @@ RUN apk add --no-cache \
         php82-pecl-amqp \
         php82-pecl-apcu \
         php82-pecl-ast \
+        php82-pecl-brotli \
         php82-pecl-couchbase \
+        php82-pecl-event \
+        php82-pecl-grpc \
         php82-pecl-igbinary \
         php82-pecl-imagick \
         php82-pecl-imagick-dev \
@@ -59,17 +62,22 @@ RUN apk add --no-cache \
         php82-pecl-memcached \
         php82-pecl-mongodb \
         php82-pecl-msgpack \
+        php82-pecl-opentelemetry \
         php82-pecl-protobuf \
         php82-pecl-psr \
+        php82-pecl-rdkafka \
         php82-pecl-redis \
         php82-pecl-smbclient \
         php82-pecl-ssh2 \
         php82-pecl-swoole \
         php82-pecl-swoole-dev \
+        php82-pecl-timezonedb \
         php82-pecl-uuid \
+        php82-pecl-vips \
         php82-pecl-xdebug \
         php82-pecl-xhprof \
         php82-pecl-xhprof-assets \
+        php82-pecl-xlswriter \
         php82-pecl-yaml \
         php82-pecl-zstd \
         php82-pgsql \
@@ -84,6 +92,7 @@ RUN apk add --no-cache \
         php82-soap \
         php82-sockets \
         php82-sodium \
+        php82-spx \
         php82-sqlite3 \
         php82-sysvmsg \
         php82-sysvsem \
@@ -131,7 +140,10 @@ RUN apk add --no-cache \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
-    && chmod +x /usr/bin/composer
+    && chmod +x /usr/bin/composer \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/phalcon/php82-pecl-phalcon-5.7.0-r0.apk -O /tmp/phalcon.apk \
+    && apk add --no-cache /tmp/phalcon.apk \
+    && rm -fr /tmp/*.apk
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]

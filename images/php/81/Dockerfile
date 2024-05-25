@@ -136,7 +136,10 @@ RUN apk add --no-cache \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
-    && chmod +x /usr/bin/composer
+    && chmod +x /usr/bin/composer \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/brotli/php81-pecl-brotli-0.15.0-r0.apk -O /tmp/brotli.apk \
+    && apk add --no-cache /tmp/brotli.apk \
+    && rm -fr /tmp/*.apk
 
 EXPOSE 9000
 CMD ["php-fpm","--nodaemonize"]
