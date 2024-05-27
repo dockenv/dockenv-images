@@ -1,3 +1,3 @@
 FROM busybox:glibc
 
-CMD [ "bash" ]
+CMD [ "/bin/sh" ]
