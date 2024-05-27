@@ -1,3 +1,3 @@
 FROM busybox:latest
 
-CMD [ "bash" ]
+CMD [ "/bin/sh" ]

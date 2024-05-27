@@ -1,3 +1,3 @@
 FROM busybox:musl
 
-CMD [ "bash" ]
+CMD [ "/bin/sh" ]
