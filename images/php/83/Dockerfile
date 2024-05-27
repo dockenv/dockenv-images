@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.title="Alpine Linux" \
 
 ENV PHP_VER=83
 
-RUN apk add --allow-untrusted --no-cache \
+RUN apk add --no-cache \
         php83-bcmath \
         php83-bz2 \
         php83-calendar \
