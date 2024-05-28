@@ -127,7 +127,7 @@ RUN apk add --no-cache \
     && sed -i "s#^pm.start_servers =.*#pm.start_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.min_spare_servers =.*#pm.min_spare_servers = 8#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && sed -i "s#;pm.max_requests =.*#pm.max_requests = 10240#g" >> /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && sed -i "s#;pm.max_requests =.*#pm.max_requests = 10240#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_80_nts_alpine_316.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
     && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
