@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:edge
+FROM ghcr.io/dockenv/alpine:3.20
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
