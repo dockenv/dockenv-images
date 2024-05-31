@@ -29,10 +29,12 @@ RUN apk add --no-cache \
         php5-gmp \
         php5-iconv \
         php5-imap \
+        php5-imagick \
         php5-intl \
         php5-json \
         php5-ldap \
         php5-mcrypt \
+        php5-memcache \
         php5-mssql \
         php5-mysql \
         php5-mysqli \
