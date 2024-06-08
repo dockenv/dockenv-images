@@ -6,10 +6,10 @@ LABEL MAINTAINER="Cloudflying" \
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN rm -fr /etc/apt/sources.list.d/* \
-    && echo "deb http://deb.debian.org/debian bookworm contrib main non-free-firmware" > /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian bookworm-updates contrib main non-free-firmware" >> /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian bookworm-backports contrib main non-free-firmware" >> /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian-security bookworm-security contrib main non-free-firmware" >> /etc/apt/sources.list \
+    && echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list \
+    && echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
+    && echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
+    && echo "deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
     && apt update -y \
     && apt upgrade -y \
     && apt install -y xfce4 \
