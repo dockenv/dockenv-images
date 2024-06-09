@@ -9,4 +9,6 @@ LABEL org.opencontainers.image.title="Debian GNU Linux" \
 ENV DEBIAN_FRONTEND noninteractive
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 CMD ["/bin/bash"]

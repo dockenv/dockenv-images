@@ -3,7 +3,7 @@
 /*
  * @Author: Cloudflying
  * @Date: 2022-07-13 21:10:15
- * @LastEditTime: 2023-12-04 21:36:57
+ * @LastEditTime: 2024-06-09 13:29:32
  * @LastEditors: Cloudflying
  * @Description:
  * @FilePath: /dockenv/scripts/env.php
@@ -15,7 +15,7 @@ $host = '172.16.3.4';
 $memcache_port = 11211;
 $mem_sock = $host . ':' . $memcache_port;
 
-if(extension_loaded('memcache')){
+if (extension_loaded('memcache')) {
     $mem = memcache_connect('172.16.3.4', 11211);
     if ($mem) {
         $mem_ver = $mem->getVersion();
@@ -23,7 +23,7 @@ if(extension_loaded('memcache')){
     }
 }
 
-if(extension_loaded('memcached')){
+if (extension_loaded('memcached')) {
     $m = new Memcached();
     if ($m->addServer('172.16.3.4', 11211)) {
         $memd_ver = $m->getVersion()[$mem_sock];
@@ -31,7 +31,7 @@ if(extension_loaded('memcached')){
     }
 }
 
-if(extension_loaded('Redis')){
+if (extension_loaded('Redis')) {
     $redis = new Redis();
     if ($redis->connect('172.16.3.4', 6379)) {
         $redis->auth('dockenv');
