@@ -1,0 +1,1 @@
+FROM typesense/typesense:26.0-amd64
