@@ -1,0 +1,1 @@
+FROM typesense/typesense:27.0.rc27-amd64
