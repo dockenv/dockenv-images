@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:3.13-rc-alpine
 
 LABEL org.opencontainers.image.title="Python" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
