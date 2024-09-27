@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.title="Wine" \
       org.opencontainers.image.url="https://dockenv.github.io" \
       org.opencontainers.image.description='WINE Is Not An Emulator - runs MS Windows programs Wine is a program which allows running Microsoft Windows programs (including DOS, Windows 3.x and Win32 executables) on Unix.'
 
-ADD https://mirrors.xie.ke/pkgs/crossover/linux/crossover_24.0.2-1.deb /tmp/crossover.deb
+ADD https://mirrors.xie.ke/pkgs/crossover/linux/crossover_24.0.4-1.deb /tmp/crossover.deb
 
 RUN dpkg --add-architecture i386 \
   && apt update \
