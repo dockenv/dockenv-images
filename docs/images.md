@@ -48,7 +48,7 @@
 | Altlinux  | based on RPM Package Manager (RPM)  |
 | amazonlinux  | Amazon Distribution,Base RHEL  |
 | Archlinux  | A simple, lightweight distribution |
-| Cirros  |  |
+| Cirros  | CirrOS is a Tiny OS that specializes in running on a cloud. |
 | Clearlinux  | open source, rolling release Linux distribution |
 | Debian  | Debian is a Linux distribution that's composed entirely of free and open-source software. |
 | Deepin  | a beautiful open source  GNU/Linux, Base Debian |
