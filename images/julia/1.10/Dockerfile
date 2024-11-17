@@ -1,4 +1,4 @@
-FROM julia:1.10-rc-alpine
+FROM julia:1.10-alpine
 
 LABEL org.opencontainers.image.title="Julia" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
