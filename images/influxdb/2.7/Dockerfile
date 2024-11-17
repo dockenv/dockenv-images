@@ -1,4 +1,4 @@
-FROM influxdb:alpine
+FROM influxdb:2.7-alpine
 
 LABEL org.opencontainers.image.title="InfluxDB" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
