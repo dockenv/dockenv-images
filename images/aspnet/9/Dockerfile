@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine
 
 LABEL org.opencontainers.image.title="aspnet" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
