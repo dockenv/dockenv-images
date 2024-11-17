@@ -1,4 +1,4 @@
-FROM mariadb:10.9
+FROM mariadb:10.9-jammy
 
 LABEL org.opencontainers.image.title="Mariadb" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
