@@ -130,6 +130,7 @@ ukui-themes
 - https://github.com/bytebase/bytebase
 - https://github.com/supabase/supabase
 - https://github.com/theonedev/onedev
+- https://github.com/scylladb/scylladb
 
 ### 全文搜索
 - [spinxsearch](https://sphinxsearch.com/downloads/current/)
