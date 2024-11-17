@@ -1,9 +1,10 @@
 FROM zookeeper:3.6
 
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="<oss@live.hk>" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv-images \
-    org.opencontainers.image.description="Zookeeper Docker Images"
+LABEL org.opencontainers.image.title="ZooKeeper" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+    org.opencontainers.image.description="Apache ZooKeeper is an open-source server which enables highly reliable distributed coordination."
 
 # ZOO_CONF_DIR=/conf
 VOLUME ["/data", "/datalog", "/logs"]
