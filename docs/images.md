@@ -46,8 +46,9 @@
 | Alpine  | A minimal Linux  |
 | Almalinux  | An Open Source, community owned and governed, forever-free enterprise Linux distribution, compatible with rhel && CentOS |
 | Altlinux  | based on RPM Package Manager (RPM)  |
-| amazonlinux  | Amazon Distribution,Base RHEL  |
+| Amazonlinux  | Amazon Distribution,Base RHEL  |
 | Archlinux  | A simple, lightweight distribution |
+| Azurelinux  |Azure Linux is a Linux distribution for Microsoft’s cloud infrastructure and edge products and services. |
 | Cirros  | CirrOS is a Tiny OS that specializes in running on a cloud. |
 | Clearlinux  | open source, rolling release Linux distribution |
 | Debian  | Debian is a Linux distribution that's composed entirely of free and open-source software. |
@@ -86,7 +87,6 @@
 #### App image
 - inotify-tools
 - phpRedisAdmin
-- aerospike key-value
 
 ### WebDriver
 - chromedriver
@@ -119,10 +119,6 @@
 - Mysql Manager
   - [PHPMyAdmin](https://www.phpmyadmin.net)
   - [Adminer](https://www.adminer.org)
-- NOSQL
-  - [Aerospike](https://aerospike.com)
-  - [Redis](https://redis.io)
-  - [Memcached](https://memcached.org)
 - Message Queue (Broker)
   - [RabbitMQ](https://www.rabbitmq.com)
   - [beanstalkd](https://beanstalkd.github.io)
@@ -140,3 +136,57 @@
   - [Azure](https://dev.azure.com)
 - Daemon
   - superviosr
+
+## RDBMS (Relational Database Management System)
+
+> 关系型数据库是基于关系模型来创建的数据库。
+
+| 名称 | 支持版本 | 介绍 | 开源 | 备注 |
+| ---- | -------- | ---- | ---- | ---- |
+| [MYSQL](https://www.mysql.com) | 5.6-8.3 | 数据库服务器 | 开源 | 商业收费 |
+| [MariaDB](https://mariadb.org) | 10.3-10.6 | 数据库服务器 | 开源 | 商业收费 |
+| [SQLite](https://www.sqlite.org) | 3.31.1 | 数据库服务器 | 开源 | 商业收费 |
+| [PostGreSQL](https://www.postgresql.org) | 12.3 | 数据库服务器 | 开源 | 商业收费 |
+
+  - [CockroachDB](https://www.cockroachlabs.com) | 20.1 | 数据库服务器 | 开源 | 商业收费 |
+  - [Cassandra](https://cassandra.apache.org) | 3.11 | 数据库服务器 | 开源 | 商业收费 |
+  - [CrateDB](https://crate.io) | 4.3 | 数据库服务器 | 开源 | 商业收费 |
+  - [TiDB](https://pingcap.com) | 4.0 | 数据库服务器 | 开源 | 商业收费 |
+  - [ArangoDB](https://www.arangodb.com) | 3.7 | 数据库服务器 | 开源 | 商业收费 |
+  - [Dgraph](https://dgraph.io) | 20.11 | 数据库服务器 | 开源 | 商业收费 |
+  - [YugabyteDB](https://www.yugabyte.com) | 2.5 | 数据库服务器 | 开源 | 商业收费 |
+  - [CockroachLabs](https://www.cockroachlabs.com) | 20.1 | 数据库服务器 | 开源 | 商业收费 |
+  -
+
+
+## NOSQL (Not Only SQL)
+什么是 [NOSQL][what_is_nosql]?
+> NoSQL，泛指非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。
+
+|名称|支持版本|介绍|开源|备注|
+|-|-|-|-|-|
+|[Redis][redis]|6.0,6.2,7.0,7.2|基于内存的数据库,缓存,队列,消息代理|[Github][redis_github]|单线程|
+|[DragonflyDB][DragonflyDB]|latest|全世界最快的内存数据库|[Github][dragonflydb_github]|Redis/Memcached替代品|
+|[valkey][valkey]|latest|基于内存的缓存,消息队列|[Github][valkey_github]|兼容 Redis|
+|[memcached][memcached]|latest|基于内存的分布式高速缓存|[Github][memcached_github]|单线程|
+|[Aerospike][aerospike]|5.3-6.4|基于内存的分布式,高性能,可扩展的数据库|[Github][aerospike_github]|功能强大|
+|[MongoDB](https://www.mongodb.com) | 4.4,5.0,6.0,7.0,8.0 | 文档数据库 | 是 | 无 |
+|[ArangoDB][arangodb] | 3.10-3.12,latest | 文档,图形数据库 | [Github][arangodb_github] | 无 |
+
+
+
+
+[redis]:https://redis.io
+[redis_github]:https://github.com/redis/redis
+[DragonflyDB]:https://www.dragonflydb.io
+[dragonflydb_github]:https://github.com/dragonflydb/dragonfly
+[valkey]:https://valkey.io
+[valkey_github]:https://github.com/valkey-io/valkey
+[memcached]:https://memcached.org
+[memcached_github]:https://github.com/memcached/memcached
+[aerospike]:https://aerospike.com
+[aerospike_github]:https://github.com/aerospike/aerospike-server
+[arangodb]:https://www.arangodb.com
+[arangodb_github]:https://github.com/arangodb/arangodb
+
+[what_is_nosql]:https://cloud.google.com/discover/what-is-nosql?hl=zh-CN
