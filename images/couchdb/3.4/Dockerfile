@@ -1,4 +1,4 @@
-FROM couchdb:3.3
+FROM couchdb:3.4
 
 LABEL org.opencontainers.image.title="Apache Couchdb" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
