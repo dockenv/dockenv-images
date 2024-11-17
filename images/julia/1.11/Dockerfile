@@ -1,4 +1,4 @@
-FROM julia:bookworm
+FROM julia:1.11-bookworm
 
 LABEL org.opencontainers.image.title="Julia" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
