@@ -1,4 +1,4 @@
-FROM influxdb:alpine
+FROM influxdb:1.11-alpine
 
 LABEL org.opencontainers.image.title="InfluxDB" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.title="InfluxDB" \
       org.opencontainers.image.description='the open source time series database built for real-time analytic workloads.'
 
 EXPOSE 8086
-VOLUME /var/lib/influxdb2 /etc/influxdb2
+VOLUME /var/lib/influxdb
 USER influxdb
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["influxd"]
