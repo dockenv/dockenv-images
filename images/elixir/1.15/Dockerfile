@@ -1,4 +1,4 @@
-FROM elixir:slim
+FROM elixir:1.15-slim
 LABEL org.opencontainers.image.title="Elixir" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
