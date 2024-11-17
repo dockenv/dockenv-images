@@ -3,7 +3,7 @@ name: Docker Build Linux Images
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * 1'
+    - cron: "0 2 * * 1"
 
 env:
   TZ: Asia/Shanghai
@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build the Linux Docker image
         run: |
+          docker build . -f images/azurelinux/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/azurelinux:latest
           docker build . -f images/cirros/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/cirros:latest
           docker build . -f images/manjaro/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/manjaro:latest
           docker build . -f images/gentoo/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/gentoo:latest
@@ -36,6 +37,7 @@ jobs:
 
       - name: Push Docker Image
         run: |
+          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/azurelinux:latest
           docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/gentoo:latest
           docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/manjaro:latest
           docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/busybox:latest
