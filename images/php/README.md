@@ -15,7 +15,7 @@
 | 8.2.10   | 3.18          |
 | 8.3.0RC2 | offcial image |
 
-## Filter php and components
+## Filter php and Components
 
 `apk list | grep '^php83' | sort | grep -Ev 'apache|doc|cgi|litespeed|gmagick' | awk -F '-[0-9]' '{print $1}' | tr '\n' '@' | sed "s#@# \\\ \\n#g"`
 
