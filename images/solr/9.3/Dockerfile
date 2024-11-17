@@ -1,4 +1,4 @@
-FROM solr:9.3
+FROM solr:9.3-slim
 LABEL org.opencontainers.image.title="Solr" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
