@@ -23,5 +23,3 @@ ENTRYPOINT ["/usr/bin/as-tini-static", "-r", "SIGUSR1", "-t", "SIGTERM", "--", "
 
 # Execute the run script in foreground mode
 CMD ["asd"]
-
-# COPY aerospike.conf /etc/aerospike/aerospike.conf
