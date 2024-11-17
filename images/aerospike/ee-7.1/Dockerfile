@@ -1,4 +1,4 @@
-FROM aerospike:ce-7.2.0.3_1
+FROM aerospike:ee-7.1.0.7_1
 LABEL org.opencontainers.image.title="Aerospike" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
@@ -23,5 +23,3 @@ ENTRYPOINT ["/usr/bin/as-tini-static", "-r", "SIGUSR1", "-t", "SIGTERM", "--", "
 
 # Execute the run script in foreground mode
 CMD ["asd"]
-
-# COPY aerospike.conf /etc/aerospike/aerospike.conf
