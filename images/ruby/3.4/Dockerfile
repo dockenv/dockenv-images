@@ -1,4 +1,4 @@
-FROM ruby:3.2-slim
+FROM ruby:3.4-rc-slim
 
 LABEL org.opencontainers.image.title="Ruby" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
