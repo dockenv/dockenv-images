@@ -1,4 +1,4 @@
-FROM eclipse-temurin:latest
+FROM eclipse-temurin:22-jre-noble
 
 LABEL org.opencontainers.image.title="OpenJDK" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -7,3 +7,5 @@ LABEL org.opencontainers.image.title="OpenJDK" \
       org.opencontainers.image.description='OpenJDK binaries built by Eclipse Temurin.'
 
 ENTRYPOINT ["/__cacert_entrypoint.sh"]
+
+CMD ["jshell"]
