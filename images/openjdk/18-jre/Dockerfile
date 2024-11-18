@@ -1,4 +1,4 @@
-FROM eclipse-temurin:latest
+FROM eclipse-temurin:18-jre-jammy
 
 LABEL org.opencontainers.image.title="OpenJDK" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
