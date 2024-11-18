@@ -1,5 +1,10 @@
 {
-	"recommendations": [
-		"ms-azuretools.vscode-docker"
-	]
+  "recommendations": [
+    "ms-azuretools.vscode-docker",
+    "mikestead.dotenv",
+    "github.vscode-github-actions",
+    "eamodio.gitlens",
+    "chrisbibby.hide-git-ignored",
+    "redhat.vscode-yaml"
+  ]
 }
