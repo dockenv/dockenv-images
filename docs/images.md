@@ -43,17 +43,17 @@
 |  Name | Comments  |
 |---|---|
 | ALinux  | Aliyun Linux  |
-| Alpine  | A minimal Linux  |
 | Almalinux  | An Open Source, community owned and governed, forever-free enterprise Linux distribution, compatible with rhel && CentOS |
+| Alpine  | A minimal Linux  |
 | Altlinux  | based on RPM Package Manager (RPM)  |
 | Amazonlinux  | Amazon Distribution,Base RHEL  |
 | Archlinux  | A simple, lightweight distribution |
 | Azurelinux  |Azure Linux is a Linux distribution for Microsoft’s cloud infrastructure and edge products and services. |
+| Centos  | Community Enterprise Operating System |
 | Cirros  | CirrOS is a Tiny OS that specializes in running on a cloud. |
 | Clearlinux  | open source, rolling release Linux distribution |
 | Debian  | Debian is a Linux distribution that's composed entirely of free and open-source software. |
 | Deepin  | a beautiful open source  GNU/Linux, Base Debian |
-| Centos  | Community Enterprise Operating System |
 | Fedora  | like RHEL |
 | Gentoo  | a highly flexible, source-based Linux distribution. |
 | Kali  |  Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security. |
@@ -63,10 +63,11 @@
 | opensuse  |openSUSE is a project that serves to promote the use of free and open-source software. openSUSE is well known for its Linux distributions |
 | Oraclelinux  | based on the rhel |
 | Photon  | an open-source minimalist Linux operating system from VMware that is optimized for cloud computing platforms |
-| Rockylinux  | based on the rhel |
 | rhel  | Red Hat Enterprise Linux operating system |
+| Rocky Linux  | based on the rhel |
 | Scientific Linux  | based on Red Hat Enterprise Linux |
 | Ubuntu  | Ubuntu is a Debian-based Linux operating system based on free software. |
+|Void Linux| a general purpose operating system.|
 
 
 ## Rolling Release
@@ -83,6 +84,10 @@
   - https://getsol.us
   - https://github.com/sileshn/SolusWSL
 - voidlinux
+
+## TODO Add Linux
+- Linux Mint
+- Kylin Ubuntu
 
 #### App image
 - inotify-tools
