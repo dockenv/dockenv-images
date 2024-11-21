@@ -1,0 +1,33 @@
+name: Docker Build Bark
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"
+
+env:
+  TZ: Asia/Shanghai
+  IMAGE_NAME: bark
+  IMAGE_TAGS: "latest"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: |
+          for tag in ${IMAGE_TAGS}; do
+            docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
+
+      - name: Login to Docker Registry
+        run: |
+          docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
+
+      - name: Push Docker Image
+        run: |
+          for tag in ${IMAGE_TAGS}; do
+            docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
