@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM finab/bark-server:latest
 LABEL org.opencontainers.image.title="Bark" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
