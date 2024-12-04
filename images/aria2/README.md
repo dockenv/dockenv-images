@@ -2,6 +2,11 @@
 
 ## Usage
 ```bash
+# 暴漏端口
+ufw allow 6800
+ufw allow 6881:6999/tcp
+ufw allow 6881:6999/udp
+
 docker run -d \
     --name aria2 \
     --hostname aria2 \
