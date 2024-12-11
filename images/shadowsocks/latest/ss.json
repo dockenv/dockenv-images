@@ -1,13 +1,13 @@
 {
-    "server":"0.0.0.0",
-    "server_port":6443,
-    "password": "secret",
-    "timeout":300,
-    "user":"nobody",
-    "method":"xchacha20-ietf-poly1305",
-    "fast_open":false,
-    "nameserver":"8.8.8.8,8.8.4.4",
-    "mode":"tcp_and_udp",
-    "plugin":"obfs-server",
-    "plugin_opts":"obfs=tls"
+  "server": "0.0.0.0",
+  "server_port": 6443,
+  "password": "dockpass",
+  "timeout": 300,
+  "user": "nobody",
+  "method": "chacha20-ietf-poly1305",
+  "fast_open": true,
+  "nameserver": "8.8.8.8,8.8.4.4",
+  "mode": "tcp_and_udp",
+  "plugin": "obfs-server",
+  "plugin_opts": "obfs=tls"
 }
