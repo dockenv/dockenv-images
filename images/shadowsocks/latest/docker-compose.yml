@@ -1,9 +1,10 @@
 shadowsocks:
   image: ghcr.io/dockenv/shadowsocks:latest
   ports:
-    - "8388:8388/tcp"
-    - "8388:8388/udp"
+    - "6443:6443/tcp"
+    - "6443:6443/udp"
   environment:
-    - METHOD=aes-256-gcm
-    - PASSWORD=shadowpass
+    - PORT=6443
+    - METHOD=chacha20-ietf-poly1305
+    - PASSWORD=dockpass
   restart: always

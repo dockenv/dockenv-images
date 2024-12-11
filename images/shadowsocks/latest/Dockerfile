@@ -1,18 +1,20 @@
-FROM teddysun/shadowsocks-libev:latest
+FROM ghcr.io/dockenv/alpine:3.20
 
-LABEL MAINTAINER="Cloudflying" \
-        MAIL="oss@live.hk"
+LABEL org.opencontainers.image.title="Shadowsocks" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.description='Proxy Client && Server'
 
-COPY entrypoint.sh /tmp/entrypoint.sh
-COPY shadowsocks.json /tmp/shadowsocks.json
+COPY entrypoint.sh /bin/entrypoint.sh
+COPY shadowsocks.json /etc/shadowsocks.json
 
-ENV PORT    6443
-ENV PASSWD	sspass
-ENV METHOD  xchacha20-ietf-poly1305
+ENV SHADOWSOCKS_VER="1.21.2"
 
-USER root
+RUN wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v${SHADOWSOCKS_VER}/shadowsocks-v${SHADOWSOCKS_VER}.x86_64-unknown-linux-musl.tar.xz -O /tmp/shadowsocks.tar.xz \
+    && tar -xf /tmp/shadowsocks.tar.xz -C /tmp \
+    && mv /tmp/ssserver /usr/bin/ssserver \
+    && chmod +x /usr/bin/ssserver \
+    && chmod +x /bin/entrypoint.sh \
+    && rm -fr /tmp/*
 
-# RUN rm -fr /etc/service
-
-# CMD [ "/bin/bash" ]h /tmp/entrypoint.sh
-CMD [ "/bin/bash" ]h
+CMD [ "/bin/entrypoint.sh" ]
