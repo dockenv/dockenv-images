@@ -5,8 +5,6 @@ LABEL org.opencontainers.image.title="AdGuard DNS Proxy" \
       org.opencontainers.image.url="https://dockenv.github.io" \
       org.opencontainers.image.description='A simple DNS proxy server that supports all existing DNS protocols.'
 
-COPY AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml
-
 # 53     : TCP, UDP : DNS
 # 80     : TCP      : HTTP
 # 443    : TCP, UDP : HTTPS, DNS-over-HTTPS (incl. HTTP/3), DNSCrypt (main)
