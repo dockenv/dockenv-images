@@ -7,7 +7,7 @@ on:
 
 env:
   TZ: Asia/Shanghai
-  IMAGE_NAME: go
+  IMAGE_NAME: rust
   IMAGE_TAGS: "latest 1.80 1.81 1.82"
 
 jobs:
