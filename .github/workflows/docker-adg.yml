@@ -19,6 +19,7 @@ jobs:
       - name: Build the Docker image
         run: |
           for tag in ${IMAGE_TAGS}; do
+            cd images/${{ env.IMAGE_NAME }}/${tag}
             docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
 
