@@ -18,8 +18,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build the Docker image
         run: |
+          CURRENT_PWD=$(pwd)
           for tag in ${IMAGE_TAGS}; do
-            cd images/${{ env.IMAGE_NAME }}/${tag}
+            cd ${CURRENT_PWD}/images/${{ env.IMAGE_NAME }}/${tag}
             docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
 
