@@ -64,7 +64,6 @@ RUN apk add --no-cache \
         php7-pecl-msgpack \
         php7-pecl-oauth \
         php7-pecl-protobuf \
-        php7-pecl-psr \
         php7-pecl-redis \
         php7-pecl-ssh2 \
         php7-pecl-uuid \
