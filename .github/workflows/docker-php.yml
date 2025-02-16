@@ -5,10 +5,11 @@ on:
   schedule:
     - cron: "0 2 * * 1"
 
+# end life: 56 70 71 72 73 74 80
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: php
-  IMAGE_TAGS: "56 70 71 72 73 74 80 81 82 83 84"
+  IMAGE_TAGS: "81 82 83 84"
 
 jobs:
   build:
