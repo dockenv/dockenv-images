@@ -59,7 +59,6 @@ RUN apk add --no-cache \
             php81-pecl-mongodb \
             php81-pecl-msgpack \
             php81-pecl-protobuf \
-            php81-pecl-psr \
             php81-pecl-rdkafka \
             php81-pecl-redis \
             php81-pecl-smbclient \

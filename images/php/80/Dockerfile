@@ -62,7 +62,6 @@ RUN apk add --no-cache \
             php8-pecl-msgpack \
             php8-pecl-oauth \
             php8-pecl-protobuf \
-            php8-pecl-psr \
             php8-pecl-rdkafka \
             php8-pecl-redis \
             php8-pecl-ssh2 \

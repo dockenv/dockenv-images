@@ -64,7 +64,6 @@ RUN apk add --no-cache \
         php82-pecl-msgpack \
         php82-pecl-opentelemetry \
         php82-pecl-protobuf \
-        php82-pecl-psr \
         php82-pecl-rdkafka \
         php82-pecl-redis \
         php82-pecl-smbclient \
