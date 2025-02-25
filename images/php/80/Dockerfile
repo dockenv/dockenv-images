@@ -110,7 +110,6 @@ RUN apk add --no-cache \
     && mv /usr/bin/phpize${PHP_VER} /usr/bin/phpize \
     && mv /usr/sbin/php-fpm${PHP_VER} /usr/sbin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
-    && sed -i "s#extension#;extension#g" /etc/php${PHP_VER}/conf.d/psr.ini \
     && sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php${PHP_VER}/php.ini \
     && sed -i "s/display_errors = .*/display_errors = On/" /etc/php${PHP_VER}/php.ini \
     && sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php${PHP_VER}/php.ini \
