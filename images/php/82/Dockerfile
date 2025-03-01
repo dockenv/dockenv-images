@@ -140,8 +140,6 @@ RUN apk add --no-cache \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/phalcon/php82-pecl-phalcon-5.7.0-r0.apk -O /tmp/phalcon.apk \
-    && apk add --no-cache /tmp/phalcon.apk \
     && rm -fr /tmp/*.apk
 
 EXPOSE 9000
