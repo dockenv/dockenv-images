@@ -1,24 +1,52 @@
 #!/usr/bin/env sh
 ###
  # @Author: Cloudflying
- # @Date: 2021-11-19 13:20:23
- # @LastEditTime: 2023-10-13 00:35:03
+ # @Date: 2025-03-12 20:59:41
+ # @LastEditTime: 2025-03-12 23:48:30
  # @LastEditors: Cloudflying
- # @Description:
- # @FilePath: /dockenv/images/nginx/1.20.2/build.sh
+ # @Description: Build Nginx
 ###
-NGINX_VERSION='1.20.2'
-# NGINX_VERSION='1.21.4'
-# Deps
-apk add --virtual .deps make gcc g++ autoconf automake git wget findutils
-apk add sregex-dev --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
-# libxml2-dev
-# ./configure: no supported file AIO was found
-apk add linux-headers
-# libaio-dev
-apk add libxslt-dev zlib-dev gd-dev geoip-dev
-# 文件较大
-apk add czmq-dev libmaxminddb-dev flex bison zstd-dev libressl-dev
+
+ROOT_PATH=$(realpath $(dirname $0))
+NGX_MOD_PATH="$ROOT_PATH/nginx-modules"
+NGINX_VERSION="1.27.4"
+mkdir -p ${NGX_MOD_PATH}
+
+# sed -i "s#edge.kernel.org#aliyun.com#g" /etc/apk/repositories
+
+[ ! -d "nginx" ] && git clone --depth 1 -b release-${NGINX_VERSION} https://github.com/nginx/nginx.git
+
+# extensions
+
+install_depends()
+{
+  # Deps
+  # libxml2-dev
+  # libaio-dev
+  # apk add --virtual .deps make gcc g++ autoconf automake git wget findutils
+  # apk add sregex-dev --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
+
+
+  apk add --no-cache pcre2-dev \
+    zlib-dev \
+    util-linux-dev \
+    openssl-dev curl-dev brotli-dev c-ares-dev jansson-dev cjose-dev apr-dev sqlite-dev apr-util-dev libpq-dev expat-dev libevent-dev libsodium-dev openldap-dev hiredis-dev libmemcached-dev mongo-c-driver-dev apache2-dev check-dev libxslt-dev \
+    libxml2-dev gd-dev geoip-dev
+    libatomic_ops-dev
+
+  # ./configure: no supported file AIO was found
+  apk add --no-cache linux-headers
+
+  # 文件较大
+  apk add --no-cache czmq-dev libmaxminddb-dev flex bison zstd-dev libressl-dev
+
+  if [ ! -f "/usr/lib/x86_64-linux-gnu/libssl.a" ]; then
+      mkdir -p /usr/lib/x86_64-linux-gnu
+      ln -s /usr/lib/libssl.a /usr/lib/x86_64-linux-gnu/libssl.a
+      ln -s /usr/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libcrypto.a
+  fi
+}
+
 fix_conf()
 {
     # 使 Nginx 可以直接使用本地已安装 openssl
@@ -27,196 +55,193 @@ fix_conf()
     sed -i 's/libcrypto\.a/x86_64-linux-gnu\/libcrypto\.a/g' auto/lib/openssl/conf
 }
 
-mkdir -p /tmp/build/ngx_mod
-cd /tmp/build
-if [[ ! -f "/tmp/build/nginx-${NGINX_VERSION}" ]]; then
-    if [[ ! -f "/tmp/build/nginx-${NGINX_VERSION}.tar.gz" ]]; then
-        URL="https://hk.mirrors.xieke.org/Src/nginx/nginx-${NGINX_VERSION}.tar.gz"
-        wget -c ${URL}
-    fi
-    tar -xvf nginx-${NGINX_VERSION}.tar.gz > /dev/null 2>&1
-    cd nginx-${NGINX_VERSION} && fix_conf
-fi
 
-cd /tmp/build/ngx_mod
+[ ! -d "src/liboauth2" ] && git clone --depth 1 -b v2.1.0 https://github.com/OpenIDC/liboauth2.git ${NGX_MOD_PATH}/liboauth2
+# ./configure --prefix=/usr --with-memcache --with-jq --with-redis
 
-# Cache
-# git clone --depth 1 https://github.com/nginx-modules/ngx_cache_purge
-# git clone --depth 1 https://github.com/openresty/srcache-nginx-module
-# git clone --depth 1 https://github.com/wandenberg/nginx-selective-cache-purge-module
+fetch_modules()
+{
+  cd ${NGX_MOD_PATH} || exit 1
+  # 2023/1/20
+  git clone --depth 1 -b v0.5.2 https://github.com/aperezdc/ngx-fancyindex.git
+  # 2023/5
+  git clone --depth 1 -b 0.6.0 https://github.com/wandenberg/nginx-push-stream-module.git
 
-# git clone --depth 1 https://github.com/google/nginx-sxg-module
-# git clone --depth 1 https://github.com/openresty/lua-nginx-module
-# git clone --depth 1 https://github.com/openresty/stream-lua-nginx-module
-# git clone --depth 1 https://github.com/openresty/lua-upstream-nginx-module
-# git clone --depth 1 https://github.com/openresty/echo-nginx-module
-# git clone --depth 1 https://github.com/openresty/stream-echo-nginx-module
-# git clone --depth 1 https://github.com/openresty/set-misc-nginx-module
-# git clone --depth 1 https://github.com/openresty/headers-more-nginx-module
-# git clone --depth 1 https://github.com/openresty/memc-nginx-module
-# git clone --depth 1 https://github.com/openresty/array-var-nginx-module
-# git clone --depth 1 https://github.com/openresty/encrypted-session-nginx-module
+  # liboauth2_nginx unknow
+  # if [ ! -d "src/ngx_sts_module" ]; then
+  #   git clone --depth 1 https://github.com/OpenIDC/ngx_sts_module.git -b v4.0.0 ${NGX_MOD_PATH}/ngx_sts_module
+  #   MODULES_OPTS="--add-module=src/ngx_sts_module/src"
+  # else
+  #   MODULES_OPTS="--add-module=src/ngx_sts_module/src"
+  # fi
 
-# git clone --depth 1 https://github.com/vision5/ngx_devel_kit
-# git clone --depth 1 https://github.com/vision5/ngx_http_set_lang
-# git clone --depth 1 https://github.com/vision5/ngx_http_set_hash
-# git clone --depth 1 https://github.com/apache/incubator-pagespeed-ngx
-# git clone --depth 1 https://github.com/Refinitiv/nginx-sticky-module-ng
-# git clone --depth 1 https://github.com/arut/nginx-dav-ext-module
-# 流媒体 包含 rtmp 所有功能
-# git clone --depth 1 https://github.com/winshining/nginx-http-flv-module
-# git clone --depth 1 https://github.com/arut/nginx-rtmp-module
-# git clone --depth 1 https://github.com/kaltura/nginx-vod-module
-# git clone --depth 1 https://github.com/arut/nginx-live-module
-# MPEG-TS Live
-# git clone --depth 1 https://github.com/arut/nginx-ts-module
 
-# file unzip
-# git clone --depth 1 https://github.com/ajax16384/ngx_http_untar_module
-# git clone --depth 1 https://github.com/evanmiller/mod_zip
+  # if [ ! -d "src/ngx_oauth2_module" ]; then
+  #   git clone --depth 1 https://github.com/OpenIDC/ngx_oauth2_module.git -b 4.0.0 ${NGX_MOD_PATH}/ngx_oauth2_module
+  #   MODULES_OPTS="--add-module=src/ngx_oauth2_module/src ${MODULES_OPTS}"
+  # else
+  #   MODULES_OPTS="--add-module=src/ngx_oauth2_module/src ${MODULES_OPTS}"
+  # fi
 
-# git clone --depth 1 https://github.com/kaltura/nginx-json-var-module
-# git clone --depth 1 https://github.com/nicholaschiasson/ngx_upstream_jdomain
-# git clone --depth 1 https://github.com/itoffshore/nginx-upstream-fair
-# git clone --depth 1 https://github.com/masterzen/nginx-upload-progress-module
-# git clone --depth 1 https://github.com/slact/nchan
-# git clone --depth 1 https://github.com/Lax/traffic-accounting-nginx-module
-# git clone --depth 1 https://github.com/aperezdc/ngx-fancyindex
-# git clone --depth 1 https://github.com/nginx-shib/nginx-http-shibboleth
-# git clone --depth 1 https://github.com/AirisX/nginx_cookie_flag_module
-# git clone --depth 1 https://github.com/AlticeLabsProjects/nginx-log-zmq
-git clone --depth 1 https://github.com/nbs-system/naxsi
-# unknow error
-# git clone --depth 1 https://github.com/nginx/njs
-# git clone --depth 1 https://github.com/kaltura/nginx-secure-token-module
-# git clone --depth 1 https://github.com/kaltura/nginx-aggr-module
+  # Cache
+  # git clone --depth 1 https://github.com/nginx-modules/ngx_cache_purge
+  # git clone --depth 1 https://github.com/wandenberg/nginx-selective-cache-purge-module
 
-# function
-# git clone --depth 1 https://github.com/kaltura/nginx-parallel-module
-git clone --depth 1 https://github.com/nginx-modules/ngx_http_hmac_secure_link_module
+  # git clone --depth 1 https://github.com/google/nginx-sxg-module
+  # git clone --depth 1 https://github.com/openresty/lua-nginx-module
 
-# Limit
-# git clone --depth 1 https://github.com/nginx-modules/ngx_http_limit_traffic_ratefilter_module
+  # 2025/1
+  # git clone --depth 1 -b v0.0.16 https://github.com/openresty/stream-lua-nginx-module.git
+  # git clone --depth 1 https://github.com/openresty/lua-upstream-nginx-module
+  # git clone --depth 1 https://github.com/openresty/echo-nginx-module
+  # git clone --depth 1 https://github.com/openresty/stream-echo-nginx-module
+  # git clone --depth 1 https://github.com/openresty/set-misc-nginx-module
+  # git clone --depth 1 https://github.com/openresty/headers-more-nginx-module
+  # git clone --depth 1 https://github.com/openresty/memc-nginx-module
+  # git clone --depth 1 https://github.com/openresty/array-var-nginx-module
+  # git clone --depth 1 https://github.com/openresty/encrypted-session-nginx-module
 
-# git clone --depth 1 https://github.com/dvershinin/ngx_dynamic_etag
-# IP
-git clone --depth 1 https://github.com/ip2location/ip2proxy-nginx
-git clone --depth 1 https://github.com/ip2location/ip2location-nginx
-git clone --depth 1 https://github.com/leev/ngx_http_geoip2_module
+  # git clone --depth 1 https://github.com/vision5/ngx_devel_kit
+  # git clone --depth 1 https://github.com/vision5/ngx_http_set_lang
+  # git clone --depth 1 https://github.com/vision5/ngx_http_set_hash
+  # git clone --depth 1 https://github.com/apache/incubator-pagespeed-ngx
+  # git clone --depth 1 https://github.com/Refinitiv/nginx-sticky-module-ng
+  # git clone --depth 1 https://github.com/arut/nginx-dav-ext-module
+  # 流媒体 包含 rtmp 所有功能
+  # git clone --depth 1 https://github.com/winshining/nginx-http-flv-module
+  # git clone --depth 1 https://github.com/arut/nginx-rtmp-module.git
+  # git clone --depth 1 https://github.com/kaltura/nginx-vod-module
+  # git clone --depth 1 https://github.com/arut/nginx-live-module
 
-# embed language
-# git clone --depth 1 https://github.com/decentfox/nginxpy
-# git clone --depth 1 https://github.com/arut/nginx-python-module
-# git clone --depth 1 https://github.com/rryqszq4/ngx_php7
+  # MPEG-TS Live
+  # git clone --depth 1 https://github.com/arut/nginx-ts-module
+  # file unzip
+  # git clone --depth 1 https://github.com/ajax16384/ngx_http_untar_module
 
-# git clone --depth 1 https://github.com/limithit/ngx_dynamic_limit_req_module
-# git clone --depth 1 https://github.com/zhouchangxun/ngx_healthcheck_module
-# git clone --depth 1 https://github.com/tarantool/nginx_upstream_module
+  # git clone --depth 1 https://github.com/kaltura/nginx-json-var-module
+  # git clone --depth 1 https://github.com/nicholaschiasson/ngx_upstream_jdomain
+  # git clone --depth 1 https://github.com/itoffshore/nginx-upstream-fair
+  # git clone --depth 1 https://github.com/masterzen/nginx-upload-progress-module
+  # git clone --depth 1 https://github.com/slact/nchan
+  # git clone --depth 1 https://github.com/Lax/traffic-accounting-nginx-module
+  # git clone --depth 1 https://github.com/AlticeLabsProjects/nginx-log-zmq
+  # unknow error
+  # git clone --depth 1 https://github.com/nginx/njs
 
-# Security
-# Application FireWall
-# git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx
-# git clone --depth 1 https://github.com/aufi/anddos
-# git clone --depth 1 https://github.com/openresty/xss-nginx-module
-# git clone --depth 1 https://github.com/ADD-SP/ngx_waf
+  # function
+  # git clone --depth 1 https://github.com/kaltura/nginx-parallel-module
+  # git clone --depth 1 https://github.com/nginx-modules/ngx_http_hmac_secure_link_module
 
-# server traffic status
-# git clone --depth 1 https://github.com/vozlt/nginx-module-sts
-# git clone --depth 1 https://github.com/vozlt/nginx-module-stream-sts.git # depen by sts
-# git clone --depth 1 https://github.com/zhouchangxun/ngx_stream_upstream_check_module
-# git clone --depth 1 https://github.com/psychobilly/ngx_http_json_status_module
+  # Embed language
+  # git clone --depth 1 https://github.com/decentfox/nginxpy
+  # git clone --depth 1 https://github.com/arut/nginx-python-module
+  # git clone --depth 1 https://github.com/rryqszq4/ngx_php7
+  # https://github.com/matsumotory/ngx_mruby
+  # 2025/2
+  # https://github.com/lyokha/nginx-haskell-module
 
-# Filter
-git clone --depth 1 https://github.com/openresty/replace-filter-nginx-module
-git clone --depth 1 https://github.com/yaoweibin/ngx_http_substitutions_filter_module
+  # Security
+  # Application FireWall
+  # git clone --depth 1 -b v1.0.3 https://github.com/owasp-modsecurity/ModSecurity-nginx.git
+  # git clone --depth 1 https://github.com/aufi/anddos
+  # git clone --depth 1 https://github.com/openresty/xss-nginx-module
+  # git clone --depth 1 https://github.com/ADD-SP/ngx_waf
+  # git clone --depth 1 https://github.com/nbs-system/naxsi
 
-# Other
-# git clone --depth 1 https://github.com/wandenberg/nginx-push-stream-module
-git clone --depth 1 https://github.com/TeslaGov/ngx-http-auth-jwt-module
-# git clone --depth 1 https://github.com/openresty/redis2-nginx-module
-# git clone --depth 1 https://github.com/openresty/rds-csv-nginx-module
-# git clone --depth 1 https://github.com/openresty/rds-json-nginx-module
+  # server traffic status
+  # git clone --depth 1 https://github.com/vozlt/nginx-module-sts
+  # git clone --depth 1 https://github.com/vozlt/nginx-module-stream-sts.git # depen by sts
+  # git clone --depth 1 https://github.com/psychobilly/ngx_http_json_status_module
 
-if [[ -d '/tmp/build/ngx_mod/ngx_waf' ]]; then
-    cd /tmp/build/ngx_mod/ngx_waf && make
-    git clone --depth 1 https://github.com/libinjection/libinjection.git inc/libinjection
-fi
+  # distributed tracing
+  # git clone --depth 1 -b v0.39.0 https://github.com/opentracing-contrib/nginx-opentracing.git
 
-if [[ ! -f "/usr/lib/x86_64-linux-gnu/libssl.a" ]]; then
-    mkdir -p /usr/lib/x86_64-linux-gnu
-    ln -s /usr/lib/libssl.a /usr/lib/x86_64-linux-gnu/libssl.a
-    ln -s /usr/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libcrypto.a
-fi
+  # Filter
+  # git clone --depth 1 https://github.com/openresty/replace-filter-nginx-module
+  # git clone --depth 1 https://github.com/yaoweibin/ngx_http_substitutions_filter_module
 
-cd /tmp/build/nginx-${NGINX_VERSION}
-# fast to get module
-# 不想编译的扩展删除扩展目录并注释 git 命令即可
-# mod_ops=$(ls ../ngx_mod/ | tr ' ' '\n' | awk  '{print "--add-dynamic-module=../"$1" \\"}' | sed 's#njs#njs\/nginx#g' | sed 's#naxsi#naxsi/naxsi_src#g')
-# mod_ops=$(ls ../ngx_mod/ | tr ' ' '\n' | grep -v 'ngx_devel_kit' | grep -v 'ngx_healthcheck_module' | awk  '{print "--add-dynamic-module=../ngx_mod/"$1}' | sed 's#njs#njs\/nginx#g' | sed 's#naxsi#naxsi/naxsi_src#g')
-mod_ops=$(ls ../ngx_mod/ | tr ' ' '\n' | grep -v 'ngx_devel_kit' | grep -v 'ngx_healthcheck_module' | awk  '{print "--add-dynamic-module=../ngx_mod/"$1}' | sed 's#naxsi#naxsi/naxsi_src#g')
-# LUAJIT_INC=$(find /usr/include/ -maxdepth 1 -name 'luajit*')
-# echo $mod_ops;exit
-# echo $LUAJIT_INC;exit
-# LUAJIT_INC=${LUAJIT_INC}
-./configure \
-    --prefix=/var/lib/nginx \
+  # Limit
+  # git clone --depth 1 https://github.com/nginx-modules/ngx_http_limit_traffic_ratefilter_module
+
+  # git clone --depth 1 https://github.com/dvershinin/ngx_dynamic_etag.git
+
+  # IP
+  # git clone --depth 1 https://github.com/ip2location/ip2proxy-nginx
+  # git clone --depth 1 https://github.com/ip2location/ip2location-nginx
+  # git clone --depth 1 https://github.com/leev/ngx_http_geoip2_module
+
+  # Proxy
+  # 2024/8 A forward proxy module for CONNECT request handling
+  # git clone --depth 1 https://github.com/chobits/ngx_http_proxy_connect_module.git
+
+
+  # Other
+  # 2025/2
+  # git clone --depth 1 -b 2.3.1 https://github.com/TeslaGov/ngx-http-auth-jwt-module
+  # git clone --depth 1 https://github.com/openresty/redis2-nginx-module
+  # git clone --depth 1 https://github.com/openresty/rds-csv-nginx-module
+  # git clone --depth 1 https://github.com/openresty/rds-json-nginx-module
+  # git clone --depth 1 https://github.com/limithit/ngx_dynamic_limit_req_module
+  # git clone --depth 1 https://github.com/zhouchangxun/ngx_healthcheck_module
+  # git clone --depth 1 https://github.com/tarantool/nginx_upstream_module
+
+  # 2024/11 Async Mode Nginx with QAT support which improves Crypto and compression performance
+  # git clone --depth 1 -b v0.5.3 https://github.com/intel/asynch_mode_nginx.git
+}
+
+cd ${ROOT_PATH}/nginx || exit 1
+
+./auto/configure \
+    --prefix=/usr/local/nginx \
     --sbin-path=/usr/sbin/nginx \
-    --modules-path=/usr/lib/nginx/modules \
+    --modules-path=/usr/local/nginx/modules \
     --conf-path=/etc/nginx/nginx.conf \
-    --pid-path=/run/nginx/nginx.pid \
-    --lock-path=/run/nginx/nginx.lock \
-    --http-client-body-temp-path=/var/lib/nginx/tmp/client_body \
+    --pid-path=/run/nginx.pid \
+    --lock-path=/run/nginx.lock \
+    --http-client-body-temp-path=/usr/local/nginx/tmp/client_body \
+    --error-log-path=/var/log/nginx.err.log \
     --http-log-path=/var/log/nginx.log \
-    --http-proxy-temp-path=/var/lib/nginx/tmp/proxy \
-    --http-fastcgi-temp-path=/var/lib/nginx/tmp/fastcgi \
-    --http-uwsgi-temp-path=/var/lib/nginx/tmp/uwsgi \
-    --http-scgi-temp-path=/var/lib/nginx/tmp/scgi \
+    --http-proxy-temp-path=/usr/local/nginx/tmp/proxy \
+    --http-fastcgi-temp-path=/usr/local/nginx/tmp/fastcgi \
+    --http-uwsgi-temp-path=/usr/local/nginx/tmp/uwsgi \
+    --http-scgi-temp-path=/usr/local/nginx/tmp/scgi \
     --user=nginx \
     --group=nginx \
-    --with-threads \
+    --with-compat \
     --with-file-aio \
+    --with-threads \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
     --with-http_degradation_module \
-    --with-http_image_filter_module=dynamic \
     --with-http_flv_module \
     --with-http_geoip_module=dynamic \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
+    --with-http_image_filter_module=dynamic \
     --with-http_mp4_module \
     --with-http_random_index_module \
     --with-http_realip_module \
     --with-http_secure_link_module \
+    --with-http_slice_module \
     --with-http_ssl_module \
     --with-http_sub_module \
-    --with-http_slice_module \
     --with-http_stub_status_module \
     --with-http_v2_module \
+    --with-http_v3_module \
     --with-http_xslt_module=dynamic \
+    --with-libatomic \
     --with-mail=dynamic \
     --with-mail_ssl_module \
+    --with-poll_module \
+    --with-pcre \
+    --with-pcre-jit \
+    --with-poll_module \
     --with-stream=dynamic \
     --with-stream_geoip_module=dynamic \
     --with-stream_realip_module \
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module \
-    --with-compat \
-    --with-pcre \
-    --with-poll_module \
-    --with-pcre-jit \
     --with-select_module \
-    --with-openssl=/usr
-    # --with-perl_modules_path=/usr/lib/perl5/vendor_perl \
-    # --with-http_perl_module=dynamic \
-    # --with-zlib=/usr
-    # ${mod_ops}
-    # --add-dynamic-module=../ngx_mod/ngx_devel_kit \
-    # --add-module=../ngx_mod/ngx_healthcheck_module \
-    # ${mod_ops%?}
-    make -j8
-
-# 未知功能
-        # --with-cc-opt="-static" \
-        # --with-ld-opt="-static" \
-        # --with-cpu-opt="generic" \
+    --with-openssl=/usr \
+    ${MODULES_OPTS}

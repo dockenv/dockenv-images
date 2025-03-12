@@ -9,7 +9,13 @@ ENV RUN_USER="boxs" \
 
 ENV HOME_DIR=/home/$RUN_USER
 
-RUN apk add --no-cache shadow musl-dev util-linux-misc linux-headers \
+# vulkan-loader-dev
+# vulkan-headers
+# wayland-dev
+RUN apk add --no-cache \
+  shadow \
+  musl-dev util-linux-misc linux-headers \
+  gcc g++ autoconf automake gdb mesa-dev libtool \
   wget curl axel aria2 \
   sudo git zsh neovim \
   net-tools openssh openrc \
