@@ -1,22 +1,21 @@
 {
-    "files.associations": {
-        "env-example": "dotenv",
-        "Dockerfile-*": "dockerfile",
-        "Dockerfile.*": "dockerfile",
-        "*.ign": "json",
-        "*.fcc": "yaml",
-        ".ini*": "ini"
-    },
-    "files.autoSave": "onFocusChange",
-    "editor.fontSize": 16,
-    "gitlens.advanced.fileHistoryFollowsRenames": true,
-    "gitlens.advanced.fileHistoryShowAllBranches": true,
-	"gitlens.blame.heatmap.location": "left",
-	"editor.suggest.snippetsPreventQuickSuggestions": false,
-	"aiXcoder.showTrayIcon": false,
-	"editor.inlineSuggest.enabled": true,
-	"diffEditor.codeLens": true,
+  "files.associations": {
+    "env-example": "dotenv",
+    "Dockerfile-*": "dockerfile",
+    "Dockerfile.*": "dockerfile",
+    "*.ign": "json",
+    "*.fcc": "yaml",
+    ".ini*": "ini"
+  },
+  "files.autoSave": "onFocusChange",
+  "editor.fontSize": 16,
+  "gitlens.advanced.fileHistoryFollowsRenames": true,
+  "gitlens.advanced.fileHistoryShowAllBranches": true,
+  "gitlens.blame.heatmap.location": "left",
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "aiXcoder.showTrayIcon": false,
+  "editor.inlineSuggest.enabled": true,
+  "diffEditor.codeLens": true,
   "editor.inlineSuggest.showToolbar": "onHover",
-	"explorer.excludeGitIgnore": false
+  "explorer.excludeGitIgnore": false
 }
-
