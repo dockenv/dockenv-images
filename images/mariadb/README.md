@@ -27,3 +27,16 @@ docker run -d \
 ## Params
 - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
 - MARIADB_RANDOM_ROOT_PASSWORD=1
+
+## Stopped Tags
+- 10.1
+- 10.2
+- 10.3
+- 10.4
+- 10.7
+- 10.8
+- 10.9
+- 10.10
+- 11.0
+- 11.1
+- 11.3

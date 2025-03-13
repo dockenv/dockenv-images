@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: mysql
-  IMAGE_TAGS: "latest 5.7 8.0 8.1 8.2 8.3 8.4 9.0 9.1"
+  IMAGE_TAGS: "latest 8.0 8.4 9.1 9.2"
 
 jobs:
   build:

@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: mariadb
-  IMAGE_TAGS: "latest lts 10.4 10.11 11.0 11.1 11.2 11.3 11.4 11.5 11.6"
+  IMAGE_TAGS: "latest lts 10.5 10.6 10.11 11.1 11.2 11.4 11.5 11.6 11.7 11.8"
 
 jobs:
   build:

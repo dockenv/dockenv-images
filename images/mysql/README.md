@@ -10,3 +10,11 @@ docker run -d --name percona \
     ghcr.io/dockenv/mysql:5.7 \
     --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
+
+## Stopped Tags
+- 5.6
+- 5.7
+- 8.1
+- 8.2
+- 8.3
+- 9.0
