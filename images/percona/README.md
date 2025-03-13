@@ -14,3 +14,7 @@ docker run -d \
     ghcr.io/dockenv/percona:latest \
     --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
+
+## Stopped Tags
+- 5.6
+- 5.7

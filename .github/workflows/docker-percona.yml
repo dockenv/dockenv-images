@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: percona
-  IMAGE_TAGS: "latest 5.6 5.7 8.0"
+  IMAGE_TAGS: "latest 8.0"
 
 jobs:
   build:

@@ -1,4 +1,4 @@
-FROM kibana:7.17.25
+FROM kibana:7.17.28
 
 LABEL org.opencontainers.image.title="Kibana" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
