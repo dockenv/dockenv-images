@@ -1,9 +1,10 @@
 FROM archlinux/archlinux:latest
 
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv \
-    org.opencontainers.image.description='Archlinux'
+LABEL org.opencontainers.image.title="Archlinux" \
+  org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+  org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+  org.opencontainers.image.url="https://dockenv.github.io" \
+  org.opencontainers.image.description='Dart is a client-optimized language for fast apps on any platform.'
 
 ENV PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin" \
     TZ='Asia/Shanghai'
@@ -12,6 +13,7 @@ ADD ./pacman.conf /etc/pacman.conf
 
 RUN ln -sf /proc/self/mounts /etc/mtab \
     && ln --symbolic "/usr/share/zoneinfo/${TZ}" /etc/localtime \
+    && echo "Server = https://mirrors.edge.kernel.org/archlinux/\$repo/os/\$arch" | tee /etc/pacman.d/mirrorlist \
     && echo "${TZ}" > /etc/timezone \
     && pacman -Syy \
     && pacman-key --init \
