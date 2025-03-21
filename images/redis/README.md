@@ -13,19 +13,6 @@
 - 由 Redis，RedisSearch，RedisJSON，RedisGraph，RedisTimeSeries 和 RedisBloom 组成。
 - 支持索引、全文搜索、图形建模、时间序列等功能。
 
-### start a redis instance
-
-```bash
-$ docker run -d \
-    --name redis \
-    -p 6379:6379 \
-    -v /myredis/conf:/usr/local/etc/redis \
-    -v /path/to/data/:/data \
-    -e REDIS_ARGS="--requirepass dockenv" \ #TODO 似乎不生效
-    redis-server /usr/local/etc/redis/redis.conf --save 60 1 --loglevel warning
-```
-> 60 秒保存一次快照
-
 ### start with persistent storage
 `$ docker run --name some-redis -d redis redis-server --appendonly yes`
 > If persistence is enabled, data is stored in the VOLUME /data, which can be used with --volumes-from some-volume-container or -v /docker/host/dir:/data (see docs.docker volumes).
