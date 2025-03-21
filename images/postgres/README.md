@@ -6,7 +6,7 @@ docker run --rm \
     -e POSTGRES_PASSWORD=dockenv\
     -e PGDATA=/var/lib/postgresql/data/pgdata \
     -v /custom/mount:/var/lib/postgresql/data \
-    ghcr.io/dockenv/postgreslatest
+    ghcr.io/dockenv/postgres:latest
 ```
 
 ## Variable
