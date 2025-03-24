@@ -13,7 +13,7 @@ ADD ./pacman.conf /etc/pacman.conf
 
 RUN ln -sf /proc/self/mounts /etc/mtab \
     && ln --symbolic "/usr/share/zoneinfo/${TZ}" /etc/localtime \
-    && echo "Server = https://mirrors.edge.kernel.org/archlinux/\$repo/os/\$arch" | tee /etc/pacman.d/mirrorlist \
+    && echo "Server = https://pods.xie.ke/archlinux/\$repo/os/\$arch" | tee /etc/pacman.d/mirrorlist \
     && echo "${TZ}" > /etc/timezone \
     && pacman -Syy \
     && pacman-key --init \

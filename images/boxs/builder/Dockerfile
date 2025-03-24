@@ -33,8 +33,8 @@ RUN pacman -Syy \
         go python python-pip \
         squashfs-tools \
     && useradd -d /home/${RUN_USER} -c "Packages Builder" -m -s /bin/zsh ${RUN_USER} \
-	&& echo "${RUN_USER}:${PASSWD}" | chpasswd \
-	&& echo "root:${PASSWD}" | chpasswd \
+	  && echo "${RUN_USER}:${PASSWD}" | chpasswd \
+	  && echo "root:${PASSWD}" | chpasswd \
     && echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
     && git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh \
     && cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc \
