@@ -74,7 +74,6 @@ RUN apk add --no-cache \
         php7-pecl-yaml \
         php7-pecl-zmq \
         php7-pgsql \
-        php7-phalcon \
         php7-phar \
         php7-phpdbg \
         php7-posix \
