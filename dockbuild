@@ -14,6 +14,10 @@ export LC_CTYPE=en_US.UTF-8
 CUR_PATH=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 IMAGE_PATH=${CUR_PATH}/images
 
+if [[ ! -f ".env" ]]; then
+  cp -fr .env-example .env
+fi
+
 source ${CUR_PATH}/.env
 
 # if [[ -z "$(command -v docker)" ]]; then
@@ -89,14 +93,19 @@ do_build() {
         cd "${NAME}/${VERSION}" || exit
         DOCKER_BUILDKIT=0
 
+      if [[ -n "${PROXY_ADDR}" ]]; then
+          BUILD_PROXY_ARGS="--build-arg HTTP_PROXY=${PROXY_ADDR} --build-arg HTTPS_PROXY=${PROXY_ADDR} --build-arg NO_PROXY=localhost,127.0.0.1,.example.com,.dev.xie.ke"
+      fi
+    # echo "$BUILD_PROXY_ARGS"
+    # exit 1
         # --no-cache
         if [[ -n "${DOCKER_REGISTRY_PREFIX}" ]]; then
             # docker build --progress plain --no-cache -t "${DOCKER_REGISTRY_PREFIX}"/${NAME}:"${VERSION}" .
             # docker build --no-cache -t "${DOCKER_REGISTRY_PREFIX}"/${NAME}:"${VERSION}" .
-            docker build --no-cache --progress plain -t "${DOCKER_REGISTRY_PREFIX}/${NAME}:"${VERSION}"" .
+            echo docker build "${BUILD_PROXY_ARGS}" --no-cache -t "${DOCKER_REGISTRY_PREFIX}/${NAME}:${VERSION}" .
         else
             # docker build --progress plain --no-cache -t ${NAME}:"${VERSION}" .
-            docker build --no-cache --progress plain -t "${NAME}:"${VERSION}"" .
+            docker build "${BUILD_PROXY_ARGS}" --no-cache -t "${NAME}:${VERSION}" .
         fi
 
         [[ -n "${ENABLE_GITHUB_REGISTRY}" ]] && docker tag "${DOCKER_REGISTRY_PREFIX}"/${NAME}:"${VERSION}" ${DOCKER_REGISTRY_GITHUB}/${NAME}:"${VERSION}"
