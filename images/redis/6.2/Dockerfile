@@ -3,7 +3,7 @@ FROM redis:6.2-alpine
 LABEL org.opencontainers.image.title="Redis" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
-      org.opencontainers.image.description='Redis 6.2'
+      org.opencontainers.image.description='Redis is the world’s fastest data platform for caching, vector search, and NoSQL databases.'
 
 USER redis
 

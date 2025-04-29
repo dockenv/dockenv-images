@@ -7,7 +7,10 @@
 - 单一的数据库引擎
 
 ## RedisStack
-- 由 Redis Stack Server、RedisInsight 和 Redis Stack 客户端 SDK 组成
+- 由 Redis Stack Server、RedisInsight 和 Redis Stack Client SDK 组成
+
+## Redis Insight
+- Official GUI for Redis
 
 ## Redis Stack Server
 - 由 Redis，RedisSearch，RedisJSON，RedisGraph，RedisTimeSeries 和 RedisBloom 组成。
@@ -38,3 +41,26 @@ Alternatively, you can specify something along the same lines with docker run op
 > Where /myredis/conf/ is a local directory containing your redis.conf file. Using this method means that there is no need for you to have a Dockerfile for your redis container.
 
 The mapped directory should be writable, as depending on the configuration and mode of operation, Redis may need to create additional configuration files or rewrite existing ones.
+
+## Run Redis Stack
+- $ docker run -v `pwd`/local-redis-stack.conf:/redis-stack.conf -p 6379:6379 redis/redis-stack-server:latest
+
+
+## Redis Stack Args
+To pass in arbitrary configuration changes, you can set any of these environment variables:
+
+- CONFFILE: Config File Path default `/redis-stack.conf`
+- REDIS_ARGS: extra arguments for Redis
+- REDISEARCH_ARGS: arguments for RediSearch
+- REDISJSON_ARGS: arguments for RedisJSON
+- REDISGRAPH_ARGS: arguments for RedisGraph
+- REDISTIMESERIES_ARGS: arguments for RedisTimeSeries
+- REDISBLOOM_ARGS: arguments for RedisBloom
+
+For example, here's how to use the REDIS_ARGS environment variable to pass the requirepass directive to Redis:
+
+docker run -e REDIS_ARGS="--requirepass redis-stack" redis/redis-stack-server:latest
+
+Here's how to set a retention policy for RedisTimeSeries:
+
+docker run -e REDISTIMESERIES_ARGS="RETENTION_POLICY=20" redis/redis-stack-server:latest
