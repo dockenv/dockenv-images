@@ -5,6 +5,9 @@
     "github.vscode-github-actions",
     "eamodio.gitlens",
     "chrisbibby.hide-git-ignored",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "ms-vscode-remote.remote-containers",
+    "docker.docker",
+    "ms-azuretools.vscode-containers"
   ]
 }

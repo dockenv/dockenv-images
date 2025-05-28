@@ -1,0 +1,48 @@
+## Worldwide
+Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
+
+## China
+Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch
+Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.hit.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.hust.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+
+## Hong Kong
+Server = https://hkg.mirror.rackspace.com/archlinux/$repo/os/$arch
+
+## Japan
+Server = https://mirror.aria-on-the-planet.es/archlinux/$repo/os/$arch
+Server = https://mirrors.cat.net/archlinux/$repo/os/$arch
+Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+
+## Taiwan
+Server = https://mirror.archlinux.tw/ArchLinux/$repo/os/$arch
+Server = https://archlinux.cs.nycu.edu.tw/$repo/os/$arch
+
+## United States
+Server = https://mirror.arizona.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.bloomu.edu/archlinux/$repo/os/$arch
+Server = https://mirror.clarkson.edu/archlinux/$repo/os/$arch
+Server = https://mirror.colonelhosting.com/archlinux/$repo/os/$arch
+Server = https://arch.mirror.constant.com/$repo/os/$arch
+Server = https://losangeles.mirror.pkgbuild.com/$repo/os/$arch
+Server = https://mirror.givebytes.net/archlinux/$repo/os/$arch
+Server = https://arch.hu.fo/archlinux/$repo/os/$arch
+Server = https://repo.ialab.dsu.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
+Server = https://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+Server = https://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.mit.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+Server = https://ftp.osuosl.org/pub/archlinux/$repo/os/$arch
+Server = https://mirror.pilotfiber.com/archlinux/$repo/os/$arch
+Server = https://ord.mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = https://plug-mirror.rcac.purdue.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.rit.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.sonic.net/archlinux/$repo/os/$arch
+Server = https://mirror.umd.edu/archlinux/$repo/os/$arch
+Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch

@@ -6,14 +6,14 @@ LABEL org.opencontainers.image.title="Archlinux" \
   org.opencontainers.image.url="https://dockenv.github.io" \
   org.opencontainers.image.description='Dart is a client-optimized language for fast apps on any platform.'
 
-ENV PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin" \
+ENV PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin" \
     TZ='Asia/Shanghai'
 
 ADD ./pacman.conf /etc/pacman.conf
+ADD ./mirrorlist /etc/pacman.d/mirrorlist
 
 RUN ln -sf /proc/self/mounts /etc/mtab \
     && ln --symbolic "/usr/share/zoneinfo/${TZ}" /etc/localtime \
-    && echo "Server = https://pods.xie.ke/archlinux/\$repo/os/\$arch" | tee /etc/pacman.d/mirrorlist \
     && echo "${TZ}" > /etc/timezone \
     && pacman -Syy \
     && pacman-key --init \
@@ -24,4 +24,4 @@ RUN ln -sf /proc/self/mounts /etc/mtab \
     && rm -fr /var/cache/pacman/pkg/* \
     && rm -fr /var/lib/pacman/sync/*.db
 
-CMD /bin/bash
+CMD ["/bin/bash"]
