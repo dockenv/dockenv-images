@@ -7,6 +7,18 @@
 # @Description: Init Docker Images
 ###
 
+
+. /etc/os-release
+
+# 本地时区设定
+echo 'Asia/Shanghai' > /etc/timezone
+rm -fr /etc/localtime ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+apt update -y
+apt upgrade -y
+
+apt install -y ca-certificates
+
 [ -f '/tmp/conf/entrypoint.sh' ] && cp /tmp/conf/entrypoint.sh /usr/bin/entrypoint && chmod +x /usr/bin/entrypoint
 [ -f '/tmp/conf/dockenv-deb-init.sh' ] && cp /tmp/conf/dockenv-deb-init.sh /usr/bin/dockenv-init && chmod +x /usr/bin/dockenv-init
 
@@ -46,13 +58,43 @@ add_bin() {
 apt update -y
 apt upgrade -y
 
+# Editor
+apt install -y neovim vim
+
+# Database
+apt install -y redis-server memcached
+
+# MultiMedia
+apt install -y ffmpeg
+
+# Downloader
+apt install -y wget curl httpie axel
+
+# Compress
+apt install -y 7zip brotli bzip2 lunzip lzip rpm rar unalz unar unrar unzip unrar-free zip zstd gzip \
+        p7zip p7zip-full p7zip-rar
+
 # Install Packages
 pkg_add ca-certificates locales openssh-server sudo
 pkg_add jq procps htop less file wget curl iputils-ping net-tools
 pkg_add zsh bat eza
+pkg_add openssl
+pkg_add gnupg
+
+# Network Tools
+pkg_add lsof net-tools htop netcat-openbsd rsync iproute2 whois tcpdump
+pkg_add universal-ctags strace psmisc psutils dnsutils expect
 pkg_add supervisor
-# pkg_add python3-pip
+pkg_add lsb-release
+pkg_add apt-transport-https apt-utils software-properties-common
+# pkg_add python3
+# pkg_add iso-codes
+# pkg_add python3-pip python3-neovim
+# pkg_add python3-apt
 pkg_add fzf silversearcher-ag ripgrep
+
+# Utils Tools
+apt install -y fzf bat zsh git jq tree screen less iftop enca
 
 # Some Toy
 apt install -y fortunes fortunes-zh cowsay
@@ -63,8 +105,8 @@ pkg_add neovim
 # Git
 pkg_add git gh git-delta
 
-wget -q https://mirrors.xie.ke/pkgs/Linux/exa-linux-x86_64-v0.10.1/bin/exa -O /usr/bin/exa
-chmod +x /usr/bin/exa
+# wget -q https://mirrors.xie.ke/pkgs/Linux/exa-linux-x86_64-v0.10.1/bin/exa -O /usr/bin/exa
+# chmod +x /usr/bin/exa
 
 # Compress
 pkg_add 7zip brotli bzip2 gzip lunzip lzip unar unrar unzip p7zip p7zip-full p7zip-rar rar unrar-free zip zstd
@@ -75,6 +117,11 @@ pkg_add 7zip brotli bzip2 gzip lunzip lzip unar unrar unzip p7zip p7zip-full p7z
 # for neovim
 # pip install -U setuptools
 # pip install pynvim websockets pip_search "python-lsp-server[all]"
+
+# wget -q "https://packages.microsoft.com/config/ubuntu/${VERSION_ID}/packages-microsoft-prod.deb" -O /tmp/mspkg.deb \
+# dpkg -i /tmp/mspkg.deb \
+# apt update -y \
+# apt install -y dotnet-runtime-${DOTNET_VER} dotnet-sdk-${DOTNET_VER}
 
 php_env() {
     # PHP And Composer
@@ -140,6 +187,25 @@ composer_app() {
     add_bin https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.1/phpcs.phar phpcs
     add_bin https://github.com/qossmic/deptrac/releases/download/0.23.0/deptrac.phar deptrac
     add_bin https://www.laravel-enlightn.com/security-checker.phar security-checker
+}
+
+# 添加 VSCode 扩展到 Code Server
+# 如 微软开发的 Remote 系列则只允许在 VSC 运行
+# usage: vsc_ext_add id
+vsc_ext_add()
+{
+    EXT_DIR=${HOME}/.code-server/exts
+    mkdir -p /tmp/vsc-ext
+    EXT_ID=$(echo "$1" | tr '[A-Z]' '[a-z]')
+    EXT_URL="https://marketplace.visualstudio.com/items?itemName=${EXT_ID}"
+    EXT_FILE_URL=$(curl -sL ${EXT_URL} | grep -Eo 'https://\S+gallerycdn.vsassets.io/extensions\S+Default' | head -n 1 | sed 's#Icons.Default#VSIXPackage#g')
+    EXT_AUTHOR=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $1}')
+    EXT_NAME=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $2}')
+    EXT_VER=$(echo "$EXT_FILE_URL" | awk -F 'extensions/' '{print $2}' | awk -F '/' '{print $3}')
+    FULL_NAME="${EXT_AUTHOR}.${EXT_NAME}-${EXT_VER}"
+    wget -c ${EXT_FILE_URL} -O /tmp/vsc-ext/${FULL_NAME}.vsix
+    unzip -qo /tmp/vsc-ext/${FULL_NAME}.vsix -d /tmp/vsc-ext/
+    mv /tmp/vsc-ext/extension ${EXT_DIR}/${FULL_NAME}
 }
 
 # Config code-server
@@ -210,6 +276,12 @@ vscode_init() {
     fi
 }
 
+# install extension for code-server
+vsc_ext_add()
+{
+    code-server --extensions-dir /home/boxs/.code-server/exts --install-extension $@
+}
+
 dev_depends_env() {
     apt install -y redis redis-redisearch memcached
 }
@@ -246,8 +318,10 @@ echo "${RUN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 # Config ohmyzsh
 git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ${HOME_DIR}/.oh-my-zsh
-#cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc
-# sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc
+cp ${HOME_DIR}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME_DIR}/.zshrc
+sed -i 's/ZSH_THEME.*/ZSH_THEME="strug"/g' ${HOME_DIR}/.zshrc
+
+# sudo -Hu ${DEV_USER} git clone --depth 1 https://github.com/nvm-sh/nvm.git ${DEV_HOME}/.nvm
 
 # Boxes
 git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ${HOMED_IR}/.local/share/zinit
