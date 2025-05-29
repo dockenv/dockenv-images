@@ -31,16 +31,34 @@ RUN echo 'Asia/Shanghai' > /etc/timezone \
 	# Node
 	# && pacman -S --noconfirm npm yarn pnpm bower gulp \
 	# Python
-	&& pacman -S --noconfirm python-pip python-pynvim python-brotli python-pyopenssl \
+	&& pacman -S --noconfirm python-pip \
+        python-pynvim \
+        python-brotli \
+        python-pyopenssl \
 	# java
 	# && pacman -S --noconfirm ant maven gradle groovy \
 	# PHP
-	&& pacman -S --noconfirm php-apcu php-enchant php-fpm php-gd php-grpc php-igbinary php-imagick php-memcached php-mongodb \
-		php-odbc php-pgsql php-redis php-snmp php-sodium php-sqlite php-tidy php-xsl \
+	&& pacman -S --noconfirm php-apcu \
+      php-enchant \
+      php-fpm \
+      php-gd \
+      php-grpc \
+      php-igbinary \
+      php-imagick \
+      php-memcached \
+      php-mongodb \
+		  php-odbc \
+      php-pgsql \
+      php-redis \
+      php-snmp \
+      php-sodium \
+      php-sqlite \
+      php-tidy \
+      php-xsl \
 	# Editor
 	&& pacman -S --noconfirm neovim \
 	# Cache Service
-	&& pacman -S --noconfirm redis memcached \
+	&& pacman -S --noconfirm redis \
 	&& pacman -S --noconfirm supervisor sudo \
 	# File && Code Tools
 	&& pacman -S --noconfirm fd bat bat-extras skim ripgrep the_silver_searcher fzf exa \
@@ -59,8 +77,23 @@ RUN echo 'Asia/Shanghai' > /etc/timezone \
 	# Downloader
 	&& pacman -S --noconfirm aria2 wget curl axel \
 	# NetWork Tools
-	&& pacman -S --noconfirm procps gnu-netcat htop mtr rsync traceroute dnsutils iputils lsof iproute2 whois corkscrew socat \
-		iperf iperf3 httpie curlie \
+	&& pacman -S --noconfirm procps \
+        gnu-netcat \
+        htop \
+        mtr \
+        rsync \
+        traceroute \
+        dnsutils \
+        iputils \
+        lsof \
+        iproute2 \
+        whois \
+        corkscrew \
+        socat \
+		    iperf \
+        iperf3 \
+        httpie \
+        curlie \
 	# Create Non-root User
 	&& useradd -d /home/${DEV_USER} -m -s /bin/zsh ${DEV_USER} \
     && echo "${DEV_USER}:${DEV_PASSWD}" | chpasswd \
@@ -82,3 +115,5 @@ RUN echo 'Asia/Shanghai' > /etc/timezone \
 	&& rm -fr /var/lib/pacman/sync/*
 
 USER ${DEV_USER}
+
+CMD ["/bin/zsh"]
