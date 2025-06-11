@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+./configure \
+  --prefix=${PREFIX_PHP} \
+  --bindir="${PREFIX_PHP}"/bin \
+  --sbindir="${PREFIX_PHP}"/sbin \
+  --with-config-file-path="${PREFIX_PHP}"/etc \
+  --with-config-file-scan-dir="${PREFIX_PHP}"/conf.d \
+  --with-fpm-user=www \
+  --with-fpm-group=www \
+  --enable-bcmath \
+  --enable-calendar \
+  --enable-exif \
+  --enable-fpm \
+  --enable-inline-optimization \
+  --enable-mbregex \
+  --enable-mbstring \
+  --enable-mysqlnd \
+  --enable-pcntl \
+  --enable-shmop \
+  --enable-soap \
+  --enable-sockets \
+  --enable-sysvsem \
+  --enable-wddx \
+  --enable-zip \
+  --with-bz2 \
+  --with-curl \
+  --with-enchant \
+  --with-gettext \
+  --with-gmp \
+  --with-iconv \
+  --with-jpeg-dir \
+  --with-libxml-dir \
+  --with-libzip \
+  --with-mcrypt \
+  --with-mhash \
+  --with-mysql=mysqlnd \
+  --with-mysqli=mysqlnd \
+  --with-kerberos \
+  --with-pcre-jit \
+  --with-pdo-mysql=mysqlnd \
+  --with-pdo-pgsql \
+  --with-pic \
+  --with-pgsql \
+  --with-png-dir \
+  --with-recode \
+  --with-readline \
+  --with-regex \
+  --with-tidy \
+  --with-xmlrpc \
+  --with-xsl \
+  --with-zlib \
+  --without-pear \
+  --disable-fileinfo \
+  --disable-rpath $ENABLE_OPENSSL
+make -j${CORES}
+make install
+cp php.ini* ${PREFIX_PHP}/etc/
+mv ${PREFIX_PHP}/etc/php-fpm.conf.default ${PREFIX_PHP}/etc/php-fpm.conf
+cp php.ini-development ${PREFIX_PHP}/etc/php.ini
