@@ -1,4 +1,4 @@
-FROM adguard/adguardhome:latest
+FROM adguard/dnsproxy:latest
 LABEL org.opencontainers.image.title="AdGuard DNS Proxy" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
