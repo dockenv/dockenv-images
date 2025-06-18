@@ -131,6 +131,8 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && chmod 755 /usr/lib/php"${PHP_VER}"/modules/*.so \
+    && wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/bin/composer \
+    && chmod +x /usr/bin/composer \
     && rm -fr /tmp/*.apk
 
 EXPOSE 9000

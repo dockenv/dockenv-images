@@ -141,7 +141,7 @@ RUN apk add --no-cache \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && chmod 755 /usr/lib/php"${PHP_VER}"/modules/*.so \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
+    && wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && rm -fr /tmp/*.apk
 

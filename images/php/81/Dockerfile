@@ -134,7 +134,7 @@ RUN apk add --no-cache \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.1.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
+    && wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && wget https://github.com/dockenv/dockenv-images/releases/download/brotli/php81-pecl-brotli-0.15.0-r0.apk -O /tmp/brotli.apk \
     && apk add --no-cache /tmp/brotli.apk \
