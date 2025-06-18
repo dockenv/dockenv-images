@@ -136,7 +136,7 @@ RUN apk add --no-cache \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_83_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
     && echo "extension=sqlsrv" > /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_8.3.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
-    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/conf.d/ioncube.ini \
+    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/conf.d/00-ioncube.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.3.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \

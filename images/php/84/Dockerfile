@@ -126,7 +126,7 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
     && sed -i "s#;pm.max_requests =.*#pm.max_requests = 10240#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_8.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
-    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/conf.d/ioncube.ini \
+    && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/conf.d/00-ioncube.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.4.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
