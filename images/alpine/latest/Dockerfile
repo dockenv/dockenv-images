@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:latest
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
