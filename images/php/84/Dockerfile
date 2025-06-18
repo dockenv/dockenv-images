@@ -130,7 +130,7 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.4.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
-    && chmod 755 /usr/lib/php"${PHP_VER}"/modules/*.so
+    && chmod 755 /usr/lib/php"${PHP_VER}"/modules/*.so \
     && rm -fr /tmp/*.apk
 
 EXPOSE 9000
