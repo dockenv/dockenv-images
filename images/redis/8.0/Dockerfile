@@ -1,4 +1,4 @@
-FROM redis:8.0-rc1-alpine
+FROM redis:8.0-alpine
 
 LABEL org.opencontainers.image.title="Redis" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
