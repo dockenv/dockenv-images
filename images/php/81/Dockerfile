@@ -125,11 +125,15 @@ RUN apk add --no-cache \
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#;pm.max_requests =.*#pm.max_requests = 10240#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
+    && addgroup -g 9000 www \
+    && adduser -H -D -G www -s /sbin/nologin -u 9000 www \
+    && sed -i "s#user =.*#user = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
+    && sed -i "s#group =.*#group = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_81_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
     && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_81_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
     && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_8.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_8.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/00-php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.1.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \

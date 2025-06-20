@@ -124,7 +124,7 @@ RUN apk add --no-cache \
     && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_72_nts_alpine_390_311.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
     && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.2.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_7.2.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \

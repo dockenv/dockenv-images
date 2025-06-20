@@ -111,7 +111,7 @@ RUN apk add --no-cache \
     && sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /etc/php${PHP_VER}/php.ini \
     && sed -i "s#^pm.max_children.*#pm.max_children = 32#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^listen =.*#listen = 0.0.0.0:9000#" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin_7.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_7.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/php.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/composer/composer-2.2.phar -O /usr/bin/composer \
     && chmod +x /usr/bin/composer \
