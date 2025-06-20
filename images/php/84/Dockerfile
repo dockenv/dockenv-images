@@ -125,8 +125,8 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
     && sed -i "s#^pm.max_spare_servers =.*#pm.max_spare_servers = 32#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#;pm.max_requests =.*#pm.max_requests = 10240#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
     && sed -i "s#^pm =.*#pm = dynamic#g" /etc/php${PHP_VER}/php-fpm.d/*.conf \
-    && addgroup -g 9000 www \
-    && adduser -H -D -G www -s /sbin/nologin -u 9000 www \
+    && addgroup -g 1000 www \
+    && adduser -H -D -G www -s /sbin/nologin -u 1000 www \
     && sed -i "s#user =.*#user = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
     && sed -i "s#group =.*#group = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
     && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_8.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
