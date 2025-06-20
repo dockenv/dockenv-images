@@ -20,9 +20,7 @@ RUN apk add --no-cache nginx \
             nginx-mod-http-image-filter \
             nginx-mod-http-js \
             nginx-mod-http-keyval \
-            nginx-mod-http-log-zmq \
             nginx-mod-http-lua \
-            nginx-mod-http-lua-upstream \
             nginx-mod-http-naxsi \
             nginx-mod-http-nchan \
             nginx-mod-http-redis2 \
