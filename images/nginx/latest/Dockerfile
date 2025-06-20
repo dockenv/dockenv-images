@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.20
+FROM ghcr.io/dockenv/alpine:latest
 
 LABEL org.opencontainers.image.title="Nginx" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -6,8 +6,9 @@ LABEL org.opencontainers.image.title="Nginx" \
       org.opencontainers.image.description='Nginx latest'
 
 RUN apk add --no-cache nginx \
-            nginx-mod-http-brotli \
+            nginx-mod-dynamic-upstream \
             nginx-mod-http-auth-jwt \
+            nginx-mod-http-brotli \
             nginx-mod-http-cache-purge \
             nginx-mod-http-cookie-flag \
             nginx-mod-http-dav-ext \
@@ -28,6 +29,8 @@ RUN apk add --no-cache nginx \
             nginx-mod-http-set-misc \
             nginx-mod-http-vod \
             nginx-mod-http-vts \
+            nginx-mod-http-zip \
+            nginx-mod-http-zstd \
             nginx-mod-mail \
             nginx-mod-rtmp \
             nginx-mod-stream \
