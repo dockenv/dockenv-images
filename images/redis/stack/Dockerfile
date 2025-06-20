@@ -4,6 +4,8 @@ LABEL org.opencontainers.image.title="Redis Stack" \
   org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
   org.opencontainers.image.description='redis-stack installs a Redis server with additional database capabilities and the RedisInsight.'
 
+RUN echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
+
 USER redis
 
 VOLUME /data
