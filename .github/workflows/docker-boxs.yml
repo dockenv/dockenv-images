@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: boxs
-  IMAGE_TAGS: "latest devbox alpine builder"
+  IMAGE_TAGS: "latest alpine builder"
 
 jobs:
   build:
