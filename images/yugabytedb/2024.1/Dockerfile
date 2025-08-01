@@ -1,4 +1,4 @@
-FROM yugabytedb/yugabyte:2024.1.6.0-b53
+FROM yugabytedb/yugabyte:2024.1.6.1-b2
 LABEL org.opencontainers.image.title="Yugabyte DB" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
