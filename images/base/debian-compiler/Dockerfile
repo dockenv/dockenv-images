@@ -11,9 +11,7 @@ ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 RUN apt update -y \
     && apt install -y \
-    curl \
-    wget \
-    jq \
+    git curl wget jq \
     lsb-release \
     ca-certificates \
     apt-transport-https \
@@ -63,6 +61,13 @@ RUN apt update -y \
     libcurl4-openssl-dev \
     libreadline-dev \
     libzstd-dev \
-    libgmp-dev
+    libgmp-dev \
+    && apt autoremove -y \
+    && apt-get autoclean -y \
+    && rm -fr /var/lib/apt/lists/* \
+    && rm -fr /usr/share/doc \
+    && rm -fr /usr/share/man \
+    && rm -fr /usr/share/fonts \
+    && rm -fr /usr/share/locale
 
 CMD ["/bin/bash"]
