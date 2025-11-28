@@ -1,6 +1,6 @@
 # Deepin panda Latest
 FROM reg.qiniu.com/imxieke/deepin:vncenv
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND noninteractive
 ENV HOME=/home/ubuntu \
     TERM=xterm \
     STARTUPDIR=/startup \

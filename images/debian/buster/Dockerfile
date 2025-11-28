@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.title="Debian GNU Linux" \
       org.opencontainers.image.url="https://dockenv.github.io" \
       org.opencontainers.image.description='Debian GNU Linux Buster'
 
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND noninteractive
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 RUN . /etc/os-release \

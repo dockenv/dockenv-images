@@ -3,7 +3,7 @@ FROM bestwu/deepin:panda
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
-ENV DEBIAN_FRONTEND noninteractive \
+ARG DEBIAN_FRONTEND noninteractive \
 	PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 RUN apt update -y --fix-missing \
