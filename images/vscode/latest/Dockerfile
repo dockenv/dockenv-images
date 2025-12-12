@@ -1,10 +1,10 @@
-FROM registry.cn-shanghai.aliyuncs.com/dockenv/base:ubuntu-omz
+FROM ghcr.io/dockenv/base:workspace
 
-LABEL org.opencontainers.image.title="VSCode Server" \
+LABEL org.opencontainers.image.title="Visual Studio Code" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Code Editor.'
+      org.opencontainers.image.description='The open source AI code editor.'
 
 # https://update.code.visualstudio.com/latest/server-linux-x64/stable
 # https://vscode.download.prss.microsoft.com/dbazure/download/stable/ddc367ed5c8936efe395cffeec279b04ffd7db78/vscode-server-linux-x64.tar.gz
