@@ -1,7 +1,6 @@
 ## Docker Image
 
 ## Dockerfile 介绍
-- portainer   docker 容器管理 UI
 - thumbor     是一个非常强大的图片处理服务，可以实现图片裁剪、缩放、滤镜，甚至是人脸识别。
 - ide-theia   运行在浏览器里的开发环境
 - Dejavu      ElasticSearch Web UI

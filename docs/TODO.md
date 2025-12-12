@@ -1,22 +1,3 @@
-## bug
-
-aria2
-PAS_SECRET 自定义 secret 无效
-
-脚本一键更新 .env 内版本信息
-
-- 自动更新镜像
-- curl -sL https://github.com/docker-library/kibana/raw/master/6/Dockerfile | grep 'Kibana'| cut -d ' ' -f 3
-- https://www.docker.elastic.co
-
-## Docker Compose
-- mongo
-- postgresql
-- Elastic
-- logstash
-- Kibana
-- Filebeat
-
  ## Net Tools
  - mtr
  - traceroute
@@ -28,6 +9,10 @@ PAS_SECRET 自定义 secret 无效
  - host
  - whois
  - netstat
+ - dotnet
+ - code-server
+ - anbox
+ - uengine
 
 ## Kali 安全工具
 - 网络安全
