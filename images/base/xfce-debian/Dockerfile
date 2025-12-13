@@ -88,8 +88,7 @@ RUN apt update -y \
     && apt install -y --no-install-recommends \
       python3 python3-pip \
       python3-apt \
-      python3-software-properties \
-      python3-neovim \
+      python3-pynvim \
     && apt install -y --no-install-recommends xinit xauth pkg-config yelp yelp-xsl zenity \
     # dialog Displays user-friendly dialog boxes from shell scripts
     && apt install -y --no-install-recommends \
@@ -99,7 +98,6 @@ RUN apt update -y \
       xvfb \
       alsamixergui \
       alsa-utils \
-      alsa-oss \
       alsa-tools \
       alsa-tools-gui \
     && apt install -y --no-install-recommends \
@@ -109,15 +107,22 @@ RUN apt update -y \
       xserver-xorg-video-fbdev \
       xserver-xorg-video-vesa \
       xserver-xorg-input-evdev \
-    && apt install -y tigervnc-standalone-server xrdp xorgxrdp x11vnc dbus dbus-x11  xdg-utils openbox openbox-menu \
+    && apt install -y \
+      tigervnc-standalone-server tigervnc-tools \
+      xrdp \
+      xorgxrdp \
+      x11vnc x11-xserver-utils \
+      dbus dbus-x11  \
+      xdg-utils \
+      openbox \
     # && apt install -y --no-install-recommends fonts-ubuntu fonts-noto-mono ttf-ubuntu-font-family ttf-wqy-zenhei xfonts-base xfonts-100dpi \
     # xfonts-75dpi xfonts-scalable xfonts-cyrillic ttf-wqy-zenhei fonts-wqy-zenhei fonts-wqy-microhei xfonts-wqy fonts-mononoki \
     # fonts-noto-mono fonts-liberation \
     && pip install websockify \
     # editor 考虑 sublime text 为替代品
     && apt install -y --no-install-recommends gedit \
-    && apt install -y --no-install-recommends gvfs gvfs-backends gvfs-bin gvfs-fuse \
-    && apt install -y --no-install-recommends fuse3 fuse-overlayfs fuse2fs fusecram fusefat fuseiso fusesmb \
+    && apt install -y --no-install-recommends gvfs gvfs-backends gvfs-fuse \
+    && apt install -y --no-install-recommends fuse3 fuse-overlayfs fuse2fs fusefat fuseiso \
     # 美化
     # mcdu ncurses disk usage viewer
     # catfish 文件搜索神器
