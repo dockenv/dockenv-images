@@ -16,6 +16,7 @@ RUN VERSIONS=$(curl -s ${API_URL} | jq -r .tag_name | awk -F "v" '{print $2}') \
   && chmod +x /bin/entrypoint.sh
 
 USER dockenv
+WORKDIR "/home/dockenv"
 
 EXPOSE 8080
 

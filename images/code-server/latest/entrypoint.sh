@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2025-12-12 16:58:06
- # @LastEditTime: 2025-12-13 23:08:12
+ # @LastEditTime: 2025-12-13 23:23:06
  # @LastEditors: Cloudflying
  # @Description: Code Server Entrypoint
 ###
@@ -22,5 +22,7 @@ password: ${DEFAULT_PASSWD}
 cert: false" > "${CONFIG_FILE}"
 
 chown -R "${DEFAULT_USER}:${DEFAULT_USER}" "/home/${DEFAULT_USER}/.config"
+
+echo "Code Server Password: ${DEFAULT_PASSWD}"
 
 exec code-server
