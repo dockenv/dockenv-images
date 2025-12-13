@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2025-12-12 16:58:06
- # @LastEditTime: 2025-12-12 18:25:00
+ # @LastEditTime: 2025-12-13 21:12:36
  # @LastEditors: Cloudflying
  # @Description: Code Server Entrypoint
 ###
@@ -13,10 +13,7 @@ DEFAULT_PORT=${DEFAULT_PORT:-8080}
 DEFAULT_USER=${DEFAULT_USER:-dockenv}
 DEFAULT_PASSWD=${DEFAULT_PASSWD:-$RANDOM_PASSWORD}
 CONFIG_FILE="/home/${DEFAULT_USER}/.config/code-server/config.yaml"
-CONFIG_FILE="./logs"
 
-
-# if [[ -d "/home/${DEFAULT_USER}" ]]; then
 mkdir -p "/home/${DEFAULT_USER}/.config/code-server"
 
 echo -E "bind-addr:0.0.0.0:${DEFAULT_PORT}
