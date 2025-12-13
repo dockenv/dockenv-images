@@ -27,7 +27,6 @@ RUN apt update -y \
       lsb-release \
       apt-transport-https \
       apt-utils \
-      software-properties-common \
     && apt install -y --no-install-recommends locales supervisor sudo openssh-server \
     && apt install -y --no-install-recommends \
       iso-codes \
@@ -130,15 +129,13 @@ RUN apt update -y \
     # && apt install -y --no-install-recommends menulibre ncdu catfish bleachbit meld synapse fzf thunderbird \
     # Remote Desktop
     && apt install --no-install-recommends -y remmina \
+      remmina-plugin-exec \
       remmina-plugin-rdp \
       remmina-plugin-vnc \
       remmina-plugin-secret \
-      remmina-plugin-exec \
       remmina-plugin-kwallet \
-      remmina-plugin-nx \
       remmina-plugin-spice \
       remmina-plugin-www \
-      remmina-plugin-xdmcp \
     # multimedia Pic Viewer
     # inkscape vector-based drawing program
     # apt install -y --no-install-recommends nomacs smplayer inkscape \
@@ -149,12 +146,16 @@ RUN apt update -y \
     # Other Packages
     # && apt install -y --no-install-recommends sshfs proxychains4 tcpdump \
     # Downloader
-    && apt install -y --no-install-recommends aria2 axel rtorrent qbittorrent deluge deluged deluge-console deluge-web \
+    && apt install -y --no-install-recommends \
+      aria2 \
+      axel \
+      rtorrent \
+      qbittorrent \
+      deluge deluged deluge-console deluge-web \
     && apt install -y --no-install-recommends tmux ffmpeg \
-    # midori 轻量级浏览器
-    && apt install -y --no-install-recommends midori \
-      firefox firefox-locale-zh-hans \
-      chromium-browser chromium-browser-l10n chromium-bsu-data chromium-codecs-ffmpeg \
+    && apt install -y --no-install-recommends \
+      firefox-esr firefox-esr-l10n-zh-cn \
+      chromium-browser chromium-browser-l10n \
     # Security
     # clamtk GUI 不好用
     # clamav
@@ -173,7 +174,6 @@ RUN apt update -y \
     # Install sound dev 暂时用不到
     && apt install -y --no-install-recommends \
       libasound2-dev \
-      libwebkit2gtk-4.0-dev \
     && apt install -y --fix-missing \
     && apt autoremove -y \
     && apt-get autoclean -y \
