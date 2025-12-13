@@ -9,7 +9,7 @@ env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
   IMAGE_NAME: base
-  IMAGE_TAGS: 'debian-compiler'
+  IMAGE_TAGS: 'debian-compiler xfce-debian server'
 
 jobs:
   build:

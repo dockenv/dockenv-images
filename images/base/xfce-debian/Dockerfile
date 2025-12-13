@@ -1,16 +1,14 @@
-FROM ghcr.io/dockenv/debian:bookworm
-LABEL MAINTAINER="Cloudflying" \
-    MAIL="oss@live.hk" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv
+FROM ghcr.io/dockenv/debian:latest
 
-ENV DEBIAN_FRONTEND=noninteractive
+LABEL org.opencontainers.image.title="Debian Base Desktop Env" \
+      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+      org.opencontainers.image.url="https://dockenv.github.io" \
+      org.opencontainers.image.description='Debian Base Desktop Env.'
 
-RUN rm -fr /etc/apt/sources.list.d/* \
-    && echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
-    && echo "deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list \
-    && apt update -y \
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update -y \
     && apt upgrade -y \
     && apt install -y xfce4 \
       xfce4-appmenu-plugin \
@@ -23,13 +21,43 @@ RUN rm -fr /etc/apt/sources.list.d/* \
       xfce4-screenshooter \
       xfce4-systemload-plugin \
       xfce4-taskmanager \
-    && apt install -y systemd init lsb-release apt-transport-https apt-utils software-properties-common \
+    && apt install -y \
+      systemd \
+      init \
+      lsb-release \
+      apt-transport-https \
+      apt-utils \
+      software-properties-common \
     && apt install -y --no-install-recommends locales supervisor sudo openssh-server \
-    && apt install -y --no-install-recommends python3 python3-pip python3-apt iso-codes openssl  gnupg lsof \
-        universal-ctags strace psmisc file psutils dnsutils expect \
-    && apt install -y --no-install-recommends bat zsh git wget curl httpie neovim jq tree screen less iftop enca \
+    && apt install -y --no-install-recommends \
+      iso-codes \
+      openssl \
+      gnupg \
+      lsof \
+      universal-ctags \
+      strace \
+      psmisc \
+      file \
+      psutils \
+      dnsutils \
+      expect \
+    && apt install -y --no-install-recommends \
+      bat \
+      zsh \
+      git \
+      wget \
+      curl \
+      httpie \
+      neovim \
+      jq \
+      tree \
+      screen \
+      less \
+      iftop \
+      enca \
     # Archive Compress
-    && apt install -y --no-install-recommends arj \
+    && apt install -y --no-install-recommends \
+      arj \
       7zip \
       brotli \
       bzip2 \
@@ -49,13 +77,34 @@ RUN rm -fr /etc/apt/sources.list.d/* \
       p7zip-full \
       p7zip-rar \
     # cabextract xz-utils \
-    && apt install -y --no-install-recommends net-tools procps htop netcat-openbsd rsync iproute2 whois \
+    && apt install -y --no-install-recommends \
+      net-tools \
+      procps \
+      btop htop \
+      netcat-openbsd \
+      rsync \
+      iproute2 \
+      whois \
     # Python Plguins
-    && apt install -y --no-install-recommends python3-software-properties python3-neovim \
+    && apt install -y --no-install-recommends \
+      python3 python3-pip \
+      python3-apt \
+      python3-software-properties \
+      python3-neovim \
     && apt install -y --no-install-recommends xinit xauth pkg-config yelp yelp-xsl zenity \
     # dialog Displays user-friendly dialog boxes from shell scripts
-    && apt install -y --no-install-recommends pavucontrol apulse dialog xvfb alsamixergui alsa-utils alsa-oss alsa-tools alsa-tools-gui \
-    && apt install -y --no-install-recommends libgl1-mesa-dri \
+    && apt install -y --no-install-recommends \
+      pavucontrol \
+      apulse \
+      dialog \
+      xvfb \
+      alsamixergui \
+      alsa-utils \
+      alsa-oss \
+      alsa-tools \
+      alsa-tools-gui \
+    && apt install -y --no-install-recommends \
+      libgl1-mesa-dri \
       libnss-wrapper \
       mesa-utils \
       xserver-xorg-video-fbdev \
@@ -117,11 +166,14 @@ RUN rm -fr /etc/apt/sources.list.d/* \
     # libreoffice
     # && apt install --no-install-recommends -y libreoffice libreoffice-help-zh-cn libreoffice-l10n-zh-cn \
     # File Manager
-    && apt install --no-install-recommends -y thunar thunar-archive-plugin thunar-gtkhash thunar-volman \
+    && apt install --no-install-recommends -y \
+      thunar thunar-archive-plugin thunar-gtkhash thunar-volman \
     # Editor && IDE
     # && apt install -y --no-install-recommends mousepad geany
     # Install sound dev 暂时用不到
-    && apt install -y --no-install-recommends libasound2-dev libwebkit2gtk-4.0-dev \
+    && apt install -y --no-install-recommends \
+      libasound2-dev \
+      libwebkit2gtk-4.0-dev \
     && apt install -y --fix-missing \
     && apt autoremove -y \
     && apt-get autoclean -y \

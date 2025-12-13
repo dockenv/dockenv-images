@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/base:workspace
+FROM ghcr.io/dockenv/base:server
 
 LABEL org.opencontainers.image.title="Code Server" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

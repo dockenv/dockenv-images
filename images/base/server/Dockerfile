@@ -1,15 +1,24 @@
 FROM ghcr.io/dockenv/debian:trixie
 
-LABEL org.opencontainers.image.title="Debian Base Workspace Env" \
+LABEL org.opencontainers.image.title="Debian Base Server Env" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
       org.opencontainers.image.url="https://dockenv.github.io" \
-      org.opencontainers.image.description='Debian Base Workspace Env.'
+      org.opencontainers.image.description='Debian Base Server Env.'
 
 RUN apt update -y \
   && apt install -y --no-install-recommends --no-install-suggests \
-    ca-certificates sudo openssh-server zsh tree file \
-    neovim git git-lfs gh git-delta \
+    ca-certificates \
+    sudo \
+    openssh-server \
+    zsh \
+    tree \
+    file \
+    neovim \
+    git \
+    git-lfs \
+    gh \
+    git-delta \
     gnupg \
     wget curl rsync \
     jq bat ripgrep eza btop \
