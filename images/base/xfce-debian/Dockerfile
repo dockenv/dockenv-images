@@ -118,7 +118,7 @@ RUN apt update -y \
     # && apt install -y --no-install-recommends fonts-ubuntu fonts-noto-mono ttf-ubuntu-font-family ttf-wqy-zenhei xfonts-base xfonts-100dpi \
     # xfonts-75dpi xfonts-scalable xfonts-cyrillic ttf-wqy-zenhei fonts-wqy-zenhei fonts-wqy-microhei xfonts-wqy fonts-mononoki \
     # fonts-noto-mono fonts-liberation \
-    && pip install websockify \
+    && pip install --break-system-packages websockify \
     # editor 考虑 sublime text 为替代品
     && apt install -y --no-install-recommends gedit \
     && apt install -y --no-install-recommends gvfs gvfs-backends gvfs-fuse \
