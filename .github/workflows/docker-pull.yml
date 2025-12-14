@@ -19,15 +19,15 @@ jobs:
       - name: Build the Docker Image
         run: |
           for name in ${IMAGE_NAME}; do
-            docker build . -f images/${name}/latest/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/${name}:latest
+            docker build . -f images/${name}/latest/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${name}:latest
           done
 
       - name: Login to Docker Registry
         run: |
-          docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
 
       - name: Push Docker Image
         run: |
           for name in ${IMAGE_NAME}; do
-            docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/${name}:latest
+            docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${name}:latest
           done

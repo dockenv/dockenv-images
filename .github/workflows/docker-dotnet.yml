@@ -20,17 +20,17 @@ jobs:
     - name: Build the Docker image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/dotnet/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
-          docker build . -f images/aspnet/${tag}/Dockerfile -t ${{ vars.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
+          docker build . -f images/dotnet/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
+          docker build . -f images/aspnet/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
         done
 
     - name: Login to Docker Registry
       run: |
-        docker login -u ${{vars.USERNAME}} -p "${{ secrets.APIKEY }}" ${{ vars.DOCKER_REGISTRY }}
+        docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
 
     - name: Push Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
-          docker push ${{ vars.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
+          docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/dotnet:${tag}
+          docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/aspnet:${tag}
         done
