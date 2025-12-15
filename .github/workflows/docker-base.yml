@@ -21,15 +21,15 @@ jobs:
           ROOT_PATH=$(pwd)
           for tag in ${IMAGE_TAGS}; do
             cd ${ROOT_PATH}/images/${{ env.IMAGE_NAME }}/${tag}
-            docker build . -f Dockerfile -t ${{ secrets.CUSTOM_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
 
       - name: Login Github Package Registry
         run: |
-          docker login -u ${{secrets.CUSTOM_DOCKER_USERNAME}} -p "${{ secrets.CUSTOM_DOCKER_PASSWD }}" ${{ secrets.CUSTOM_REGISTRY }}
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
 
       - name: Push Docker Image To Github Package
         run: |
           for tag in ${IMAGE_TAGS}; do
-            docker push ${{ secrets.CUSTOM_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done

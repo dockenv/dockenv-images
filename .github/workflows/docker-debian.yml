@@ -20,16 +20,16 @@ jobs:
     - name: Build the Docker image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.CUSTOM_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
     - name: Login to Docker Registry
       run: |
-        docker login -u ${{secrets.CUSTOM_DOCKER_USERNAME}} -p "${{ secrets.CUSTOM_DOCKER_PASSWD }}" ${{ secrets.CUSTOM_REGISTRY }}
+        docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
 
     - name: Push Docker Image
       run: |
         for tag in ${IMAGE_TAGS}; do
-          docker push ${{ secrets.CUSTOM_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
         done
 
