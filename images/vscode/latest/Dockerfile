@@ -33,4 +33,4 @@ USER dockenv
 
 EXPOSE 8080
 
-CMD ["code","serve-web","--host=0.0.0.0", "--port=8080"]
+CMD ["code", "serve-web", "--accept-server-license-terms", "--host=0.0.0.0", "--port=8080"]
