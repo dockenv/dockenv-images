@@ -19,10 +19,10 @@ LABEL org.opencontainers.image.title="Visual Studio Code" \
 RUN COMMIT_ID=$(curl -sL https://update.code.visualstudio.com/api/commits/stable/linux-x64 | jq -r ".[0]") \
   && mkdir -p /home/dockenv/.vscode/cli/serve-web \
   && cd /home/dockenv/.vscode/cli/serve-web \
-  && wget "https://update.code.visualstudio.com/commit:${COMMIT_ID}/server-linux-x64/stable" -O code-stable.tar.gz \
-  && wget "https://vscode.download.prss.microsoft.com/dbazure/download/stable/${COMMIT_ID}/vscode_cli_linux_x64_cli.tar.gz" -O vscode_cli.tar.gz \
-  && tar -xvf code-stable.tar.gz \
-  && tar -xvf vscode_cli.tar.gz \
+  && wget -q "https://update.code.visualstudio.com/commit:${COMMIT_ID}/server-linux-x64/stable" -O code-stable.tar.gz \
+  && wget -q "https://vscode.download.prss.microsoft.com/dbazure/download/stable/${COMMIT_ID}/vscode_cli_linux_x64_cli.tar.gz" -O vscode_cli.tar.gz \
+  && tar -xf code-stable.tar.gz \
+  && tar -xf vscode_cli.tar.gz \
   && mv code /usr/bin/code \
   && chmod +x /usr/bin/code \
   && rm -fr code-stable.tar.gz vscode_cli.tar.gz \
