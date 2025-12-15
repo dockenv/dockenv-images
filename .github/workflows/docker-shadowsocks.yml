@@ -1,0 +1,34 @@
+name: Docker Build Shadowsocks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * 2'
+
+env:
+  TZ: Asia/Shanghai
+  IMAGE_NAME: shadowsocks
+  IMAGE_TAGS: "server client"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        ROOT_PATH=$(pwd)
+        for tag in ${IMAGE_TAGS}; do
+          cd ${ROOT_PATH}/images/${{ env.IMAGE_NAME }}/${tag}
+          docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+        done
+
+    - name: Login Github Package Registry
+      run: |
+        docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+
+    - name: Push Docker Image To Github Package
+      run: |
+        for tag in ${IMAGE_TAGS}; do
+          docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+        done
