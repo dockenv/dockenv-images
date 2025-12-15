@@ -12,7 +12,7 @@ ARG RELEASE_URL https://github.com/shadowsocks/shadowsocks-rust/releases/latest
 ARG BINARY_URL https://github.com/shadowsocks/shadowsocks-rust/releases/download
 
 RUN apk add --virtual .deps curl \
-    && export VERSION=$(curl -fsSLI -o /dev/null -w "%{url_effective}" "${RELEASE_URL}" | awk -F 'tag/v' '{print $2}') \
+    && VERSION=$(curl -fsSLI -o /dev/null -w "%{url_effective}" "${RELEASE_URL}" | awk -F 'tag/v' '{print $2}') \
     && wget "${BINARY_URL}/v${VERSION}/shadowsocks-v${VERSION}.x86_64-unknown-linux-musl.tar.xz" -O /tmp/shadowsocks.tar.xz \
     && tar -xf /tmp/shadowsocks.tar.xz -C /tmp \
     && mv /tmp/sslocal /usr/bin/sslocal \
