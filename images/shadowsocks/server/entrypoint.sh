@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2025-04-10 09:16:44
- # @LastEditTime: 2025-12-15 23:21:34
+ # @LastEditTime: 2025-12-16 00:34:55
  # @LastEditors: Cloudflying
  # @Description:
 ###
@@ -19,7 +19,6 @@ echo "Shadowsocks Password: ${PASSWD} Method: ${METHOD} PORT: ${PORT}"
 exec ssserver \
   --server-addr "0.0.0.0:${PORT}" \
   --password ${PASSWD} \
-  --method ${METHOD} \
   --encrypt-method ${METHOD} \
   --timeout ${TIMEOUT} \
   --udp-timeout ${TIMEOUT} \
