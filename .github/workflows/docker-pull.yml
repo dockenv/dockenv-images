@@ -8,7 +8,7 @@ on:
 
 env:
   TZ: Asia/Shanghai
-  IMAGE_NAME: "acme caddy chromedriver elixir gitea geckodriver haproxy meilisearch memcached minio portainer rabbitmq rsync traefik unit varnish"
+  IMAGE_NAME: "acme caddy chromedriver elixir gitea geckodriver haproxy meilisearch memcached minio rabbitmq rsync traefik unit varnish"
 
 jobs:
   build:
