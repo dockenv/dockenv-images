@@ -7,12 +7,9 @@ LABEL org.opencontainers.image.title="Shadowsocks Server" \
 
 COPY entrypoint.sh /bin/entrypoint.sh
 
-ARG RELEASE_URL https://github.com/shadowsocks/shadowsocks-rust/releases/latest
-ARG BINARY_URL https://github.com/shadowsocks/shadowsocks-rust/releases/download
-
 RUN apk add --virtual .deps curl \
-    && VERSION=$(curl -fsSLI -o /dev/null -w "%{url_effective}" "${RELEASE_URL}" | awk -F 'tag/v' '{print $2}') \
-    && wget "${BINARY_URL}/v${VERSION}/shadowsocks-v${VERSION}.x86_64-unknown-linux-musl.tar.xz" -O /tmp/shadowsocks.tar.xz \
+    && VERSION=$(curl -fsSLI -o /dev/null -w "%{url_effective}" "https://github.com/shadowsocks/shadowsocks-rust/releases/latest" | awk -F 'tag/v' '{print $2}') \
+    && wget "https://github.com/shadowsocks/shadowsocks-rust/releases/download/v${VERSION}/shadowsocks-v${VERSION}.x86_64-unknown-linux-musl.tar.xz" -O /tmp/shadowsocks.tar.xz \
     && tar -xf /tmp/shadowsocks.tar.xz -C /tmp \
     && mv /tmp/ssserver /usr/bin/ssserver \
     && chmod +x /usr/bin/ssserver \
