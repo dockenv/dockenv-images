@@ -9,5 +9,5 @@ docker run -d \
     -p 80:80 \
     -p 443:443 \
     -p 443:443/udp \
-    ghcr.io/dockenv/caddy:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/caddy:latest
 ```

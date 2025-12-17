@@ -11,5 +11,5 @@ docker run -d \
     -v /apth/to/arangodb:/var/lib/arangodb3 #  persistent files
     -e ARANGO_RANDOM_ROOT_PASSWORD=1 \ # conflict with `ARANGO_ROOT_PASSWORD`
     -e ARANGO_ROOT_PASSWORD=dockpass \ # optional
-    ghcr.io/dockenv/arangodb:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/arangodb:latest
 ```

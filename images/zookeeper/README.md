@@ -4,7 +4,7 @@
 
 ## Usage
 
-`$ docker run --name zookeeper --restart always -d -v $(pwd)/zoo.cfg:/conf/zoo.cfg ghcr.io/dockenv/zookeeper:latest`
+`$ docker run --name zookeeper --restart always -d -v $(pwd)/zoo.cfg:/conf/zoo.cfg swr.ap-southeast-3.myhuaweicloud.com/dockenv/zookeeper:latest`
 
 
 ## Documens

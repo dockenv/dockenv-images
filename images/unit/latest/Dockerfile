@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.19
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:3.19
 
 LABEL org.opencontainers.image.title="Nginx Unit"
 LABEL org.opencontainers.image.vendor="Cloudflying <oss@live.hk>"

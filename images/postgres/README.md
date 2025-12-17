@@ -6,7 +6,7 @@ docker run --rm \
     -e POSTGRES_PASSWORD=dockenv\
     -e PGDATA=/var/lib/postgresql/data/pgdata \
     -v /custom/mount:/var/lib/postgresql/data \
-    ghcr.io/dockenv/postgres:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/postgres:latest
 ```
 
 ## Variable

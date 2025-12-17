@@ -4,4 +4,4 @@
 
 ## Usage
 
-`docker run -d --name valkey -p 6379:6379 ghcr.io/dockenv/valkey`
+`docker run -d --name valkey -p 6379:6379 swr.ap-southeast-3.myhuaweicloud.com/dockenv/valkey`

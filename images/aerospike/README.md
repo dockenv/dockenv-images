@@ -10,7 +10,7 @@ docker run -d \
     -v /opt/aerospike/data:/opt/aerospike/data \
     -e "FEATURE_KEY_FILE=/opt/aerospike/etc/features.conf" \
     -p 3000-3002:3000-3002 \
-    ghcr.io/dockenv/aerospike:ce \
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/aerospike:ce \
     --config-file /opt/aerospike/etc/aerospike.conf
 ```
 

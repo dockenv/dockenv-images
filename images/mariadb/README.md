@@ -21,7 +21,7 @@ docker run -d \
     --env MARIADB_USER=dockenv \
     --env MARIADB_PASSWORD=dockenv \
     --env MARIADB_ROOT_PASSWORD=dockenv  \
-    ghcr.io/dockenv/mariadb:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/mariadb:latest
 ```
 
 ## Params

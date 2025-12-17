@@ -13,5 +13,5 @@ docker run -d \
     -v $(pwd):/data/downloads \
     -p 6800:6800 \
     -p 6881-6999:6881-6999 \
-    ghcr.io/dockenv/aria2:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/aria2:latest
 ```

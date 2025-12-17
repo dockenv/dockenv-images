@@ -1,5 +1,5 @@
 # hadolint ignore=DL3007
-FROM ghcr.io/dockenv/alpine:latest
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:latest
 LABEL org.opencontainers.image.title="Seedbox" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \

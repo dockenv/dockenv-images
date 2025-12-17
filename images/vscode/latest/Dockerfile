@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/base:server
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/base:server
 
 LABEL org.opencontainers.image.title="Visual Studio Code" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

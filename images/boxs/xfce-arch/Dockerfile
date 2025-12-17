@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/boxs:xfce-arch-base
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/boxs:xfce-arch-base
 LABEL MAINTAINER="Cloudflying" \
     MAIL="oss@live.hk"
 

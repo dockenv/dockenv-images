@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/archlinux:latest
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/archlinux:latest
 
 LABEL org.opencontainers.image.title="Archlinux" \
   org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

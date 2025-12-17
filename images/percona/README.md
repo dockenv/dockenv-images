@@ -11,7 +11,7 @@ docker run -d \
     -e MYSQL_PASSWORD=dockpass \
     -v /path/to/conf:/etc/my.cnf.d \
     -v /path/to/data:/var/lib/mysql \
-    ghcr.io/dockenv/percona:latest \
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/percona:latest \
     --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 

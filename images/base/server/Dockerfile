@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/debian:trixie
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:trixie
 
 LABEL org.opencontainers.image.title="Debian Base Server Env" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
@@ -15,10 +15,7 @@ RUN apt update -y \
     tree \
     file \
     neovim \
-    git \
-    git-lfs \
-    gh \
-    git-delta \
+    git git-lfs gh git-delta \
     gnupg \
     wget curl rsync \
     jq bat ripgrep eza btop \

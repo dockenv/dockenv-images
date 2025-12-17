@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.14
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:3.14
 
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"

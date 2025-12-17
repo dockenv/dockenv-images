@@ -6,5 +6,5 @@ docker run -d \
     -p 9200:9200 \
     -p 9300:9300 \
     -e "discovery.type=single-node" \
-    ghcr.io/dockenv/elastic:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/elastic:latest
 ```

@@ -6,14 +6,14 @@
   - `cli` version dev env base debian
   - Components
     - `vscode-server` visual studio code run in web
-      - `docker run -d -p 8080:8080 -e CODE_PASSWD=vscode ghcr.io/dockenv/boxs:vscode`
+      - `docker run -d -p 8080:8080 -e CODE_PASSWD=vscode swr.ap-southeast-3.myhuaweicloud.com/dockenv/boxs:vscode`
     - `code-server` visual studio code run in web
 - xfce
   - Ubuntu Xfce4 Desktop base debian
 - vscode
 - sshd
   - sshd run on debian nullseye Pure OS Env, No php Python and more env
-  - `docker run -d -p 22:22 ghcr.io/dockenv/boxs:sshd`
+  - `docker run -d -p 22:22 swr.ap-southeast-3.myhuaweicloud.com/dockenv/boxs:sshd`
 - builder
   - Archlinux Builder, only for build Archlinux Package
 

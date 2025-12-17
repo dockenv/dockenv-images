@@ -8,5 +8,5 @@ docker run -d \
   --restart always \
   --publish 8182:8182 \
   --name sshwifty \
-  ghcr.io/dockenv/sshwifty:latest
+  swr.ap-southeast-3.myhuaweicloud.com/dockenv/sshwifty:latest
 ```

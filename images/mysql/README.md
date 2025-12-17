@@ -7,7 +7,7 @@ docker run -d --name percona \
     -e MYSQL_PASSWORD=dockenv \
     -v /path/to/conf:/etc/my.cnf.d \
     -v /path/to/data:/var/lib/mysql \
-    ghcr.io/dockenv/mysql:5.7 \
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/mysql:5.7 \
     --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 

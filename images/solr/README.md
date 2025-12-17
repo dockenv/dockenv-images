@@ -4,7 +4,7 @@
 
 ## Usage
 
-`$ docker run -d -p 8983:8983 -t ghcr.io/dockenv/solr:latest`
+`$ docker run -d -p 8983:8983 -t swr.ap-southeast-3.myhuaweicloud.com/dockenv/solr:latest`
 
 
 ## Stopped Tags

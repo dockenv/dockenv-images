@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.20
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:3.20
 
 
 LABEL org.opencontainers.image.title="Chrony" \

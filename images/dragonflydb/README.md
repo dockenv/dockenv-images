@@ -4,7 +4,7 @@
 
 ## Usage:
 
-`docker run --name=dragonflydb --network=host --ulimit memlock=-1 -p 6379:6379 ghcr.io/dockenv/dragonfly`
+`docker run --name=dragonflydb --network=host --ulimit memlock=-1 -p 6379:6379 swr.ap-southeast-3.myhuaweicloud.com/dockenv/dragonfly`
 
 
 ## Connect

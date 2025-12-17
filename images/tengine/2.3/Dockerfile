@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/ubuntu:21.04
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/ubuntu:21.04
 
 LABEL MAINTAINER="Cloudflying" \
     MAIL="oss@live.hk"

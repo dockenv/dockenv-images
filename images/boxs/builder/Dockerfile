@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/archlinux:latest
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/archlinux:latest
 
 LABEL MAINTAINER="Cloudflying" \
     MAIL="oss@live.hk" \

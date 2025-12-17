@@ -16,5 +16,5 @@ docker run \
     -e DOCKER_INFLUXDB_INIT_ORG=dockenv \
     -e DOCKER_INFLUXDB_INIT_BUCKET=dockenv \
     -e DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=dockenv
-    ghcr.io/dockenv/influxdb:latest
+    swr.ap-southeast-3.myhuaweicloud.com/dockenv/influxdb:latest
 ```

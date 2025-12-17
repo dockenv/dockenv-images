@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/alpine:3.9
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:3.9
 LABEL org.opencontainers.image.title="Alpine Linux" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \

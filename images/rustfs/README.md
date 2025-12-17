@@ -1,6 +1,6 @@
 ## RustFS
 
-`docker pull ghcr.io/dockenv/rustfs:latest`
+`docker pull swr.ap-southeast-3.myhuaweicloud.com/dockenv/rustfs:latest`
 
 
 ## `/etc/rustfs/config.toml`

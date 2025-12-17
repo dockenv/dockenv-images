@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/boxs:xfce-base
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/boxs:xfce-base
 LABEL MAINTAINER="Cloudflying" \
     MAIL="oss@live.hk" \
     org.opencontainers.image.source=https://github.com/dockenv/dockenv

@@ -1,4 +1,4 @@
-FROM ghcr.io/dockenv/debian:latest
+FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:latest
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk" \
         org.opencontainers.image.source=https://github.com/dockenv/dockenv

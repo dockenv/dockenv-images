@@ -11,5 +11,5 @@ docker run \
     -v /home/couchdb/data:/opt/couchdb/data \
     -v /home/couchdb/etc:/opt/couchdb/etc/local.d \
     -p 5984:5984 \
-    -d ghcr.io/dockenv/couchdb:latest
+    -d swr.ap-southeast-3.myhuaweicloud.com/dockenv/couchdb:latest
 ```
