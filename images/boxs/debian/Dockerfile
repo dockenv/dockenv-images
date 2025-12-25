@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:sid
+FROM ghcr.io/dockenv/debian:sid
 
 LABEL org.opencontainers.image.source=https://github.com/dockenv/dockenv-images \
   org.opencontainers.image.url="https://dockenv.github.io" \

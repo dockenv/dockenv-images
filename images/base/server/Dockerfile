@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:trixie
+FROM ghcr.io/dockenv/debian:trixie
 
 LABEL org.opencontainers.image.title="Debian Base Server Env" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

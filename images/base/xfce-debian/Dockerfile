@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:latest
+FROM ghcr.io/dockenv/debian:latest
 
 LABEL org.opencontainers.image.title="Debian Base Desktop Env" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

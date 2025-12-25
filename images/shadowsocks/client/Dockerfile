@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:latest
+FROM ghcr.io/dockenv/alpine:latest
 
 LABEL org.opencontainers.image.title="Shadowsocks Client" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \

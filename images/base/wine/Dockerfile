@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/debian:bookworm
+FROM ghcr.io/dockenv/debian:bookworm
 LABEL org.opencontainers.image.title="Wine" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \

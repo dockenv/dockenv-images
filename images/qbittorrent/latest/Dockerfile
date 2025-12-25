@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:latest
+FROM ghcr.io/dockenv/alpine:latest
 LABEL org.opencontainers.image.title="qBittorrent" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \

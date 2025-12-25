@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/alpine:edge
+FROM ghcr.io/dockenv/alpine:edge
 LABEL org.opencontainers.image.title="Squid Proxy Cache" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
       org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \

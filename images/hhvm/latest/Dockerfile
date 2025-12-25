@@ -1,4 +1,4 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/ubuntu:20.04
+FROM ghcr.io/dockenv/ubuntu:20.04
 LABEL MAINTAINER="Cloudflying" \
         MAIL="oss@live.hk"
 
