@@ -20,7 +20,7 @@ jobs:
         run: |
           for tag in ${IMAGE_TAGS}; do
             cd images/${{ env.IMAGE_NAME }}/${tag}
-            docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
             docker tag ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag} ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
             cd ${{ github.workspace }}
           done
