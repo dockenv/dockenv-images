@@ -25,10 +25,6 @@ jobs:
             docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
 
-      - name: Login to Docker Registry
-        run: |
-          docker login -u  -p ""
-
       - name: Login to Custom Container Registry
         uses: docker/login-action@v3
         with:
