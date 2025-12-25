@@ -7,17 +7,6 @@
  # @Description: Build Nginx
 ###
 
-ROOT_PATH=$(realpath $(dirname $0))
-NGX_MOD_PATH="$ROOT_PATH/nginx-modules"
-NGINX_VERSION="1.27.4"
-mkdir -p ${NGX_MOD_PATH}
-
-# sed -i "s#edge.kernel.org#aliyun.com#g" /etc/apk/repositories
-
-[ ! -d "nginx" ] && git clone --depth 1 -b release-${NGINX_VERSION} https://github.com/nginx/nginx.git
-
-# extensions
-
 install_depends()
 {
   # Deps

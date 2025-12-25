@@ -1,48 +1,53 @@
 FROM ghcr.io/dockenv/alpine:latest
 
 LABEL org.opencontainers.image.title="Nginx" \
-      org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
-      org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
-      org.opencontainers.image.description='Nginx latest'
+  org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
+  org.opencontainers.image.source="https://github.com/dockenv/dockenv-images" \
+  org.opencontainers.image.description='an HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP proxy server, and mail proxy server.'
 
 RUN apk add --no-cache nginx \
-            nginx-mod-dynamic-upstream \
-            nginx-mod-http-auth-jwt \
-            nginx-mod-http-brotli \
-            nginx-mod-http-cache-purge \
-            nginx-mod-http-cookie-flag \
-            nginx-mod-http-dav-ext \
-            nginx-mod-http-encrypted-session \
-            nginx-mod-http-fancyindex \
-            nginx-mod-http-geoip \
-            nginx-mod-http-geoip2 \
-            nginx-mod-http-headers-more \
-            nginx-mod-http-image-filter \
-            nginx-mod-http-js \
-            nginx-mod-http-keyval \
-            nginx-mod-http-lua \
-            nginx-mod-http-naxsi \
-            nginx-mod-http-nchan \
-            nginx-mod-http-redis2 \
-            nginx-mod-http-set-misc \
-            nginx-mod-http-vod \
-            nginx-mod-http-vts \
-            nginx-mod-http-zip \
-            nginx-mod-http-zstd \
-            nginx-mod-mail \
-            nginx-mod-rtmp \
-            nginx-mod-stream \
-            nginx-mod-stream-geoip \
-            nginx-mod-stream-geoip2 \
-            nginx-mod-stream-js \
-            nginx-mod-stream-keyval \
-            tzdata \
-            && ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-            && echo "Asia/Shanghai" > /etc/timezone \
-            && rm -fr /etc/nginx/nginx.conf \
-            && rm -fr /etc/nginx/http.d \
-            && rm -fr /etc/nginx/conf.d/* \
-            && mkdir -p /tmp/nginx/proxy_temp_dir /tmp/nginx/proxy_cache_dir
+  nginx-mod-dynamic-upstream \
+  nginx-mod-http-acme \
+  nginx-mod-http-auth-jwt \
+  nginx-mod-http-brotli \
+  nginx-mod-http-cache-purge \
+  nginx-mod-http-cookie-flag \
+  nginx-mod-http-dav-ext \
+  nginx-mod-http-encrypted-session \
+  nginx-mod-http-fancyindex \
+  nginx-mod-http-geoip \
+  nginx-mod-http-geoip2 \
+  nginx-mod-http-headers-more \
+  nginx-mod-http-image-filter \
+  nginx-mod-http-js \
+  nginx-mod-http-keyval \
+  nginx-mod-http-lua \
+  nginx-mod-http-lua-upstream \
+  nginx-mod-http-naxsi \
+  nginx-mod-http-nchan \
+  nginx-mod-http-redis2 \
+  nginx-mod-http-set-misc \
+  nginx-mod-http-shibboleth \
+  nginx-mod-http-upload \
+  nginx-mod-http-vod \
+  nginx-mod-http-vts \
+  nginx-mod-http-xslt-filter \
+  nginx-mod-http-zip \
+  nginx-mod-http-zstd \
+  nginx-mod-mail \
+  nginx-mod-rtmp \
+  nginx-mod-stream \
+  nginx-mod-stream-geoip \
+  nginx-mod-stream-geoip2 \
+  nginx-mod-stream-js \
+  nginx-mod-stream-keyval \
+  tzdata \
+  && ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo "Asia/Shanghai" > /etc/timezone \
+  && rm -fr /etc/nginx/nginx.conf \
+  && rm -fr /etc/nginx/http.d \
+  && rm -fr /etc/nginx/conf.d/* \
+  && mkdir -p /tmp/nginx/proxy_temp_dir /tmp/nginx/proxy_cache_dir
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/default.conf /etc/nginx/conf.d
