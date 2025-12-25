@@ -20,11 +20,13 @@ jobs:
         run: |
           for tag in ${IMAGE_TAGS}; do
             docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker tag ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag} ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
 
-      - name: Login to Docker Registry
+      - name: Login to Docker Container Registry
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+          docker login -u ${{ secrets.GHCR_USER }} -p "${{ secrets.GHCR_TOKEN }}" ghcr.io
 
       - name: Push Docker Image
         run: |

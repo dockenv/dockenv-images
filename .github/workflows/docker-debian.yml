@@ -16,20 +16,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: |
-        for tag in ${IMAGE_TAGS}; do
-          docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
-        done
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: |
+          for tag in ${IMAGE_TAGS}; do
+            docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker tag ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag} ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
 
-    - name: Login to Docker Registry
-      run: |
-        docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+      - name: Login to Docker Container Registry
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+          docker login -u ${{ secrets.GHCR_USER }} -p "${{ secrets.GHCR_TOKEN }}" ghcr.io
 
-    - name: Push Docker Image
-      run: |
-        for tag in ${IMAGE_TAGS}; do
-          docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
-        done
+      - name: Push Docker Image
+        run: |
+          for tag in ${IMAGE_TAGS}; do
+            docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
 
