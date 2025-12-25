@@ -16,6 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Build the Docker image
         run: |
           CURRENT_PWD=$(pwd)
@@ -26,10 +27,25 @@ jobs:
 
       - name: Login to Docker Registry
         run: |
-          docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+          docker login -u  -p ""
+
+      - name: Login to Custom Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{ secrets.DOCKER_PASSWD }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Push Docker Image
         run: |
           for tag in ${IMAGE_TAGS}; do
+            docker push ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
             docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
