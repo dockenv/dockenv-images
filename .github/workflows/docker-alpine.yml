@@ -31,5 +31,6 @@ jobs:
       - name: Push Docker Image
         run: |
           for tag in ${IMAGE_TAGS}; do
+            docker push ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
             docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
