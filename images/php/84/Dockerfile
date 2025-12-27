@@ -135,9 +135,9 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
     && adduser -H -D -G www -s /sbin/nologin -u 1000 www \
     && sed -i "s#user =.*#user = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
     && sed -i "s#group =.*#group = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_8.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/php-ioncube-alpine-15.5.0/ioncube_loader_lin-musl_8.4.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/conf.d/00-ioncube.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.4.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/php-ixed-alpine-17.0.0/ixed.8.4.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && chmod 755 /usr/lib/php"${PHP_VER}"/modules/*.so \

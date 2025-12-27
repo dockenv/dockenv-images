@@ -133,9 +133,9 @@ RUN apk add --no-cache \
     && echo "extension=pdo_sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_81_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
     && echo "extension=sqlsrv" >> /etc/php${PHP_VER}/conf.d/20-sqlsrv.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/ioncube/ioncube_loader_lin-musl_8.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/php-ioncube-alpine-15.5.0/ioncube_loader_lin-musl_8.1.so -O /usr/lib/php"${PHP_VER}"/modules/ioncube.so \
     && echo "zend_extension=ioncube.so" >> /etc/php${PHP_VER}/00-php.ini \
-    && wget https://github.com/dockenv/dockenv-images/releases/download/SourceGuardian/ixed.8.1.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
+    && wget https://github.com/dockenv/dockenv-images/releases/download/php-ixed-alpine-17.0.0/ixed.8.1.lin -O /usr/lib/php"${PHP_VER}"/modules/ixed.so \
     && echo "[sourceguardian]" > /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && echo "zend_extension=ixed.so" >> /etc/php${PHP_VER}/conf.d/sourceguardian.ini \
     && wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/bin/composer \
