@@ -51,7 +51,6 @@ RUN apk add --no-cache \
         php83-pecl-brotli \
         php83-pecl-couchbase \
         php83-pecl-event \
-        php83-pecl-grpc \
         php83-pecl-igbinary \
         php83-pecl-imagick \
         php83-pecl-imagick-dev \
@@ -69,8 +68,6 @@ RUN apk add --no-cache \
         php83-pecl-redis \
         php83-pecl-smbclient \
         php83-pecl-ssh2 \
-        php83-pecl-swoole \
-        php83-pecl-swoole-dev \
         php83-pecl-timezonedb \
         php83-pecl-uuid \
         php83-pecl-vips \
@@ -107,6 +104,10 @@ RUN apk add --no-cache \
         libstdc++-dev \
         unixodbc-dev \
         eudev-libs \
+    && apk add --no-cache --repository https://mirrors.edge.kernel.org/alpine/edge/community/ \
+      php83-pecl-grpc \
+      php83-pecl-swoole  \
+      php83-pecl-swoole-dev \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/sbin/php-fpm${PHP_VER} /usr/sbin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
@@ -135,6 +136,7 @@ RUN apk add --no-cache \
     && adduser -H -D -G www -s /sbin/nologin -u 1000 www \
     && sed -i "s#user =.*#user = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
     && sed -i "s#group =.*#group = www#g" /etc/php${PHP_VER}/php-fpm.d/www.conf \
+    && chown -R www:www /var/log/php83 \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_pdo_sqlsrv_83_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/pdo_sqlsrv.so \
     && echo "extension=pdo_sqlsrv" > /etc/php${PHP_VER}/conf.d/20-pdo-sqlsrv.ini \
     && wget https://github.com/dockenv/dockenv-images/releases/download/php-mssql-ext/php_sqlsrv_83_nts_alpine_318.so -O /usr/lib/php"${PHP_VER}"/modules/sqlsrv.so \
@@ -150,4 +152,7 @@ RUN apk add --no-cache \
     && rm -fr /tmp/*.apk
 
 EXPOSE 9000
-CMD ["php-fpm","--nodaemonize"]
+
+USER www
+
+CMD [ "php-fpm", "--fpm-config", "/etc/php83/php-fpm.conf", "--nodaemonize" ]

@@ -9,7 +9,6 @@ ENV PHP_VER=84
 
 RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositories \
     && echo "https://mirrors.edge.kernel.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "https://mirrors.edge.kernel.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk add --no-cache \
         php84-bcmath \
         php84-bz2 \
@@ -47,15 +46,18 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
         php84-pdo_odbc \
         php84-pdo_pgsql \
         php84-pdo_sqlite \
+        php84-pecl-amqp \
         php84-pecl-apcu \
         php84-pecl-ast \
         php84-pecl-brotli \
         php84-pecl-couchbase \
+        php84-pecl-decimal \
         php84-pecl-event \
         php84-pecl-grpc \
         php84-pecl-igbinary \
         php84-pecl-imagick \
         php84-pecl-imagick-dev \
+        php84-pecl-imap \
         php84-pecl-lzf \
         php84-pecl-mailparse \
         php84-pecl-memcache \
@@ -101,6 +103,10 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
         libstdc++-dev \
         unixodbc-dev \
         eudev-libs \
+    && apk add --no-cache --repository https://mirrors.edge.kernel.org/alpine/edge/community/ \
+      php84-pecl-grpc \
+      php84-pecl-swoole  \
+      php84-pecl-swoole-dev \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/sbin/php-fpm${PHP_VER} /usr/sbin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
