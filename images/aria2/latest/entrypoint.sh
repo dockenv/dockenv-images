@@ -2,11 +2,17 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:25:54
-# @LastEditTime: 2024-11-29 23:30:02
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-12-28 15:20:11
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 ARIA2_CONF='/etc/aria2c/aria2c.conf'
+
+UID=${UID:-'1000'}
+USER=${USER:-'dockenv'}
+GROUP=${GROUP:-${USER}}
+PASSWORD=${PASSWORD:-'dockpass'}
+
 if [ -z "${ARIA2_PORT}" ]; then
   ARIA2_PORT=6800
 fi
@@ -19,6 +25,16 @@ if [ -z "${RPC_SECRET}" ]; then
   RPC_SECRET='dockpass'
 fi
 
+touch /data/logs/aria2c.log
+adduser -D -u "${UID}" -s /bin/sh "${USER}"
+chown -R "${USER}:${GROUP}" /data
+chmod 755 -R /data
+
+if [ ! -f "/etc/aria2c/aria2c.conf" ] ; then
+  echo "Aria2 Conf Not Found, Exiting..."
+  exit 1
+fi
+
 sed -i "s/rpc-listen-port=.*/rpc-listen-port=${ARIA2_PORT}/g" ${ARIA2_CONF}
 sed -i "s/rpc-secret=.*/rpc-secret=${RPC_SECRET}/g" ${ARIA2_CONF}
 sed -i "s/dht-listen-port.*/dht-listen-port=${DHT_PORT}/g" ${ARIA2_CONF}
@@ -29,4 +45,5 @@ echo "
 Aria2 Port : 127.0.0.1:${ARIA2_PORT}
 RPC Secret : ${RPC_SECRET}
 "
-aria2c --conf-path=/etc/aria2c/aria2c.conf
+
+su - ${USER} -c "aria2c --conf-path=/etc/aria2c/aria2c.conf"
