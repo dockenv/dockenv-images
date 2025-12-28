@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   REGISTRY: ghcr.io
-  IMAGE_NAME: nginx
+  IMAGE_NAME: aria2
   IMAGE_TAGS: "latest"
 
 jobs:
