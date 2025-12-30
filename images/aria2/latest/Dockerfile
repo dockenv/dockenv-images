@@ -11,7 +11,7 @@ ENV TZ="Asia/Shanghai"
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 COPY conf /etc/aria2c
 
-RUN apk add --no-cache darkhttpd aria2 unzip \
+RUN apk add --no-cache dufs aria2 unzip \
   && mkdir -p /etc/aria2c /data/downloads /data/logs /var/www \
   && chmod -R 777 /etc/aria2c /var/www \
   && chmod +x /usr/bin/entrypoint.sh \

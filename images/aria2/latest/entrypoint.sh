@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:25:54
- # @LastEditTime: 2025-12-30 15:06:19
+ # @LastEditTime: 2025-12-30 19:33:21
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -14,6 +14,7 @@ GROUP=${GROUP:-${USER}}
 PASSWORD=${PASSWORD:-'dockpass'}
 WEBUI_PORT=${WEBUI_PORT:-'8080'}
 HOST_IP=$(hostname -i)
+WEB_AUTH=${WEB_AUTH:-"${USER}:${PASSWORD}"}
 
 if [ -z "${ARIA2_PORT}" ]; then
   ARIA2_PORT=6800
@@ -36,6 +37,10 @@ if [ ! -f "/etc/aria2c/aria2c.session" ] ; then
   touch /etc/aria2c/aria2c.session
 fi
 
+if [ -n "${WEB_AUTH}" ]; then
+  WEB_AUTH="--auth ${WEB_AUTH}@/:rw"
+fi
+
 touch /data/logs/aria2c.log
 adduser -D -u "${UID}" -s /bin/sh "${USER}"
 chown -R "${USER}:${GROUP}" /data
@@ -53,7 +58,9 @@ Web UI: ${HOST_IP}:${WEBUI_PORT}
 Aria2 Port : ${HOST_IP}:${ARIA2_PORT}
 DHT Port   : ${DHT_PORT}
 RPC Secret : ${RPC_SECRET}
+Web Auth   : ${WEB_AUTH}
 "
+cd /var/www
 
-su - "${USER}" -c "darkhttpd /var/www --port ${WEBUI_PORT}" > /tmp/darkhttpd.log 2>&1 &
+su - "${USER}" -c "dufs --allow-all --bind 0.0.0.0 --port ${WEBUI_PORT}  --hidden '.*' --render-try-index" > /tmp/darkhttpd.log 2>&1 &
 su - "${USER}" -c "aria2c --conf-path=/etc/aria2c/aria2c.conf"
