@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:25:54
- # @LastEditTime: 2025-12-28 15:20:11
+ # @LastEditTime: 2025-12-30 14:37:40
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -12,6 +12,8 @@ UID=${UID:-'1000'}
 USER=${USER:-'dockenv'}
 GROUP=${GROUP:-${USER}}
 PASSWORD=${PASSWORD:-'dockpass'}
+WEBUI_PORT=${WEBUI_PORT:-'8080'}
+HOST_IP=$(hostname -i)
 
 if [ -z "${ARIA2_PORT}" ]; then
   ARIA2_PORT=6800
@@ -41,9 +43,10 @@ sed -i "s/dht-listen-port.*/dht-listen-port=${DHT_PORT}/g" ${ARIA2_CONF}
 
 echo "
     Welcome to Use Aria2c Container
-
-Aria2 Port : 127.0.0.1:${ARIA2_PORT}
+Web UI: ${HOST_IP}:${WEBUI_PORT}
+Aria2 Port : ${HOST_IP}:${ARIA2_PORT}
 RPC Secret : ${RPC_SECRET}
 "
 
-su - ${USER} -c "aria2c --conf-path=/etc/aria2c/aria2c.conf"
+su - "${USER}" -c "aria2c --conf-path=/etc/aria2c/aria2c.conf" 2>&1 &
+su - "${USER}" -c "darkhttpd /var/www --port ${WEBUI_PORT}" > /tmp/darkhttpd.log 2>&1 &
