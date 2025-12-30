@@ -26,6 +26,7 @@ WORKDIR /data/downloads
 
 # 6800 Aria2
 # 6881-6999 DOT Port
-EXPOSE 6800 6881-6999
+# 8080 Web UI
+EXPOSE 6800 6881-6999 8080
 
 CMD ["/usr/bin/entrypoint.sh"]
