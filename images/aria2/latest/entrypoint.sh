@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:25:54
- # @LastEditTime: 2025-12-30 14:37:40
+ # @LastEditTime: 2025-12-30 14:58:28
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -37,6 +37,10 @@ if [ ! -f "/etc/aria2c/aria2c.conf" ] ; then
   exit 1
 fi
 
+if [ ! -f "/etc/aria2c/aria2c.session" ] ; then
+  touch /etc/aria2c/aria2c.session
+fi
+
 sed -i "s/rpc-listen-port=.*/rpc-listen-port=${ARIA2_PORT}/g" ${ARIA2_CONF}
 sed -i "s/rpc-secret=.*/rpc-secret=${RPC_SECRET}/g" ${ARIA2_CONF}
 sed -i "s/dht-listen-port.*/dht-listen-port=${DHT_PORT}/g" ${ARIA2_CONF}
@@ -45,8 +49,9 @@ echo "
     Welcome to Use Aria2c Container
 Web UI: ${HOST_IP}:${WEBUI_PORT}
 Aria2 Port : ${HOST_IP}:${ARIA2_PORT}
+DHT Port   : ${DHT_PORT}
 RPC Secret : ${RPC_SECRET}
 "
 
-su - "${USER}" -c "aria2c --conf-path=/etc/aria2c/aria2c.conf" 2>&1 &
 su - "${USER}" -c "darkhttpd /var/www --port ${WEBUI_PORT}" > /tmp/darkhttpd.log 2>&1 &
+su - "${USER}" -c "aria2c --conf-path=/etc/aria2c/aria2c.conf"
