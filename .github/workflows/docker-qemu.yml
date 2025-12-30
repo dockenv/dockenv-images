@@ -1,0 +1,37 @@
+name: Docker Build QEMU
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * 1"
+
+env:
+  TZ: Asia/Shanghai
+  IMAGE_NAME: qemu
+  IMAGE_TAGS: "latest arm"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: |
+          CURRENT_PWD=$(pwd)
+          for tag in ${IMAGE_TAGS}; do
+            cd ${CURRENT_PWD}/images/${{ env.IMAGE_NAME }}/${tag}
+            docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker tag ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag} ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
+
+      - name: Login to Docker Container Registry
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+          docker login -u ${{ secrets.GHCR_USER }} -p "${{ secrets.GHCR_TOKEN }}" ghcr.io
+
+      - name: Push Docker Image
+        run: |
+          for tag in ${IMAGE_TAGS}; do
+            docker push ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+          done
