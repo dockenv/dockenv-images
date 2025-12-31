@@ -2,7 +2,7 @@ FROM swr.ap-southeast-3.myhuaweicloud.com/dockenv/archlinux:latest
 
 LABEL MAINTAINER="Cloudflying" \
     MAIL="oss@live.hk" \
-    org.opencontainers.image.source=https://github.com/dockenv/dockenv \
+    org.opencontainers.image.source=https://github.com/dockenv/dockenv-images\
     org.opencontainers.image.description='Archlinux Builder'
 
 ENV RUN_USER="dockenv" \

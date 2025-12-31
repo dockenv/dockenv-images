@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine
 
 LABEL org.opencontainers.image.title="Dotnet" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
