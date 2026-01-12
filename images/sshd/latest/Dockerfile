@@ -9,6 +9,8 @@ LABEL org.opencontainers.image.title="SSHD" \
 ENV DEBIAN_FRONTEND=noninteractive
 ENV AUTHORIZED_KEYS="**None**"
 
+ADD entrypoint.sh /bin/entrypoint.sh
+
 # Install packages
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -18,11 +20,8 @@ RUN apt-get update \
 	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
 	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
 	&& apt-get clean all \
-	&& rm -r /var/lib/apt/lists/*
-
-ADD set_root_pw.sh /set_root_pw.sh
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
+	&& rm -r /var/lib/apt/lists/* \
+  && chmod +x /bin/entrypoint.sh
 
 EXPOSE 22 80 666 3000 7681 8888
 CMD ["/run.sh"]
