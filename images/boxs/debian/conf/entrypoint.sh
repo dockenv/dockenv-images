@@ -2,14 +2,14 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-06-25 00:21:46
-# @LastEditTime: 2024-04-18 10:40:39
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2026-01-13 00:20:15
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 
 # Change default password when -e PASSWD is set , default is ${DEFAULT_PASSWD}
 HOME_DIR='/home/dockenv'
-DEFAULT_PASSWD=$(cat /dev/random | head -n 1 | sha256sum | head -c 12)
+DEFAULT_PASSWD=$(head -n 1 /dev/random | sha256sum | head -c 12)
 
 # Set Default Password If is empty will be set as ${DEFAULT_PASSWD}
 if [[ -z "${USER_PASSWD}" ]]; then
