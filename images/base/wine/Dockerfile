@@ -18,4 +18,4 @@ RUN dpkg --add-architecture i386 \
   && apt-get autoclean -y \
   && rm -fr /var/lib/apt/lists/*
 
-CMD ['/bin/bash']
+CMD ["/bin/bash"]
