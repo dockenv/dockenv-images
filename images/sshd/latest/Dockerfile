@@ -24,4 +24,4 @@ RUN apt-get update \
   && chmod +x /bin/entrypoint.sh
 
 EXPOSE 22 80 666 3000 7681 8888
-CMD ["/run.sh"]
+CMD ["/bin/entrypoint.sh"]
