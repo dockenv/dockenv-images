@@ -2,13 +2,14 @@
 ###
  # @Author: Cloudflying
  # @Date: 2025-04-10 09:16:44
- # @LastEditTime: 2026-01-13 00:28:03
+ # @LastEditTime: 2026-01-13 11:02:27
  # @LastEditors: Cloudflying
  # @Description: Docker Entrypoint
 ###
+
 DEFAULT_PASSWD=$(head -n 1 /dev/random | sha256sum | head -c 12)
 USERNAME=${USERNAME:-"dockenv"}
-PASSWD=${PASSWD:-"dockenv"}
+PASSWORD=${PASSWD:-"${DEFAULT_PASSWD}"}
 HOST_IP=$(hostname -i)
 HOME=/home/${USERNAME}
 
