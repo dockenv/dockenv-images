@@ -1,4 +1,4 @@
-FROM typesense/typesense:29.0-amd64
+FROM typesense/typesense:30.1-amd64
 
 LABEL org.opencontainers.image.title="Typesense" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
