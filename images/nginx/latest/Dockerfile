@@ -7,7 +7,6 @@ LABEL org.opencontainers.image.title="Nginx" \
 
 RUN apk add --no-cache nginx \
   nginx-mod-dynamic-upstream \
-  nginx-mod-http-acme \
   nginx-mod-http-auth-jwt \
   nginx-mod-http-brotli \
   nginx-mod-http-cache-purge \
@@ -22,7 +21,6 @@ RUN apk add --no-cache nginx \
   nginx-mod-http-js \
   nginx-mod-http-keyval \
   nginx-mod-http-lua \
-  nginx-mod-http-lua-upstream \
   nginx-mod-http-naxsi \
   nginx-mod-http-nchan \
   nginx-mod-http-redis2 \
