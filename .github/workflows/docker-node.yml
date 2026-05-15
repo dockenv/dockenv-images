@@ -8,7 +8,7 @@ on:
 env:
   TZ: Asia/Shanghai
   IMAGE_NAME: node
-  IMAGE_TAGS: "latest 23 22 21 20 18 16"
+  IMAGE_TAGS: "latest 26 25 24 23 22 21 20 18 16"
 
 jobs:
   build:
@@ -19,15 +19,20 @@ jobs:
       - name: Build the Docker image
         run: |
           for tag in ${IMAGE_TAGS}; do
-            docker build . -f images/${{ env.IMAGE_NAME }}/${tag}/Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            cd images/${{ env.IMAGE_NAME }}/${tag}
+            docker build . -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            docker tag ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag} ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
+            cd ${{ github.workspace }}
           done
 
       - name: Login to Docker Registry
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME}} -p "${{ secrets.DOCKER_PASSWD }}" ${{ secrets.DOCKER_REGISTRY }}
+          docker login -u ${{ secrets.GHCR_USER }} -p "${{ secrets.GHCR_TOKEN }}" ghcr.io
 
       - name: Push Docker Image
         run: |
           for tag in ${IMAGE_TAGS}; do
+            docker push ghcr.io/dockenv/${{ env.IMAGE_NAME }}:${tag}
             docker push ${{ secrets.DOCKER_REGISTRY }}/dockenv/${{ env.IMAGE_NAME }}:${tag}
           done
