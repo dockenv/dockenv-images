@@ -102,6 +102,10 @@ RUN echo "https://mirrors.edge.kernel.org/alpine/edge/main" > /etc/apk/repositor
         libstdc++-dev \
         unixodbc-dev \
         eudev-libs \
+    && apk add --no-cache --repository https://mirrors.edge.kernel.org/alpine/edge/community/ \
+      php85-pecl-grpc \
+      php85-pecl-swoole  \
+      php85-pecl-swoole-dev \
     && mv /usr/bin/php${PHP_VER} /usr/bin/php \
     && mv /usr/sbin/php-fpm${PHP_VER} /usr/sbin/php-fpm \
     && mv /usr/bin/php-config${PHP_VER} /usr/bin/php-config \
