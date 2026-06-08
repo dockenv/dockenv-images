@@ -1,4 +1,4 @@
-FROM postgres:18-alpine
+FROM postgres:19beta1-alpine
 
 LABEL org.opencontainers.image.title="PostgreSQL" \
       org.opencontainers.image.authors="Cloudflying <oss@live.hk>" \
